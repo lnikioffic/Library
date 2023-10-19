@@ -4,7 +4,7 @@ using Library.Models;
 
 namespace Library.Models;
 
-public partial class Genre
+public partial class Genre: IModel
 {
     public int Id { get; set; }
 

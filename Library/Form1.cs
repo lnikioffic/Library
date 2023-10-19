@@ -6,5 +6,11 @@ namespace Library
         {
             InitializeComponent();
         }
+
+        private void GenreMenuItem_Click(object sender, EventArgs e)
+        {
+            var genreForm = new GenreForm();
+            genreForm.Show();
+        }
     }
 }
