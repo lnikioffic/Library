@@ -15,15 +15,20 @@ namespace Library
 {
     public partial class GenreForm : Form1
     {
+        private GenreController controller;
+
+        private Genre? genreV { get; set; }
+
         public GenreForm()
         {
+            controller = new GenreController();
             InitializeComponent();
         }
 
         private void GenreForm_Load(object sender, EventArgs e)
         {
-            var genre = new GenreController();
-            genreTable.DataSource = genre.GetGenres().Cast<GenreTableRepresentation>().ToList();
+            var dt = controller.GetData();
+            genreTable.DataSource = dt;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -40,23 +45,21 @@ namespace Library
         {
             try
             {
-                var genre = new Genre
+                if (genreV != null)
                 {
-                    Genre1 = nameGenre.Text
-                };
-                var genreController = new GenreController();
-                DialogResult result = MessageBox.Show(
-                    "Добавить жанр", "Сообщение", MessageBoxButtons.OKCancel);
-                if (result == DialogResult.OK)
-                {
-                    genreController.Add(genre);
-                    panel1.Visible = true;
-                    addButton.Enabled = true;
-                    editButton.Enabled = true;
-                    deleteButton.Enabled = true;
-                    Box.Visible = false;
-                    GenreForm_Load(sender, e);
+                    genreV.Genre1 = nameGenre.Text;
+                    controller.Update(genreV);
                 }
+                else
+                {
+                    var genre = new Genre
+                    {
+                        Genre1 = nameGenre.Text
+                    };
+                    controller.Add(genre);
+                }
+                viewButton();
+                GenreForm_Load(sender, e);
             }
             catch (Exception ex)
             {
@@ -64,45 +67,66 @@ namespace Library
             }
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void viewButton()
         {
             panel1.Visible = true;
             addButton.Enabled = true;
             editButton.Enabled = true;
             deleteButton.Enabled = true;
             Box.Visible = false;
+            nameGenre.Text = "";
+            genreV = null;
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            viewButton();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
             if (genreTable.SelectedRows.Count == 1)
             {
-                var genre = genreTable.SelectedRows[0].DataBoundItem as GenreTableRepresentation;
+                var genre = genreTable.SelectedRows[0].DataBoundItem as Genre;
                 if (genre != null)
                 {
                     try
                     {
-                        var genreController = new GenreController();
                         DialogResult result = MessageBox.Show(
                             "Удалить жанр", "Сообщение", MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
-                            genreController.Delete(genre.RepresentEntity);
+                            controller.Delete(genre);
                             GenreForm_Load(sender, e);
                         }
                     }
                     catch (Exception ex)
                     {
-
                         MessageBox.Show(ex.Message, "Ошибка");
                     }
                 }
             }
             else
-            {
                 MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
+        }
 
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            if (genreTable.SelectedRows.Count == 1)
+            {
+                panel1.Visible = false;
+                addButton.Enabled = false;
+                editButton.Enabled = false;
+                deleteButton.Enabled = false;
+                Box.Visible = true;
+                Box.Text = "Редактирование";
+
+                genreV = (Genre)genreTable.SelectedRows[0].DataBoundItem;
+                if (genreV != null)
+                    nameGenre.Text = genreV.Genre1.ToString();
             }
+            else
+                MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
         }
     }
 }

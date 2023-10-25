@@ -38,8 +38,8 @@
             toolStripSeparator2 = new ToolStripSeparator();
             B = new ToolStripMenuItem();
             GenreMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem7 = new ToolStripMenuItem();
-            toolStripMenuItem8 = new ToolStripMenuItem();
+            AuthorMenuItem = new ToolStripMenuItem();
+            PublishMenuItem = new ToolStripMenuItem();
             Menu.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             // 
             // toolStripMenuItem2
             // 
-            toolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem3, toolStripSeparator1, toolStripMenuItem4, toolStripMenuItem5, toolStripSeparator2, B, GenreMenuItem, toolStripMenuItem7, toolStripMenuItem8 });
+            toolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem3, toolStripSeparator1, toolStripMenuItem4, toolStripMenuItem5, toolStripSeparator2, B, GenreMenuItem, AuthorMenuItem, PublishMenuItem });
             toolStripMenuItem2.Name = "toolStripMenuItem2";
             toolStripMenuItem2.Size = new Size(87, 20);
             toolStripMenuItem2.Text = "Справочник";
@@ -68,55 +68,57 @@
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(147, 22);
+            toolStripMenuItem3.Size = new Size(180, 22);
             toolStripMenuItem3.Text = "Выдача";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(144, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // toolStripMenuItem4
             // 
             toolStripMenuItem4.Name = "toolStripMenuItem4";
-            toolStripMenuItem4.Size = new Size(147, 22);
+            toolStripMenuItem4.Size = new Size(180, 22);
             toolStripMenuItem4.Text = "Читатели ";
             // 
             // toolStripMenuItem5
             // 
             toolStripMenuItem5.Name = "toolStripMenuItem5";
-            toolStripMenuItem5.Size = new Size(147, 22);
+            toolStripMenuItem5.Size = new Size(180, 22);
             toolStripMenuItem5.Text = "Сотрудники";
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(144, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // B
             // 
             B.Name = "B";
-            B.Size = new Size(147, 22);
+            B.Size = new Size(180, 22);
             B.Text = "Книги";
             // 
             // GenreMenuItem
             // 
             GenreMenuItem.Name = "GenreMenuItem";
-            GenreMenuItem.Size = new Size(147, 22);
+            GenreMenuItem.Size = new Size(180, 22);
             GenreMenuItem.Text = "Жанры";
             GenreMenuItem.Click += GenreMenuItem_Click;
             // 
-            // toolStripMenuItem7
+            // AuthorMenuItem
             // 
-            toolStripMenuItem7.Name = "toolStripMenuItem7";
-            toolStripMenuItem7.Size = new Size(147, 22);
-            toolStripMenuItem7.Text = "Авторы";
+            AuthorMenuItem.Name = "AuthorMenuItem";
+            AuthorMenuItem.Size = new Size(180, 22);
+            AuthorMenuItem.Text = "Авторы";
+            AuthorMenuItem.Click += AuthorMenuItem_Click;
             // 
-            // toolStripMenuItem8
+            // PublishMenuItem
             // 
-            toolStripMenuItem8.Name = "toolStripMenuItem8";
-            toolStripMenuItem8.Size = new Size(147, 22);
-            toolStripMenuItem8.Text = "Издательства";
+            PublishMenuItem.Name = "PublishMenuItem";
+            PublishMenuItem.Size = new Size(180, 22);
+            PublishMenuItem.Text = "Издательства";
+            PublishMenuItem.Click += PublishMenuItem_Click;
             // 
             // Form1
             // 
@@ -145,7 +147,7 @@
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem B;
         private ToolStripMenuItem GenreMenuItem;
-        private ToolStripMenuItem toolStripMenuItem7;
-        private ToolStripMenuItem toolStripMenuItem8;
+        private ToolStripMenuItem AuthorMenuItem;
+        private ToolStripMenuItem PublishMenuItem;
     }
 }

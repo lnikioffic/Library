@@ -34,7 +34,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(750, 450);
+            ClientSize = new Size(730, 430);
             Name = "MainMenu";
             Text = "Библиотека";
             ResumeLayout(false);

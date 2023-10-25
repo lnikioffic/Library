@@ -12,7 +12,7 @@ namespace Library.Controllers
     {
         public GenreController()
         {
-            RepresentationFabric = new GenreRepresentationFabric();
+            //RepresentationFabric = new GenreRepresentationFabric();
         }
 
         public CRUDController<Genre> CRUDController
@@ -23,11 +23,21 @@ namespace Library.Controllers
             }
         }
 
-        private IRepresentationFabric<Genre> RepresentationFabric { get; }
+        //private IRepresentationFabric<Genre> RepresentationFabric { get; }
 
         public void Add(Genre genre)
         {
             CRUDController.Add(genre);
+        }
+
+        public void Update(Genre genre)
+        {
+            using (var db = new LibraryContext())
+            {
+                var gen = db.Genres.Single(x => x.Id == genre.Id);
+                gen.Genre1 = genre.Genre1;
+                db.SaveChanges();
+            }
         }
 
         public void Delete(Genre genre)
@@ -35,10 +45,10 @@ namespace Library.Controllers
             CRUDController.Delete(genre);
         }
 
-        public IEnumerable<ITableRepresentation> GetGenres()
-        {
-            return GetData().Select((x) => RepresentationFabric.CreateTableRepresentation(x));
-        }
+        //public IEnumerable<ITableRepresentation> GetGenres()
+        //{
+        //    return GetData().Select((x) => RepresentationFabric.CreateTableRepresentation(x));
+        //}
 
         public List<Genre> GetData() 
         {

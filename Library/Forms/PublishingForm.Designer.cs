@@ -1,6 +1,6 @@
 ﻿namespace Library
 {
-    partial class GenreForm
+    partial class PublishingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,64 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            addButton = new Button();
-            editButton = new Button();
-            deleteButton = new Button();
+            label1 = new Label();
             panel1 = new Panel();
             button5 = new Button();
             button4 = new Button();
             textBox1 = new TextBox();
-            genreTable = new DataGridView();
-            label1 = new Label();
+            publishingTable = new DataGridView();
+            deleteButton = new Button();
+            editButton = new Button();
+            addButton = new Button();
             Box = new GroupBox();
+            label3 = new Label();
+            adressPub = new TextBox();
             cancelButton = new Button();
             okButton = new Button();
             label2 = new Label();
-            nameGenre = new TextBox();
+            namePub = new TextBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)genreTable).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)publishingTable).BeginInit();
             Box.SuspendLayout();
             SuspendLayout();
             // 
-            // addButton
+            // label1
             // 
-            addButton.Location = new Point(596, 86);
-            addButton.Name = "addButton";
-            addButton.Size = new Size(100, 23);
-            addButton.TabIndex = 1;
-            addButton.Text = "Добавить";
-            addButton.UseVisualStyleBackColor = true;
-            addButton.Click += addButton_Click;
-            // 
-            // editButton
-            // 
-            editButton.Location = new Point(596, 115);
-            editButton.Name = "editButton";
-            editButton.Size = new Size(100, 23);
-            editButton.TabIndex = 2;
-            editButton.Text = "Редактировать";
-            editButton.UseVisualStyleBackColor = true;
-            // 
-            // deleteButton
-            // 
-            deleteButton.Location = new Point(596, 168);
-            deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(100, 23);
-            deleteButton.TabIndex = 3;
-            deleteButton.Text = "Удалить";
-            deleteButton.UseVisualStyleBackColor = true;
-            deleteButton.Click += deleteButton_Click;
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 30);
+            label1.Name = "label1";
+            label1.Size = new Size(80, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Издательства";
             // 
             // panel1
             // 
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(genreTable);
+            panel1.Controls.Add(publishingTable);
             panel1.Location = new Point(3, 54);
             panel1.Name = "panel1";
             panel1.Size = new Size(587, 336);
-            panel1.TabIndex = 4;
+            panel1.TabIndex = 5;
             // 
             // button5
             // 
@@ -112,38 +94,77 @@
             textBox1.Size = new Size(336, 23);
             textBox1.TabIndex = 1;
             // 
-            // genreTable
+            // publishingTable
             // 
-            genreTable.AllowUserToAddRows = false;
-            genreTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            genreTable.Location = new Point(9, 32);
-            genreTable.Name = "genreTable";
-            genreTable.RowTemplate.Height = 25;
-            genreTable.Size = new Size(548, 294);
-            genreTable.TabIndex = 0;
+            publishingTable.AllowUserToAddRows = false;
+            publishingTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            publishingTable.Location = new Point(9, 32);
+            publishingTable.Name = "publishingTable";
+            publishingTable.RowTemplate.Height = 25;
+            publishingTable.Size = new Size(548, 294);
+            publishingTable.TabIndex = 0;
             // 
-            // label1
+            // deleteButton
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 30);
-            label1.Name = "label1";
-            label1.Size = new Size(47, 15);
-            label1.TabIndex = 5;
-            label1.Text = "Жанры";
+            deleteButton.Location = new Point(596, 167);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(100, 23);
+            deleteButton.TabIndex = 8;
+            deleteButton.Text = "Удалить";
+            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
+            // 
+            // editButton
+            // 
+            editButton.Location = new Point(596, 114);
+            editButton.Name = "editButton";
+            editButton.Size = new Size(100, 23);
+            editButton.TabIndex = 7;
+            editButton.Text = "Редактировать";
+            editButton.UseVisualStyleBackColor = true;
+            editButton.Click += editButton_Click;
+            // 
+            // addButton
+            // 
+            addButton.Location = new Point(596, 85);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(100, 23);
+            addButton.TabIndex = 6;
+            addButton.Text = "Добавить";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // Box
             // 
+            Box.Controls.Add(label3);
+            Box.Controls.Add(adressPub);
             Box.Controls.Add(cancelButton);
             Box.Controls.Add(okButton);
             Box.Controls.Add(label2);
-            Box.Controls.Add(nameGenre);
+            Box.Controls.Add(namePub);
             Box.Location = new Point(9, 80);
             Box.Name = "Box";
             Box.Size = new Size(548, 183);
-            Box.TabIndex = 6;
+            Box.TabIndex = 9;
             Box.TabStop = false;
             Box.Text = "text";
             Box.Visible = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 73);
+            label3.Name = "label3";
+            label3.Size = new Size(49, 15);
+            label3.TabIndex = 6;
+            label3.Text = "Адресс:";
+            // 
+            // adressPub
+            // 
+            adressPub.Location = new Point(6, 91);
+            adressPub.Name = "adressPub";
+            adressPub.Size = new Size(229, 23);
+            adressPub.TabIndex = 5;
             // 
             // cancelButton
             // 
@@ -174,36 +195,36 @@
             label2.TabIndex = 1;
             label2.Text = "Название:";
             // 
-            // nameGenre
+            // namePub
             // 
-            nameGenre.Location = new Point(6, 47);
-            nameGenre.Name = "nameGenre";
-            nameGenre.Size = new Size(169, 23);
-            nameGenre.TabIndex = 0;
+            namePub.Location = new Point(6, 47);
+            namePub.Name = "namePub";
+            namePub.Size = new Size(169, 23);
+            namePub.TabIndex = 0;
             // 
-            // GenreForm
+            // PublishingForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(730, 430);
             Controls.Add(Box);
-            Controls.Add(label1);
-            Controls.Add(panel1);
             Controls.Add(deleteButton);
             Controls.Add(editButton);
             Controls.Add(addButton);
-            Name = "GenreForm";
-            Text = "Жанры";
-            Load += GenreForm_Load;
+            Controls.Add(panel1);
+            Controls.Add(label1);
+            Name = "PublishingForm";
+            Text = "Издательства";
+            Load += PublishingForm_Load;
+            Controls.SetChildIndex(label1, 0);
+            Controls.SetChildIndex(panel1, 0);
             Controls.SetChildIndex(addButton, 0);
             Controls.SetChildIndex(editButton, 0);
             Controls.SetChildIndex(deleteButton, 0);
-            Controls.SetChildIndex(panel1, 0);
-            Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(Box, 0);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)genreTable).EndInit();
+            ((System.ComponentModel.ISupportInitialize)publishingTable).EndInit();
             Box.ResumeLayout(false);
             Box.PerformLayout();
             ResumeLayout(false);
@@ -211,19 +232,22 @@
         }
 
         #endregion
-        private Button addButton;
-        private Button editButton;
-        private Button deleteButton;
+
+        private Label label1;
         private Panel panel1;
-        private DataGridView genreTable;
-        private TextBox textBox1;
         private Button button5;
         private Button button4;
-        private Label label1;
+        private TextBox textBox1;
+        private DataGridView publishingTable;
+        private Button deleteButton;
+        private Button editButton;
+        private Button addButton;
         private GroupBox Box;
-        private TextBox nameGenre;
-        private Label label2;
+        private Label label3;
+        private TextBox adressPub;
         private Button cancelButton;
         private Button okButton;
+        private Label label2;
+        private TextBox namePub;
     }
 }
