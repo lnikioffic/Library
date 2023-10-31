@@ -31,12 +31,12 @@
             Menu = new MenuStrip();
             toolStripMenuItem1 = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
-            toolStripMenuItem3 = new ToolStripMenuItem();
+            JournalMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
-            toolStripMenuItem4 = new ToolStripMenuItem();
-            toolStripMenuItem5 = new ToolStripMenuItem();
+            UserMenuItem = new ToolStripMenuItem();
+            StaffMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
-            B = new ToolStripMenuItem();
+            BookMenuItem = new ToolStripMenuItem();
             GenreMenuItem = new ToolStripMenuItem();
             AuthorMenuItem = new ToolStripMenuItem();
             PublishMenuItem = new ToolStripMenuItem();
@@ -45,88 +45,95 @@
             // 
             // Menu
             // 
+            Menu.ImageScalingSize = new Size(20, 20);
             Menu.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2 });
             Menu.Location = new Point(0, 0);
             Menu.Name = "Menu";
-            Menu.Size = new Size(700, 24);
+            Menu.Padding = new Padding(7, 3, 0, 3);
+            Menu.Size = new Size(800, 30);
             Menu.TabIndex = 0;
             Menu.Text = "Меню";
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(63, 20);
+            toolStripMenuItem1.Size = new Size(79, 24);
             toolStripMenuItem1.Text = "Главная";
             // 
             // toolStripMenuItem2
             // 
-            toolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem3, toolStripSeparator1, toolStripMenuItem4, toolStripMenuItem5, toolStripSeparator2, B, GenreMenuItem, AuthorMenuItem, PublishMenuItem });
+            toolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { JournalMenuItem, toolStripSeparator1, UserMenuItem, StaffMenuItem, toolStripSeparator2, BookMenuItem, GenreMenuItem, AuthorMenuItem, PublishMenuItem });
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(87, 20);
+            toolStripMenuItem2.Size = new Size(108, 24);
             toolStripMenuItem2.Text = "Справочник";
             // 
-            // toolStripMenuItem3
+            // JournalMenuItem
             // 
-            toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(180, 22);
-            toolStripMenuItem3.Text = "Выдача";
+            JournalMenuItem.Name = "JournalMenuItem";
+            JournalMenuItem.Size = new Size(224, 26);
+            JournalMenuItem.Text = "Выдача";
+            JournalMenuItem.Click += JournalMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(221, 6);
             // 
-            // toolStripMenuItem4
+            // UserMenuItem
             // 
-            toolStripMenuItem4.Name = "toolStripMenuItem4";
-            toolStripMenuItem4.Size = new Size(180, 22);
-            toolStripMenuItem4.Text = "Читатели ";
+            UserMenuItem.Name = "UserMenuItem";
+            UserMenuItem.Size = new Size(224, 26);
+            UserMenuItem.Text = "Читатели ";
+            UserMenuItem.Click += UserMenuItem_Click;
             // 
-            // toolStripMenuItem5
+            // StaffMenuItem
             // 
-            toolStripMenuItem5.Name = "toolStripMenuItem5";
-            toolStripMenuItem5.Size = new Size(180, 22);
-            toolStripMenuItem5.Text = "Сотрудники";
+            StaffMenuItem.Name = "StaffMenuItem";
+            StaffMenuItem.Size = new Size(224, 26);
+            StaffMenuItem.Text = "Сотрудники";
+            StaffMenuItem.Click += StaffMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(177, 6);
+            toolStripSeparator2.Size = new Size(221, 6);
             // 
-            // B
+            // BookMenuItem
             // 
-            B.Name = "B";
-            B.Size = new Size(180, 22);
-            B.Text = "Книги";
+            BookMenuItem.Name = "BookMenuItem";
+            BookMenuItem.Size = new Size(224, 26);
+            BookMenuItem.Text = "Книги";
+            BookMenuItem.Click += BookMenuItem_Click;
             // 
             // GenreMenuItem
             // 
             GenreMenuItem.Name = "GenreMenuItem";
-            GenreMenuItem.Size = new Size(180, 22);
+            GenreMenuItem.Size = new Size(224, 26);
             GenreMenuItem.Text = "Жанры";
             GenreMenuItem.Click += GenreMenuItem_Click;
             // 
             // AuthorMenuItem
             // 
             AuthorMenuItem.Name = "AuthorMenuItem";
-            AuthorMenuItem.Size = new Size(180, 22);
+            AuthorMenuItem.Size = new Size(224, 26);
             AuthorMenuItem.Text = "Авторы";
             AuthorMenuItem.Click += AuthorMenuItem_Click;
             // 
             // PublishMenuItem
             // 
             PublishMenuItem.Name = "PublishMenuItem";
-            PublishMenuItem.Size = new Size(180, 22);
+            PublishMenuItem.Size = new Size(224, 26);
             PublishMenuItem.Text = "Издательства";
             PublishMenuItem.Click += PublishMenuItem_Click;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 350);
+            ClientSize = new Size(800, 467);
             Controls.Add(Menu);
             MainMenuStrip = Menu;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             Menu.ResumeLayout(false);
@@ -140,12 +147,12 @@
         private MenuStrip Menu;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem toolStripMenuItem3;
+        private ToolStripMenuItem JournalMenuItem;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripMenuItem toolStripMenuItem4;
-        private ToolStripMenuItem toolStripMenuItem5;
+        private ToolStripMenuItem UserMenuItem;
+        private ToolStripMenuItem StaffMenuItem;
         private ToolStripSeparator toolStripSeparator2;
-        private ToolStripMenuItem B;
+        private ToolStripMenuItem BookMenuItem;
         private ToolStripMenuItem GenreMenuItem;
         private ToolStripMenuItem AuthorMenuItem;
         private ToolStripMenuItem PublishMenuItem;

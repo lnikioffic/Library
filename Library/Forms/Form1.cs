@@ -26,5 +26,28 @@ namespace Library
             var authroForm = new AuthorForm();
             authroForm.Show();
         }
+
+        private void BookMenuItem_Click(object sender, EventArgs e)
+        {
+            var bookForm = new BookForm();
+            bookForm.Show();
+        }
+
+        private void JournalMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StaffMenuItem_Click(object sender, EventArgs e)
+        {
+            var staffForm = new UsersForm("staff");
+            staffForm.Show();
+        }
+
+        private void UserMenuItem_Click(object sender, EventArgs e)
+        {
+            var userForm = new UsersForm("user");
+            userForm.Show();
+        }
     }
 }
