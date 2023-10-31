@@ -40,12 +40,11 @@ public partial class LibraryContext : DbContext
     {
         modelBuilder.Entity<Author>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName(" Author_pkey");
+            entity.HasKey(e => e.Id).HasName("Author_pkey");
 
             entity.ToTable(" Author");
 
             entity.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
                 .HasColumnName("id");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(255)
