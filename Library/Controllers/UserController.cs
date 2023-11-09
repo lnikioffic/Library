@@ -17,15 +17,19 @@ namespace Library.Controllers
             }
         }
 
-        private string type;
+        private bool staff;
 
-        public UserController(string type)
+        public UserController(bool staff)
         {
-            this.type = type;
+            this.staff = staff;
         }
 
         public void Add(User user)
         {
+            if (!staff)
+                user.Role = false; 
+            else
+                user.Role = true;
             CRUDController.Add(user);
         }
 
@@ -34,15 +38,27 @@ namespace Library.Controllers
             CRUDController.Delete(user);
         }
 
+        public void Update(User user)
+        {
+            using (var db = new LibraryContext())
+            {
+                var u = db.Users.Single(x => x.Id == user.Id);
+                u.FirstName = user.FirstName;
+                u.LastName = user.LastName;
+                u.Patronymic = user.Patronymic;
+                db.SaveChanges();
+            }
+        }
+
         public List<User> GetData()
         {
             using (var db = new LibraryContext())
             {
                 var user = new List<User>();
-                if (type == "user")
-                    user = db.Users.Where(x => x.Role == null).AsQueryable().ToList();
+                if (!staff)
+                    user = db.Users.Where(x => x.Role == false).AsQueryable().ToList();
                 else
-                    user = db.Users.Where(x => x.Role != null).AsQueryable().ToList();
+                    user = db.Users.Where(x => x.Role == true).AsQueryable().ToList();
                 return user;
             }
         }

@@ -15,4 +15,9 @@ public partial class Genre: IModel
 
     [Browsable(false)]
     public virtual ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
+
+    public override string ToString()
+    {
+        return Genre1;
+    }
 }

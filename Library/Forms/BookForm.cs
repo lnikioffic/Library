@@ -25,6 +25,10 @@ namespace Library.Forms
             InitializeComponent();
         }
 
-
+        private void BookForm_Load(object sender, EventArgs e)
+        {
+            var dt = controller.GetBooks().ToList();
+            bookTable.DataSource = dt;
+        }
     }
 }

@@ -18,11 +18,11 @@ namespace Library.Forms
 
         private User? user { get; set; }
 
-        public UsersForm(string type)
+        public UsersForm(bool staff)
         {
-            controller = new UserController(type);
+            controller = new UserController(staff);
             InitializeComponent();
-            if (type == "user")
+            if (!staff)
             {
                 label1.Text = "Читатели";
                 this.Text = "Читатели";
@@ -55,7 +55,12 @@ namespace Library.Forms
 
         private void addButton_Click(object sender, EventArgs e)
         {
-
+            panel1.Visible = false;
+            addButton.Enabled = false;
+            editButton.Enabled = false;
+            deleteButton.Enabled = false;
+            Box.Visible = true;
+            Box.Text = "Добавление";
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -91,6 +96,56 @@ namespace Library.Forms
             {
                 MessageBox.Show(ex.Message, "Ошибка");
             }
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            if (userTable.SelectedRows.Count == 1)
+            {
+                panel1.Visible = false;
+                addButton.Enabled = false;
+                editButton.Enabled = false;
+                deleteButton.Enabled = false;
+                Box.Visible = true;
+                Box.Text = "Редактирование";
+
+                user = (User)userTable.SelectedRows[0].DataBoundItem;
+                if (user != null)
+                {
+                    firstName.Text = user.FirstName.ToString();
+                    lastName.Text = user.LastName.ToString();
+                    patron.Text = user.Patronymic.ToString();
+                }
+            }
+            else
+                MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (userTable.SelectedRows.Count == 1)
+            {
+                var auth = userTable.SelectedRows[0].DataBoundItem as User;
+                if (auth != null)
+                {
+                    try
+                    {
+                        DialogResult result = MessageBox.Show(
+                            "Удалить жанр", "Сообщение", MessageBoxButtons.OKCancel);
+                        if (result == DialogResult.OK)
+                        {
+                            controller.Delete(auth);
+                            UsersForm_Load(sender, e);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка");
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
         }
     }
 }

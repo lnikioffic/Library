@@ -46,8 +46,6 @@
             okButton = new Button();
             label2 = new Label();
             firstName = new TextBox();
-            comboBox1 = new ComboBox();
-            label5 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)userTable).BeginInit();
             Box.SuspendLayout();
@@ -59,86 +57,80 @@
             panel1.Controls.Add(button4);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(userTable);
-            panel1.Location = new Point(3, 72);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(3, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(671, 448);
+            panel1.Size = new Size(587, 336);
             panel1.TabIndex = 6;
             // 
             // button5
             // 
-            button5.Location = new Point(522, 4);
-            button5.Margin = new Padding(3, 4, 3, 4);
+            button5.Location = new Point(457, 3);
             button5.Name = "button5";
-            button5.Size = new Size(114, 31);
+            button5.Size = new Size(100, 23);
             button5.TabIndex = 3;
             button5.Text = "Очистить";
             button5.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            button4.Location = new Point(401, 4);
-            button4.Margin = new Padding(3, 4, 3, 4);
+            button4.Location = new Point(351, 3);
             button4.Name = "button4";
-            button4.Size = new Size(114, 31);
+            button4.Size = new Size(100, 23);
             button4.TabIndex = 2;
             button4.Text = "Поиск";
             button4.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(10, 4);
-            textBox1.Margin = new Padding(3, 4, 3, 4);
+            textBox1.Location = new Point(9, 3);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(383, 27);
+            textBox1.Size = new Size(336, 23);
             textBox1.TabIndex = 1;
             // 
             // userTable
             // 
             userTable.AllowUserToAddRows = false;
             userTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            userTable.Location = new Point(10, 43);
-            userTable.Margin = new Padding(3, 4, 3, 4);
+            userTable.Location = new Point(9, 32);
             userTable.Name = "userTable";
             userTable.RowHeadersWidth = 51;
             userTable.RowTemplate.Height = 25;
-            userTable.Size = new Size(626, 392);
+            userTable.Size = new Size(548, 294);
             userTable.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(14, 40);
+            label1.Location = new Point(12, 30);
             label1.Name = "label1";
-            label1.Size = new Size(0, 20);
+            label1.Size = new Size(0, 15);
             label1.TabIndex = 7;
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(680, 223);
-            deleteButton.Margin = new Padding(3, 4, 3, 4);
+            deleteButton.Location = new Point(595, 167);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(114, 31);
+            deleteButton.Size = new Size(100, 23);
             deleteButton.TabIndex = 11;
             deleteButton.Text = "Удалить";
             deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // editButton
             // 
-            editButton.Location = new Point(680, 153);
-            editButton.Margin = new Padding(3, 4, 3, 4);
+            editButton.Location = new Point(595, 115);
             editButton.Name = "editButton";
-            editButton.Size = new Size(114, 31);
+            editButton.Size = new Size(100, 23);
             editButton.TabIndex = 10;
             editButton.Text = "Редактировать";
             editButton.UseVisualStyleBackColor = true;
+            editButton.Click += editButton_Click;
             // 
             // addButton
             // 
-            addButton.Location = new Point(680, 114);
-            addButton.Margin = new Padding(3, 4, 3, 4);
+            addButton.Location = new Point(595, 86);
             addButton.Name = "addButton";
-            addButton.Size = new Size(114, 31);
+            addButton.Size = new Size(100, 23);
             addButton.TabIndex = 9;
             addButton.Text = "Добавить";
             addButton.UseVisualStyleBackColor = true;
@@ -146,8 +138,6 @@
             // 
             // Box
             // 
-            Box.Controls.Add(label5);
-            Box.Controls.Add(comboBox1);
             Box.Controls.Add(patron);
             Box.Controls.Add(label4);
             Box.Controls.Add(label3);
@@ -156,11 +146,9 @@
             Box.Controls.Add(okButton);
             Box.Controls.Add(label2);
             Box.Controls.Add(firstName);
-            Box.Location = new Point(7, 107);
-            Box.Margin = new Padding(3, 4, 3, 4);
+            Box.Location = new Point(6, 80);
             Box.Name = "Box";
-            Box.Padding = new Padding(3, 4, 3, 4);
-            Box.Size = new Size(626, 293);
+            Box.Size = new Size(548, 220);
             Box.TabIndex = 12;
             Box.TabStop = false;
             Box.Text = "text";
@@ -168,44 +156,41 @@
             // 
             // patron
             // 
-            patron.Location = new Point(7, 180);
-            patron.Margin = new Padding(3, 4, 3, 4);
+            patron.Location = new Point(6, 135);
             patron.Name = "patron";
-            patron.Size = new Size(193, 27);
+            patron.Size = new Size(169, 23);
             patron.TabIndex = 8;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(7, 157);
+            label4.Location = new Point(6, 118);
             label4.Name = "label4";
-            label4.Size = new Size(72, 20);
+            label4.Size = new Size(58, 15);
             label4.TabIndex = 7;
             label4.Text = "Отчество";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(7, 98);
+            label3.Location = new Point(6, 74);
             label3.Name = "label3";
-            label3.Size = new Size(76, 20);
+            label3.Size = new Size(61, 15);
             label3.TabIndex = 6;
             label3.Text = "Фамилия:";
             // 
             // lastName
             // 
-            lastName.Location = new Point(7, 121);
-            lastName.Margin = new Padding(3, 4, 3, 4);
+            lastName.Location = new Point(6, 91);
             lastName.Name = "lastName";
-            lastName.Size = new Size(193, 27);
+            lastName.Size = new Size(169, 23);
             lastName.TabIndex = 5;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(505, 255);
-            cancelButton.Margin = new Padding(3, 4, 3, 4);
+            cancelButton.Location = new Point(442, 191);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(114, 31);
+            cancelButton.Size = new Size(100, 23);
             cancelButton.TabIndex = 4;
             cancelButton.Text = "Отмена";
             cancelButton.UseVisualStyleBackColor = true;
@@ -213,10 +198,9 @@
             // 
             // okButton
             // 
-            okButton.Location = new Point(384, 255);
-            okButton.Margin = new Padding(3, 4, 3, 4);
+            okButton.Location = new Point(336, 191);
             okButton.Name = "okButton";
-            okButton.Size = new Size(114, 31);
+            okButton.Size = new Size(100, 23);
             okButton.TabIndex = 3;
             okButton.Text = "Ок";
             okButton.UseVisualStyleBackColor = true;
@@ -225,48 +209,31 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(7, 40);
+            label2.Location = new Point(6, 30);
             label2.Name = "label2";
-            label2.Size = new Size(42, 20);
+            label2.Size = new Size(34, 15);
             label2.TabIndex = 1;
             label2.Text = "Имя:";
             // 
             // firstName
             // 
-            firstName.Location = new Point(7, 63);
-            firstName.Margin = new Padding(3, 4, 3, 4);
+            firstName.Location = new Point(6, 47);
             firstName.Name = "firstName";
-            firstName.Size = new Size(193, 27);
+            firstName.Size = new Size(169, 23);
             firstName.TabIndex = 0;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(7, 234);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(193, 28);
-            comboBox1.TabIndex = 9;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(7, 211);
-            label5.Name = "label5";
-            label5.Size = new Size(42, 20);
-            label5.TabIndex = 10;
-            label5.Text = "Роль";
             // 
             // UsersForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(834, 573);
+            ClientSize = new Size(730, 430);
             Controls.Add(Box);
             Controls.Add(deleteButton);
             Controls.Add(editButton);
             Controls.Add(addButton);
             Controls.Add(label1);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "UsersForm";
             Text = "UsersForm";
             Load += UsersForm_Load;
@@ -305,7 +272,5 @@
         private Button okButton;
         private Label label2;
         private TextBox firstName;
-        private Label label5;
-        private ComboBox comboBox1;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library.Models;
 
-public partial class Journal
+public partial class Journal: IModel
 {
     public int Id { get; set; }
 
