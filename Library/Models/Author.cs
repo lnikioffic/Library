@@ -20,4 +20,9 @@ public partial class Author : IModel
 
     [Browsable(false)]
     public virtual ICollection<AuthorBook> AuthorBooks { get; set; } = new List<AuthorBook>();
+
+    public override string ToString()
+    {
+        return LastName;
+    }
 }

@@ -30,5 +30,30 @@ namespace Library.Forms
             var dt = controller.GetBooks().ToList();
             bookTable.DataSource = dt;
         }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = false;
+            addButton.Enabled = false;
+            editButton.Enabled = false;
+            deleteButton.Enabled = false;
+            Box.Visible = true;
+            Box.Text = "Добавление";
+        }
+
+        private void viewButton()
+        {
+            panel1.Visible = true;
+            addButton.Enabled = true;
+            editButton.Enabled = true;
+            deleteButton.Enabled = true;
+            Box.Visible = false;
+            nameBook.Text = "";
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            viewButton();
+        }
     }
 }
