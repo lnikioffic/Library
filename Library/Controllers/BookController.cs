@@ -32,6 +32,8 @@ namespace Library.Controllers
                     .Include(x => x.BookGenres)
                         .ThenInclude(x => x.Genre)
                     .Include(x => x.AuthorBooks)
+                        .ThenInclude(x => x.Author)
+                    .Include(x => x.Publishing)
                     .AsEnumerable()
                     .AsQueryable().ToList();
                 return books;

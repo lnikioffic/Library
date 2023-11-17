@@ -17,12 +17,15 @@ namespace Library.Controllers
             }
         }
 
-        public List<Publishing> GetData()
+        public List<Publishing> GetData(string? name = null)
         {
             using (var db = new LibraryContext())
             {
-                var publishings = db.Publishings.AsQueryable();
-                return publishings.ToList();
+                if (name != null)
+                    return db.Publishings
+                        .Where(x => x.Name == name)
+                        .AsQueryable().ToList();
+                return db.Publishings.AsQueryable().ToList();
             }
         }
 

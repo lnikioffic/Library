@@ -153,7 +153,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 73);
+            label3.Location = new Point(6, 84);
             label3.Name = "label3";
             label3.Size = new Size(49, 15);
             label3.TabIndex = 6;
@@ -161,16 +161,16 @@
             // 
             // adressPub
             // 
-            adressPub.Location = new Point(6, 91);
+            adressPub.Location = new Point(6, 102);
             adressPub.Name = "adressPub";
-            adressPub.Size = new Size(229, 23);
+            adressPub.Size = new Size(260, 23);
             adressPub.TabIndex = 5;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(442, 154);
+            cancelButton.Location = new Point(466, 154);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(100, 23);
+            cancelButton.Size = new Size(76, 23);
             cancelButton.TabIndex = 4;
             cancelButton.Text = "Отмена";
             cancelButton.UseVisualStyleBackColor = true;
@@ -178,9 +178,9 @@
             // 
             // okButton
             // 
-            okButton.Location = new Point(336, 154);
+            okButton.Location = new Point(384, 154);
             okButton.Name = "okButton";
-            okButton.Size = new Size(100, 23);
+            okButton.Size = new Size(76, 23);
             okButton.TabIndex = 3;
             okButton.Text = "Ок";
             okButton.UseVisualStyleBackColor = true;

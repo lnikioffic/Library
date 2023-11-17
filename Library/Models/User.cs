@@ -18,17 +18,9 @@ public partial class User : IModel
     [DisplayName(@"Отчество")]
     public string? Patronymic { get; set; }
 
-    [Browsable(false)]
-    public bool? Role { get; set; }
-
-    [Browsable (false)]
-    public virtual ICollection<Journal> JournalUserIssueds { get; set; } = new List<Journal>();
+    [DisplayName(@"Читательский")]
+    public int Ticket { get; set; }
 
     [Browsable(false)]
-    public virtual ICollection<Journal> JournalUserTooks { get; set; } = new List<Journal>();
-
-    public User()
-    {
-
-    }   
+    public virtual ICollection<Journal> Journals { get; set; } = new List<Journal>();
 }

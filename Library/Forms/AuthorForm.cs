@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Library.Forms
 {
-    public partial class AuthorForm : Form1
+    public partial class AuthorForm : Form
     {
         private AuthorController controller;
 
@@ -136,6 +136,15 @@ namespace Library.Forms
             {
                 MessageBox.Show(ex.Message, "Ошибка");
             }
+        }
+
+        public Author AuthorSupp { get; set; }
+
+        private void authorTable_DoubleClick(object sender, EventArgs e)
+        {
+            var author = (Author)authorTable.SelectedRows[0].DataBoundItem;
+            AuthorSupp = author;
+            this.Close();
         }
     }
 }

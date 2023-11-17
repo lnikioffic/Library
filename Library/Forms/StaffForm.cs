@@ -12,22 +12,28 @@ using System.Windows.Forms;
 
 namespace Library.Forms
 {
-    public partial class UsersForm : Form
+    public partial class StaffForm : Form
     {
-        private UserController controller;
+        private StaffController controller;
 
-        private User? user { get; set; }
+        private RoleController roleController;
 
-        public UsersForm()
+        private Staff? user { get; set; }
+
+        public StaffForm()
         {
-            controller = new UserController();
+            roleController = new RoleController();
+            controller = new StaffController();
             InitializeComponent();
         }
 
-        private void UsersForm_Load(object sender, EventArgs e)
+        private void StaffForm_Load(object sender, EventArgs e)
         {
             var dt = controller.GetData();
             userTable.DataSource = dt;
+
+            var roles = roleController.GetData();
+            roleComboBox.SetDataToComboBox(roles);
         }
 
         private void viewButton()
@@ -40,7 +46,6 @@ namespace Library.Forms
             firstName.Text = "";
             lastName.Text = "";
             patron.Text = "";
-            readerID.Text = "";
             user = null;
         }
 
@@ -50,7 +55,6 @@ namespace Library.Forms
             addButton.Enabled = false;
             editButton.Enabled = false;
             deleteButton.Enabled = false;
-            readerID.Text = controller.GetHashCode().ToString();
             Box.Visible = true;
             Box.Text = "Добавление";
         }
@@ -66,24 +70,27 @@ namespace Library.Forms
             {
                 if (user != null)
                 {
+                    var role = roleController.GetData(roleComboBox.SelectedItem.ToString()).First();
                     user.FirstName = firstName.Text;
                     user.LastName = lastName.Text;
                     user.Patronymic = patron.Text;
+                    user.Role = role;
                     controller.Update(user);
                 }
                 else
                 {
-                    var us = new User
+                    var role = roleController.GetData(roleComboBox.SelectedItem.ToString()).First();
+                    var us = new Staff
                     {
                         FirstName = firstName.Text,
                         LastName = lastName.Text,
                         Patronymic = patron.Text,
-                        Ticket = int.Parse(readerID.Text)
+                        RoleId = role.Id
                     };
                     controller.Add(us);
                 }
                 viewButton();
-                UsersForm_Load(sender, e);
+                StaffForm_Load(sender, e);
             }
             catch (Exception ex)
             {
@@ -102,13 +109,13 @@ namespace Library.Forms
                 Box.Visible = true;
                 Box.Text = "Редактирование";
 
-                user = (User)userTable.SelectedRows[0].DataBoundItem;
+                user = (Staff)userTable.SelectedRows[0].DataBoundItem;
                 if (user != null)
                 {
                     firstName.Text = user.FirstName.ToString();
                     lastName.Text = user.LastName.ToString();
                     patron.Text = user.Patronymic.ToString();
-                    readerID.Text = user.Ticket.ToString();
+                    roleComboBox.SelectedText = user.Role.NameRole;
                 }
             }
             else
@@ -119,7 +126,7 @@ namespace Library.Forms
         {
             if (userTable.SelectedRows.Count == 1)
             {
-                var auth = userTable.SelectedRows[0].DataBoundItem as User;
+                var auth = userTable.SelectedRows[0].DataBoundItem as Staff;
                 if (auth != null)
                 {
                     try
@@ -129,7 +136,7 @@ namespace Library.Forms
                         if (result == DialogResult.OK)
                         {
                             controller.Delete(auth);
-                            UsersForm_Load(sender, e);
+                            StaffForm_Load(sender, e);
                         }
                     }
                     catch (Exception ex)

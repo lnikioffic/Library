@@ -18,4 +18,9 @@ public partial class Publishing : IModel
 
     [Browsable(false)]
     public virtual ICollection<Book> Books { get; set; } = new List<Book>();
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }

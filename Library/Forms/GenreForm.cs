@@ -2,6 +2,7 @@
 using Library.Models;
 using Library.Representation;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Library
 {
-    public partial class GenreForm : Form1
+    public partial class GenreForm : Form
     {
         private GenreController controller;
 
@@ -127,6 +128,15 @@ namespace Library
             }
             else
                 MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
+        }
+
+        public Genre GenSupp { get; set; }
+
+        private void genreTable_DoubleClick(object sender, EventArgs e)
+        {
+            var gen = (Genre)genreTable.SelectedRows[0].DataBoundItem;
+            GenSupp = gen;
+            this.Close();
         }
     }
 }

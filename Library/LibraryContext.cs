@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using Library.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,6 +30,10 @@ public partial class LibraryContext : DbContext
     public virtual DbSet<Journal> Journals { get; set; }
 
     public virtual DbSet<Publishing> Publishings { get; set; }
+
+    public virtual DbSet<Role> Roles { get; set; }
+
+    public virtual DbSet<Staff> Staff { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
@@ -74,7 +79,7 @@ public partial class LibraryContext : DbContext
 
             entity.HasOne(d => d.Book).WithMany(p => p.AuthorBooks)
                 .HasForeignKey(d => d.BookId)
-                .OnDelete(DeleteBehavior.Restrict)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk_author_book_book");
         });
 
@@ -111,7 +116,7 @@ public partial class LibraryContext : DbContext
 
             entity.HasOne(d => d.Book).WithMany(p => p.BookGenres)
                 .HasForeignKey(d => d.BookId)
-                .OnDelete(DeleteBehavior.Restrict)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk_book_genre_book");
 
             entity.HasOne(d => d.Genre).WithMany(p => p.BookGenres)
@@ -143,23 +148,23 @@ public partial class LibraryContext : DbContext
             entity.Property(e => e.BookId).HasColumnName("book_id");
             entity.Property(e => e.DateOfIssued).HasColumnName("date_of_issued");
             entity.Property(e => e.EstimatedReturnDate).HasColumnName("estimated_return_date");
-            entity.Property(e => e.UserIssuedId).HasColumnName("user_issued_id");
-            entity.Property(e => e.UserTookId).HasColumnName("user_took_id");
+            entity.Property(e => e.StaffId).HasColumnName("staff_id");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
 
             entity.HasOne(d => d.Book).WithMany(p => p.Journals)
                 .HasForeignKey(d => d.BookId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_journal_book");
 
-            entity.HasOne(d => d.UserIssued).WithMany(p => p.JournalUserIssueds)
-                .HasForeignKey(d => d.UserIssuedId)
+            entity.HasOne(d => d.Staff).WithMany(p => p.Journals)
+                .HasForeignKey(d => d.StaffId)
                 .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("fk_journal_user_issued");
+                .HasConstraintName("fk_journal_staff");
 
-            entity.HasOne(d => d.UserTook).WithMany(p => p.JournalUserTooks)
-                .HasForeignKey(d => d.UserTookId)
+            entity.HasOne(d => d.User).WithMany(p => p.Journals)
+                .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("fk_journal_user_took");
+                .HasConstraintName("fk_journal_user");
         });
 
         modelBuilder.Entity<Publishing>(entity =>
@@ -175,6 +180,40 @@ public partial class LibraryContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");
+        });
+
+        modelBuilder.Entity<Role>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("Role_pkey");
+
+            entity.ToTable("Role");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.NameRole)
+                .HasMaxLength(255)
+                .HasColumnName("name_role");
+        });
+
+        modelBuilder.Entity<Staff>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("Staff_pkey");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.FirstName)
+                .HasMaxLength(255)
+                .HasColumnName("first_name");
+            entity.Property(e => e.LastName)
+                .HasMaxLength(255)
+                .HasColumnName("last_name");
+            entity.Property(e => e.Patronymic)
+                .HasMaxLength(255)
+                .HasColumnName("patronymic");
+            entity.Property(e => e.RoleId).HasColumnName("role_id");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.Staff)
+                .HasForeignKey(d => d.RoleId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("fk_staff_role");
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -193,7 +232,7 @@ public partial class LibraryContext : DbContext
             entity.Property(e => e.Patronymic)
                 .HasMaxLength(255)
                 .HasColumnName("patronymic");
-            entity.Property(e => e.Role).HasColumnName("role");
+            entity.Property(e => e.Ticket).HasColumnName("ticket");
         });
 
         OnModelCreatingPartial(modelBuilder);

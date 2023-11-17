@@ -46,6 +46,8 @@
             okButton = new Button();
             label2 = new Label();
             firstName = new TextBox();
+            readerID = new TextBox();
+            label5 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)userTable).BeginInit();
             Box.SuspendLayout();
@@ -103,8 +105,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 30);
             label1.Name = "label1";
-            label1.Size = new Size(0, 15);
+            label1.Size = new Size(58, 15);
             label1.TabIndex = 7;
+            label1.Text = "Читатели";
             // 
             // deleteButton
             // 
@@ -138,6 +141,8 @@
             // 
             // Box
             // 
+            Box.Controls.Add(label5);
+            Box.Controls.Add(readerID);
             Box.Controls.Add(patron);
             Box.Controls.Add(label4);
             Box.Controls.Add(label3);
@@ -156,7 +161,7 @@
             // 
             // patron
             // 
-            patron.Location = new Point(6, 135);
+            patron.Location = new Point(356, 47);
             patron.Name = "patron";
             patron.Size = new Size(169, 23);
             patron.TabIndex = 8;
@@ -164,7 +169,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 118);
+            label4.Location = new Point(356, 30);
             label4.Name = "label4";
             label4.Size = new Size(58, 15);
             label4.TabIndex = 7;
@@ -173,7 +178,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 74);
+            label3.Location = new Point(181, 30);
             label3.Name = "label3";
             label3.Size = new Size(61, 15);
             label3.TabIndex = 6;
@@ -181,16 +186,16 @@
             // 
             // lastName
             // 
-            lastName.Location = new Point(6, 91);
+            lastName.Location = new Point(181, 47);
             lastName.Name = "lastName";
             lastName.Size = new Size(169, 23);
             lastName.TabIndex = 5;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(442, 191);
+            cancelButton.Location = new Point(466, 191);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(100, 23);
+            cancelButton.Size = new Size(76, 23);
             cancelButton.TabIndex = 4;
             cancelButton.Text = "Отмена";
             cancelButton.UseVisualStyleBackColor = true;
@@ -198,9 +203,9 @@
             // 
             // okButton
             // 
-            okButton.Location = new Point(336, 191);
+            okButton.Location = new Point(384, 192);
             okButton.Name = "okButton";
-            okButton.Size = new Size(100, 23);
+            okButton.Size = new Size(76, 23);
             okButton.TabIndex = 3;
             okButton.Text = "Ок";
             okButton.UseVisualStyleBackColor = true;
@@ -222,6 +227,23 @@
             firstName.Size = new Size(169, 23);
             firstName.TabIndex = 0;
             // 
+            // readerID
+            // 
+            readerID.Location = new Point(6, 104);
+            readerID.Name = "readerID";
+            readerID.Size = new Size(169, 23);
+            readerID.TabIndex = 9;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Enabled = false;
+            label5.Location = new Point(6, 86);
+            label5.Name = "label5";
+            label5.Size = new Size(121, 15);
+            label5.TabIndex = 10;
+            label5.Text = "Читательский билет:";
+            // 
             // UsersForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -235,14 +257,8 @@
             Controls.Add(panel1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "UsersForm";
-            Text = "UsersForm";
+            Text = "Читатели";
             Load += UsersForm_Load;
-            Controls.SetChildIndex(panel1, 0);
-            Controls.SetChildIndex(label1, 0);
-            Controls.SetChildIndex(addButton, 0);
-            Controls.SetChildIndex(editButton, 0);
-            Controls.SetChildIndex(deleteButton, 0);
-            Controls.SetChildIndex(Box, 0);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)userTable).EndInit();
@@ -272,5 +288,7 @@
         private Button okButton;
         private Label label2;
         private TextBox firstName;
+        private Label label5;
+        private TextBox readerID;
     }
 }

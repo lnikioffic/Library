@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Library
 {
-    public partial class PublishingForm : Form1
+    public partial class PublishingForm : Form
     {
         private PublishingController controller;
 

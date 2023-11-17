@@ -15,13 +15,13 @@ public partial class Journal: IModel
 
     public int BookId { get; set; }
 
-    public int UserTookId { get; set; }
+    public int UserId { get; set; }
 
-    public int UserIssuedId { get; set; }
+    public int StaffId { get; set; }
 
     public virtual Book Book { get; set; } = null!;
 
-    public virtual User UserIssued { get; set; } = null!;
+    public virtual Staff Staff { get; set; } = null!;
 
-    public virtual User UserTook { get; set; } = null!;
+    public virtual User User { get; set; } = null!;
 }

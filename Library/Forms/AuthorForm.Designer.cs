@@ -105,6 +105,7 @@
             authorTable.RowTemplate.Height = 25;
             authorTable.Size = new Size(548, 294);
             authorTable.TabIndex = 0;
+            authorTable.DoubleClick += authorTable_DoubleClick;
             // 
             // deleteButton
             // 
@@ -156,7 +157,7 @@
             // 
             // patron
             // 
-            patron.Location = new Point(6, 135);
+            patron.Location = new Point(356, 47);
             patron.Name = "patron";
             patron.Size = new Size(169, 23);
             patron.TabIndex = 8;
@@ -164,7 +165,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 117);
+            label4.Location = new Point(356, 29);
             label4.Name = "label4";
             label4.Size = new Size(58, 15);
             label4.TabIndex = 7;
@@ -173,7 +174,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 73);
+            label3.Location = new Point(181, 29);
             label3.Name = "label3";
             label3.Size = new Size(61, 15);
             label3.TabIndex = 6;
@@ -181,16 +182,16 @@
             // 
             // lastName
             // 
-            lastName.Location = new Point(6, 91);
+            lastName.Location = new Point(181, 47);
             lastName.Name = "lastName";
             lastName.Size = new Size(169, 23);
             lastName.TabIndex = 5;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(442, 191);
+            cancelButton.Location = new Point(466, 191);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(100, 23);
+            cancelButton.Size = new Size(76, 23);
             cancelButton.TabIndex = 4;
             cancelButton.Text = "Отмена";
             cancelButton.UseVisualStyleBackColor = true;
@@ -198,9 +199,9 @@
             // 
             // okButton
             // 
-            okButton.Location = new Point(336, 191);
+            okButton.Location = new Point(384, 191);
             okButton.Name = "okButton";
-            okButton.Size = new Size(100, 23);
+            okButton.Size = new Size(76, 23);
             okButton.TabIndex = 3;
             okButton.Text = "Ок";
             okButton.UseVisualStyleBackColor = true;

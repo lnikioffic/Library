@@ -40,13 +40,13 @@ namespace Library
 
         private void StaffMenuItem_Click(object sender, EventArgs e)
         {
-            var staffForm = new UsersForm(true);
+            var staffForm = new StaffForm();
             staffForm.Show();
         }
 
         private void UserMenuItem_Click(object sender, EventArgs e)
         {
-            var userForm = new UsersForm(false);
+            var userForm = new UsersForm();
             userForm.Show();
         }
     }

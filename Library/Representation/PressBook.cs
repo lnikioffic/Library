@@ -36,13 +36,13 @@ namespace Library.Representation
             List<string> gen = new List<string>();
             foreach (var genre in book.BookGenres)
                 gen.Add(genre.Genre.ToString());
-            string genres = string.Join(",", gen);
+            string genres = string.Join(", ", gen);
             BookGenres = genres;
             Publishing = book.Publishing.Name;
             List<string> aut = new List<string>();
             foreach (var authro in book.AuthorBooks)
                 aut.Add(authro.Author.ToString());
-            AuthorBooks = string.Join(",", aut);
+            AuthorBooks = string.Join(", ", aut);
         }
     }
 }
