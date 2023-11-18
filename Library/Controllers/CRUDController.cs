@@ -11,21 +11,24 @@ namespace Library.Controllers
     public class CRUDController<T>
         where T: class, IModel
     {
-        public void Add(T dataObject)
+        public T Add(T dataObject)
         {
             using (var db = new LibraryContext())
             {
-                var model = db
-                    .GetType()
-                    .GetProperties()
-                    .Where(x => x.PropertyType.Equals(typeof(DbSet<T>)))
-                    .First()
-                    .GetValue(db);
-
-                if (model as DbSet<T> != null)
-                    ((DbSet<T>)model).Add(dataObject);
-
+                var d = db.Set<T>().Add(dataObject);
                 db.SaveChanges();
+                return d.Entity;
+            }
+        }
+
+        public void AddRabge(List<T> dataObject)
+        {
+            using (var db = new LibraryContext())
+            {
+                foreach (var item in dataObject)
+                    db.Set<T>().Add(item);
+                db.SaveChanges();
+                
             }
         }
 
@@ -33,16 +36,7 @@ namespace Library.Controllers
         {
             using (var db = new LibraryContext())
             {
-                var model = db
-                    .GetType()
-                    .GetProperties()
-                    .Where(x => x.PropertyType.Equals(typeof(DbSet<T>)))
-                    .First()
-                    .GetValue(db);
-
-                if (model as DbSet<T> != null)
-                    ((DbSet<T>)model).Remove(dataObject);
-
+                db.Set<T>().Remove(dataObject);
                 db.SaveChanges();
             }
         }

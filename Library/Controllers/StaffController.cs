@@ -36,6 +36,7 @@ namespace Library.Controllers
                 u.FirstName = user.FirstName;
                 u.LastName = user.LastName;
                 u.Patronymic = user.Patronymic;
+                u.Role = user.Role;
                 db.SaveChanges();
             }
         }

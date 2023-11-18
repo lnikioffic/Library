@@ -67,79 +67,88 @@
             panel1.Controls.Add(button4);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(bookTable);
-            panel1.Location = new Point(3, 54);
+            panel1.Location = new Point(3, 72);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(587, 336);
+            panel1.Size = new Size(671, 448);
             panel1.TabIndex = 7;
             // 
             // button5
             // 
-            button5.Location = new Point(457, 3);
+            button5.Location = new Point(522, 4);
+            button5.Margin = new Padding(3, 4, 3, 4);
             button5.Name = "button5";
-            button5.Size = new Size(100, 23);
+            button5.Size = new Size(114, 31);
             button5.TabIndex = 3;
             button5.Text = "Очистить";
             button5.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            button4.Location = new Point(351, 3);
+            button4.Location = new Point(401, 4);
+            button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
-            button4.Size = new Size(100, 23);
+            button4.Size = new Size(114, 31);
             button4.TabIndex = 2;
             button4.Text = "Поиск";
             button4.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(9, 3);
+            textBox1.Location = new Point(10, 4);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(336, 23);
+            textBox1.Size = new Size(383, 27);
             textBox1.TabIndex = 1;
             // 
             // bookTable
             // 
             bookTable.AllowUserToAddRows = false;
             bookTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            bookTable.Location = new Point(9, 32);
+            bookTable.Location = new Point(10, 43);
+            bookTable.Margin = new Padding(3, 4, 3, 4);
             bookTable.Name = "bookTable";
             bookTable.RowHeadersWidth = 51;
             bookTable.RowTemplate.Height = 25;
-            bookTable.Size = new Size(548, 294);
+            bookTable.Size = new Size(626, 392);
             bookTable.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 30);
+            label1.Location = new Point(14, 40);
             label1.Name = "label1";
-            label1.Size = new Size(40, 15);
+            label1.Size = new Size(51, 20);
             label1.TabIndex = 8;
             label1.Text = "Книги";
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(596, 165);
+            deleteButton.Location = new Point(681, 220);
+            deleteButton.Margin = new Padding(3, 4, 3, 4);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(100, 23);
+            deleteButton.Size = new Size(114, 31);
             deleteButton.TabIndex = 14;
             deleteButton.Text = "Удалить";
             deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // editButton
             // 
-            editButton.Location = new Point(596, 113);
+            editButton.Location = new Point(681, 151);
+            editButton.Margin = new Padding(3, 4, 3, 4);
             editButton.Name = "editButton";
-            editButton.Size = new Size(100, 23);
+            editButton.Size = new Size(114, 31);
             editButton.TabIndex = 13;
             editButton.Text = "Редактировать";
             editButton.UseVisualStyleBackColor = true;
             // 
             // addButton
             // 
-            addButton.Location = new Point(596, 84);
+            addButton.Location = new Point(681, 112);
+            addButton.Margin = new Padding(3, 4, 3, 4);
             addButton.Name = "addButton";
-            addButton.Size = new Size(100, 23);
+            addButton.Size = new Size(114, 31);
             addButton.TabIndex = 12;
             addButton.Text = "Добавить";
             addButton.UseVisualStyleBackColor = true;
@@ -163,9 +172,11 @@
             Box.Controls.Add(okButton);
             Box.Controls.Add(label2);
             Box.Controls.Add(nameBook);
-            Box.Location = new Point(9, 80);
+            Box.Location = new Point(10, 107);
+            Box.Margin = new Padding(3, 4, 3, 4);
             Box.Name = "Box";
-            Box.Size = new Size(551, 338);
+            Box.Padding = new Padding(3, 4, 3, 4);
+            Box.Size = new Size(630, 451);
             Box.TabIndex = 15;
             Box.TabStop = false;
             Box.Text = "text";
@@ -173,42 +184,45 @@
             // 
             // datePub
             // 
-            datePub.Location = new Point(212, 102);
+            datePub.Location = new Point(242, 136);
+            datePub.Margin = new Padding(3, 4, 3, 4);
             datePub.Name = "datePub";
-            datePub.Size = new Size(79, 23);
+            datePub.Size = new Size(90, 27);
             datePub.TabIndex = 17;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(212, 84);
+            label6.Location = new Point(242, 112);
             label6.Name = "label6";
-            label6.Size = new Size(76, 15);
+            label6.Size = new Size(98, 20);
             label6.TabIndex = 16;
             label6.Text = "Год издания:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(5, 84);
+            label5.Location = new Point(6, 112);
             label5.Name = "label5";
-            label5.Size = new Size(84, 15);
+            label5.Size = new Size(106, 20);
             label5.TabIndex = 14;
             label5.Text = "Издательство:";
             // 
             // publishingCombobox
             // 
             publishingCombobox.FormattingEnabled = true;
-            publishingCombobox.Location = new Point(6, 102);
+            publishingCombobox.Location = new Point(7, 136);
+            publishingCombobox.Margin = new Padding(3, 4, 3, 4);
             publishingCombobox.Name = "publishingCombobox";
-            publishingCombobox.Size = new Size(200, 23);
+            publishingCombobox.Size = new Size(228, 28);
             publishingCombobox.TabIndex = 13;
             // 
             // deleteAuthor
             // 
-            deleteAuthor.Location = new Point(265, 186);
+            deleteAuthor.Location = new Point(303, 248);
+            deleteAuthor.Margin = new Padding(3, 4, 3, 4);
             deleteAuthor.Name = "deleteAuthor";
-            deleteAuthor.Size = new Size(23, 23);
+            deleteAuthor.Size = new Size(26, 31);
             deleteAuthor.TabIndex = 12;
             deleteAuthor.Text = "-";
             deleteAuthor.UseVisualStyleBackColor = true;
@@ -216,9 +230,10 @@
             // 
             // addAuthor
             // 
-            addAuthor.Location = new Point(265, 157);
+            addAuthor.Location = new Point(303, 209);
+            addAuthor.Margin = new Padding(3, 4, 3, 4);
             addAuthor.Name = "addAuthor";
-            addAuthor.Size = new Size(23, 23);
+            addAuthor.Size = new Size(26, 31);
             addAuthor.TabIndex = 11;
             addAuthor.Text = "+";
             addAuthor.UseVisualStyleBackColor = true;
@@ -226,9 +241,10 @@
             // 
             // deleteGenre
             // 
-            deleteGenre.Location = new Point(505, 186);
+            deleteGenre.Location = new Point(577, 248);
+            deleteGenre.Margin = new Padding(3, 4, 3, 4);
             deleteGenre.Name = "deleteGenre";
-            deleteGenre.Size = new Size(23, 23);
+            deleteGenre.Size = new Size(26, 31);
             deleteGenre.TabIndex = 10;
             deleteGenre.Text = "-";
             deleteGenre.UseVisualStyleBackColor = true;
@@ -236,9 +252,10 @@
             // 
             // addGenre
             // 
-            addGenre.Location = new Point(505, 157);
+            addGenre.Location = new Point(577, 209);
+            addGenre.Margin = new Padding(3, 4, 3, 4);
             addGenre.Name = "addGenre";
-            addGenre.Size = new Size(23, 23);
+            addGenre.Size = new Size(26, 31);
             addGenre.TabIndex = 9;
             addGenre.Text = "+";
             addGenre.UseVisualStyleBackColor = true;
@@ -247,48 +264,47 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 140);
+            label4.Location = new Point(7, 187);
             label4.Name = "label4";
-            label4.Size = new Size(52, 15);
+            label4.Size = new Size(65, 20);
             label4.TabIndex = 8;
             label4.Text = "Авторы:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(345, 140);
+            label3.Location = new Point(394, 187);
             label3.Name = "label3";
-            label3.Size = new Size(50, 15);
+            label3.Size = new Size(62, 20);
             label3.TabIndex = 7;
             label3.Text = "Жанры:";
             // 
             // authorData
             // 
             authorData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            authorData.Location = new Point(6, 157);
-            authorData.Margin = new Padding(3, 2, 3, 2);
+            authorData.Location = new Point(7, 209);
             authorData.Name = "authorData";
             authorData.RowHeadersWidth = 51;
             authorData.RowTemplate.Height = 29;
-            authorData.Size = new Size(253, 97);
+            authorData.Size = new Size(289, 129);
             authorData.TabIndex = 6;
             // 
             // genreData
             // 
             genreData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            genreData.Location = new Point(345, 157);
-            genreData.Margin = new Padding(3, 2, 3, 2);
+            genreData.Location = new Point(394, 209);
             genreData.Name = "genreData";
             genreData.RowHeadersWidth = 51;
             genreData.RowTemplate.Height = 29;
-            genreData.Size = new Size(154, 97);
+            genreData.Size = new Size(176, 129);
             genreData.TabIndex = 5;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(469, 299);
+            cancelButton.Location = new Point(536, 399);
+            cancelButton.Margin = new Padding(3, 4, 3, 4);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(76, 23);
+            cancelButton.Size = new Size(87, 31);
             cancelButton.TabIndex = 4;
             cancelButton.Text = "Отмена";
             cancelButton.UseVisualStyleBackColor = true;
@@ -296,41 +312,43 @@
             // 
             // okButton
             // 
-            okButton.Location = new Point(387, 299);
+            okButton.Location = new Point(442, 399);
+            okButton.Margin = new Padding(3, 4, 3, 4);
             okButton.Name = "okButton";
-            okButton.Size = new Size(76, 23);
+            okButton.Size = new Size(87, 31);
             okButton.TabIndex = 3;
             okButton.Text = "Ок";
             okButton.UseVisualStyleBackColor = true;
+            okButton.Click += okButton_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 30);
+            label2.Location = new Point(7, 40);
             label2.Name = "label2";
-            label2.Size = new Size(62, 15);
+            label2.Size = new Size(80, 20);
             label2.TabIndex = 1;
             label2.Text = "Название:";
             // 
             // nameBook
             // 
-            nameBook.Location = new Point(6, 47);
+            nameBook.Location = new Point(7, 63);
+            nameBook.Margin = new Padding(3, 4, 3, 4);
             nameBook.Name = "nameBook";
-            nameBook.Size = new Size(201, 23);
+            nameBook.Size = new Size(229, 27);
             nameBook.TabIndex = 0;
             // 
             // BookForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 430);
+            ClientSize = new Size(834, 573);
             Controls.Add(Box);
             Controls.Add(deleteButton);
             Controls.Add(editButton);
             Controls.Add(addButton);
             Controls.Add(label1);
             Controls.Add(panel1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "BookForm";
             Text = "Книги";
             Load += BookForm_Load;

@@ -1,5 +1,7 @@
 ﻿using Library.Controllers;
 using Library.Models;
+using Library.Representation;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,6 +66,7 @@ namespace Library.Forms
             nameBook.Text = "";
             genreData.DataSource = null;
             genreList.Clear();
+            book = null;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -120,5 +123,99 @@ namespace Library.Forms
                 MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
         }
         //
+        private List<BookGenre> CreateBG(int book)
+        {
+            var list = new List<BookGenre>();
+            foreach (var genre in genreList)
+            {
+                list.Add(
+                    new BookGenre
+                    {
+                        BookId = book,
+                        GenreId = genre.Id,
+                    }
+                    );
+            }
+            return list;
+        }
+
+        private List<AuthorBook> CreateAB(int book)
+        {
+            var list = new List<AuthorBook>();
+            foreach (var authro in authorList)
+            {
+                list.Add(
+                    new AuthorBook
+                    {
+                        BookId = book,
+                        AuthorId = authro.Id,
+                    }
+                    );
+            }
+            return list;
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (book != null)
+                {
+                    //var role = publishingController.GetData(publishingCombobox.SelectedItem.ToString()).First();
+                    //book.FirstName = firstName.Text;
+                    //book.LastName = lastName.Text;
+                    //book.Patronymic = patron.Text;
+                    //book.Role = role;
+                    //controller.Update(user);
+                }
+                else
+                {
+                    var pub = publishingController.GetData(publishingCombobox.SelectedItem.ToString()).First();
+                    var book = new Book
+                    {
+                        Title = nameBook.Text,
+                        PublishingId = pub.Id,
+                        PublicationDate = datePub.Text
+                    };
+                    var idBook = controller.Add(book);
+                    book.AuthorBooks = CreateAB(idBook);
+                    book.BookGenres = CreateBG(idBook);
+                    
+                }
+                viewButton();
+                BookForm_Load(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (bookTable.SelectedRows.Count == 1)
+            {
+                var bo = bookTable.SelectedRows[0].DataBoundItem as PressBook;
+                if (bo != null)
+                {
+                    try
+                    {
+                        DialogResult result = MessageBox.Show(
+                            "Удалить читателя", "Сообщение", MessageBoxButtons.OKCancel);
+                        if (result == DialogResult.OK)
+                        {
+                            controller.Delete(bo.book);
+                            BookForm_Load(sender, e);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка");
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
+        }
     }
 }

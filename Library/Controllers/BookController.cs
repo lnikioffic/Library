@@ -19,6 +19,17 @@ namespace Library.Controllers
             }
         }
 
+        public int Add(Book book)
+        {
+            var id = CRUDController.Add(book);
+            return id.Id;
+        }
+
+        public void Delete(Book book)
+        {
+            CRUDController.Delete(book);
+        }
+
         public IEnumerable<PressBook> GetBooks()
         {
             return GetData().Select(x => new PressBook(x));
