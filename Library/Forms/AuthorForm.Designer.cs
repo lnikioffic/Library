@@ -46,6 +46,8 @@
             okButton = new Button();
             label2 = new Label();
             firstName = new TextBox();
+            firstNameLable = new Label();
+            lastNameLable = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)authorTable).BeginInit();
             Box.SuspendLayout();
@@ -139,6 +141,8 @@
             // 
             // Box
             // 
+            Box.Controls.Add(lastNameLable);
+            Box.Controls.Add(firstNameLable);
             Box.Controls.Add(patron);
             Box.Controls.Add(label4);
             Box.Controls.Add(label3);
@@ -223,6 +227,26 @@
             firstName.Size = new Size(169, 23);
             firstName.TabIndex = 0;
             // 
+            // firstNameLable
+            // 
+            firstNameLable.AutoSize = true;
+            firstNameLable.ForeColor = Color.Red;
+            firstNameLable.Location = new Point(6, 73);
+            firstNameLable.Name = "firstNameLable";
+            firstNameLable.Size = new Size(38, 15);
+            firstNameLable.TabIndex = 9;
+            firstNameLable.Text = "label5";
+            // 
+            // lastNameLable
+            // 
+            lastNameLable.AutoSize = true;
+            lastNameLable.ForeColor = Color.Red;
+            lastNameLable.Location = new Point(181, 73);
+            lastNameLable.Name = "lastNameLable";
+            lastNameLable.Size = new Size(38, 15);
+            lastNameLable.TabIndex = 10;
+            lastNameLable.Text = "label6";
+            // 
             // AuthorForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -237,12 +261,6 @@
             Name = "AuthorForm";
             Text = "Авторы";
             Load += AuthorForm_Load;
-            Controls.SetChildIndex(label1, 0);
-            Controls.SetChildIndex(panel1, 0);
-            Controls.SetChildIndex(addButton, 0);
-            Controls.SetChildIndex(editButton, 0);
-            Controls.SetChildIndex(deleteButton, 0);
-            Controls.SetChildIndex(Box, 0);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)authorTable).EndInit();
@@ -272,5 +290,7 @@
         private TextBox firstName;
         private TextBox patron;
         private Label label4;
+        private Label lastNameLable;
+        private Label firstNameLable;
     }
 }

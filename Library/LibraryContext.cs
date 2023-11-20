@@ -49,8 +49,7 @@ public partial class LibraryContext : DbContext
 
             entity.ToTable(" Author");
 
-            entity.Property(e => e.Id)
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(255)
                 .HasColumnName("first_name");
@@ -79,7 +78,6 @@ public partial class LibraryContext : DbContext
 
             entity.HasOne(d => d.Book).WithMany(p => p.AuthorBooks)
                 .HasForeignKey(d => d.BookId)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk_author_book_book");
         });
 
@@ -116,7 +114,6 @@ public partial class LibraryContext : DbContext
 
             entity.HasOne(d => d.Book).WithMany(p => p.BookGenres)
                 .HasForeignKey(d => d.BookId)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk_book_genre_book");
 
             entity.HasOne(d => d.Genre).WithMany(p => p.BookGenres)

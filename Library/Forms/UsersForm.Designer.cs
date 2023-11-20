@@ -38,6 +38,10 @@
             editButton = new Button();
             addButton = new Button();
             Box = new GroupBox();
+            lastNameLable = new Label();
+            firstNameLable = new Label();
+            label5 = new Label();
+            readerID = new TextBox();
             patron = new TextBox();
             label4 = new Label();
             label3 = new Label();
@@ -46,8 +50,6 @@
             okButton = new Button();
             label2 = new Label();
             firstName = new TextBox();
-            readerID = new TextBox();
-            label5 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)userTable).BeginInit();
             Box.SuspendLayout();
@@ -141,6 +143,8 @@
             // 
             // Box
             // 
+            Box.Controls.Add(lastNameLable);
+            Box.Controls.Add(firstNameLable);
             Box.Controls.Add(label5);
             Box.Controls.Add(readerID);
             Box.Controls.Add(patron);
@@ -158,6 +162,43 @@
             Box.TabStop = false;
             Box.Text = "text";
             Box.Visible = false;
+            // 
+            // lastNameLable
+            // 
+            lastNameLable.AutoSize = true;
+            lastNameLable.ForeColor = Color.Red;
+            lastNameLable.Location = new Point(181, 71);
+            lastNameLable.Name = "lastNameLable";
+            lastNameLable.Size = new Size(38, 15);
+            lastNameLable.TabIndex = 12;
+            lastNameLable.Text = "label7";
+            // 
+            // firstNameLable
+            // 
+            firstNameLable.AutoSize = true;
+            firstNameLable.ForeColor = Color.Red;
+            firstNameLable.Location = new Point(6, 71);
+            firstNameLable.Name = "firstNameLable";
+            firstNameLable.Size = new Size(38, 15);
+            firstNameLable.TabIndex = 11;
+            firstNameLable.Text = "label6";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(6, 91);
+            label5.Name = "label5";
+            label5.Size = new Size(121, 15);
+            label5.TabIndex = 10;
+            label5.Text = "Читательский билет:";
+            // 
+            // readerID
+            // 
+            readerID.Enabled = false;
+            readerID.Location = new Point(6, 109);
+            readerID.Name = "readerID";
+            readerID.Size = new Size(169, 23);
+            readerID.TabIndex = 9;
             // 
             // patron
             // 
@@ -227,23 +268,6 @@
             firstName.Size = new Size(169, 23);
             firstName.TabIndex = 0;
             // 
-            // readerID
-            // 
-            readerID.Location = new Point(6, 104);
-            readerID.Name = "readerID";
-            readerID.Size = new Size(169, 23);
-            readerID.TabIndex = 9;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Enabled = false;
-            label5.Location = new Point(6, 86);
-            label5.Name = "label5";
-            label5.Size = new Size(121, 15);
-            label5.TabIndex = 10;
-            label5.Text = "Читательский билет:";
-            // 
             // UsersForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -290,5 +314,7 @@
         private TextBox firstName;
         private Label label5;
         private TextBox readerID;
+        private Label lastNameLable;
+        private Label firstNameLable;
     }
 }

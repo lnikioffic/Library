@@ -19,15 +19,30 @@ namespace Library.Controllers
             }
         }
 
-        public int Add(Book book)
+        public void Add(Book book)
         {
-            var id = CRUDController.Add(book);
-            return id.Id;
+            CRUDController.Add(book);
         }
 
         public void Delete(Book book)
         {
             CRUDController.Delete(book);
+        }
+
+        public void Update(Book book)
+        {
+            using (var db = new LibraryContext())
+            {
+                var b = db.Books.Single(x => x.Id == book.Id);
+                db.BookGenres.ToList();
+                db.AuthorBooks.ToList();
+                b.Title = book.Title;
+                b.PublicationDate = book.PublicationDate;
+                b.Publishing = book.Publishing;
+                b.AuthorBooks = book.AuthorBooks;
+                b.BookGenres = book.BookGenres;
+                db.SaveChanges();
+            }
         }
 
         public IEnumerable<PressBook> GetBooks()

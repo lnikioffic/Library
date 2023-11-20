@@ -1,5 +1,6 @@
 ﻿using Library.Controllers;
 using Library.Models;
+using Library.tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +42,7 @@ namespace Library.Forms
             lastName.Text = "";
             patron.Text = "";
             author = null;
+            firstNameLable.Text = ""; lastNameLable.Text = "";
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -56,6 +58,7 @@ namespace Library.Forms
             deleteButton.Enabled = false;
             Box.Visible = true;
             Box.Text = "Добавление";
+            author = null;
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -95,6 +98,7 @@ namespace Library.Forms
                 deleteButton.Enabled = false;
                 Box.Visible = true;
                 Box.Text = "Редактирование";
+                firstNameLable.Text = ""; lastNameLable.Text = "";
 
                 author = (Author)authorTable.SelectedRows[0].DataBoundItem;
                 if (author != null)
@@ -112,25 +116,35 @@ namespace Library.Forms
         {
             try
             {
-                if (author != null)
+                firstNameLable.Text = ""; lastNameLable.Text = "";
+                Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
-                    author.FirstName = firstName.Text;
-                    author.LastName = lastName.Text;
-                    author.Patronymic = patron.Text;
-                    controller.Update(author);
-                }
-                else
+                    {firstName, firstNameLable },
+                    {lastName, lastNameLable },
+                };
+                bool isValidTextBox = Validator.ValidateTextBox(errorLables);
+                if (isValidTextBox)
                 {
-                    var pub = new Author
+                    if (author != null)
                     {
-                        FirstName = firstName.Text,
-                        LastName = lastName.Text,
-                        Patronymic = patron.Text,
-                    };
-                    controller.Add(pub);
+                        author.FirstName = firstName.Text;
+                        author.LastName = lastName.Text;
+                        author.Patronymic = patron.Text;
+                        controller.Update(author);
+                    }
+                    else
+                    {
+                        var pub = new Author
+                        {
+                            FirstName = firstName.Text,
+                            LastName = lastName.Text,
+                            Patronymic = patron.Text,
+                        };
+                        controller.Add(pub);
+                    }
+                    viewButton();
+                    AuthorForm_Load(sender, e);
                 }
-                viewButton();
-                AuthorForm_Load(sender, e);
             }
             catch (Exception ex)
             {

@@ -1,5 +1,6 @@
 ﻿using Library.Controllers;
 using Library.Models;
+using Library.tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,7 @@ namespace Library
             namePub.Text = "";
             adressPub.Text = "";
             publishing = null;
+            namePub.Text = ""; adressPub.Text = "";
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -50,6 +52,7 @@ namespace Library
             deleteButton.Enabled = false;
             Box.Visible = true;
             Box.Text = "Добавление";
+            publishing = null;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -61,23 +64,33 @@ namespace Library
         {
             try
             {
-                if (publishing != null)
+                namePub.Text = ""; adressPub.Text = "";
+                Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
-                    publishing.Name = namePub.Text;
-                    publishing.Address = adressPub.Text;
-                    controller.Update(publishing);
-                }
-                else
+                    {namePub, namePubLable },
+                    {adressPub, adressPubLable },
+                };
+                bool isValidTextBox = Validator.ValidateTextBox(errorLables);
+                if (isValidTextBox)
                 {
-                    var pub = new Publishing
+                    if (publishing != null)
                     {
-                        Name = namePub.Text,
-                        Address = adressPub.Text,
-                    };
-                    controller.Add(pub);
+                        publishing.Name = namePub.Text;
+                        publishing.Address = adressPub.Text;
+                        controller.Update(publishing);
+                    }
+                    else
+                    {
+                        var pub = new Publishing
+                        {
+                            Name = namePub.Text,
+                            Address = adressPub.Text,
+                        };
+                        controller.Add(pub);
+                    }
+                    viewButton();
+                    PublishingForm_Load(sender, e);
                 }
-                viewButton();
-                PublishingForm_Load(sender, e);
             }
             catch (Exception ex)
             {
@@ -122,6 +135,7 @@ namespace Library
                 deleteButton.Enabled = false;
                 Box.Visible = true;
                 Box.Text = "Редактирование";
+                namePub.Text = ""; adressPub.Text = "";
 
                 publishing = (Publishing)publishingTable.SelectedRows[0].DataBoundItem;
                 if (publishing != null)

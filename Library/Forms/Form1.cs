@@ -35,7 +35,8 @@ namespace Library
 
         private void JournalMenuItem_Click(object sender, EventArgs e)
         {
-
+            var journalForm = new JournalForm();
+            journalForm.Show();
         }
 
         private void StaffMenuItem_Click(object sender, EventArgs e)

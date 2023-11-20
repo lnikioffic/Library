@@ -1,6 +1,7 @@
 ﻿using Library.Controllers;
 using Library.Models;
 using Library.Representation;
+using Library.tools;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -40,27 +41,37 @@ namespace Library
             deleteButton.Enabled = false;
             Box.Visible = true;
             Box.Text = "Добавление";
+            genre.Text = "";
+            genreV = null;
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
             try
             {
-                if (genreV != null)
+                Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
-                    genreV.Genre1 = nameGenre.Text;
-                    controller.Update(genreV);
-                }
-                else
+                    {nameGenre, genre }
+                };
+                bool isValid = Validator.ValidateTextBox(errorLables);
+                if (isValid)
                 {
-                    var genre = new Genre
+                    if (genreV != null)
                     {
-                        Genre1 = nameGenre.Text
-                    };
-                    controller.Add(genre);
-                }
-                viewButton();
-                GenreForm_Load(sender, e);
+                        genreV.Genre1 = nameGenre.Text;
+                        controller.Update(genreV);
+                    }
+                    else
+                    {
+                        var genre = new Genre
+                        {
+                            Genre1 = nameGenre.Text
+                        };
+                        controller.Add(genre);
+                    }
+                    viewButton();
+                    GenreForm_Load(sender, e);
+                } 
             }
             catch (Exception ex)
             {
@@ -121,6 +132,7 @@ namespace Library
                 deleteButton.Enabled = false;
                 Box.Visible = true;
                 Box.Text = "Редактирование";
+                genre.Text = "";
 
                 genreV = (Genre)genreTable.SelectedRows[0].DataBoundItem;
                 if (genreV != null)

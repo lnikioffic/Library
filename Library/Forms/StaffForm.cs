@@ -1,5 +1,6 @@
 ﻿using Library.Controllers;
 using Library.Models;
+using Library.tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,6 +58,8 @@ namespace Library.Forms
             deleteButton.Enabled = false;
             Box.Visible = true;
             Box.Text = "Добавление";
+            firstNameLable.Text = ""; lastNameLable.Text = ""; roleLable.Text = "";
+            user = null;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -68,29 +71,43 @@ namespace Library.Forms
         {
             try
             {
-                if (user != null)
+                firstNameLable.Text = ""; lastNameLable.Text = ""; roleLable.Text = "";
+                Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
+                {
+                    {firstName, firstNameLable },
+                    {lastName, lastNameLable },
+                };
+                Dictionary<ComboBox, Label> errorComboBox = new Dictionary<ComboBox, Label>
+                {
+                    {roleComboBox, roleLable},
+                };
+                bool isValidTextBox = Validator.ValidateTextBox(errorLables);
+                bool isValidComboBox = Validator.ValidateComboBox(errorComboBox);
+                if (isValidTextBox && isValidComboBox)
                 {
                     var role = roleController.GetData(roleComboBox.SelectedItem.ToString()).First();
-                    user.FirstName = firstName.Text;
-                    user.LastName = lastName.Text;
-                    user.Patronymic = patron.Text;
-                    user.Role = role;
-                    controller.Update(user);
-                }
-                else
-                {
-                    var role = roleController.GetData(roleComboBox.SelectedItem.ToString()).First();
-                    var us = new Staff
+                    if (user != null)
                     {
-                        FirstName = firstName.Text,
-                        LastName = lastName.Text,
-                        Patronymic = patron.Text,
-                        RoleId = role.Id
-                    };
-                    controller.Add(us);
+                        user.FirstName = firstName.Text;
+                        user.LastName = lastName.Text;
+                        user.Patronymic = patron.Text;
+                        user.Role = role;
+                        controller.Update(user);
+                    }
+                    else
+                    {
+                        var us = new Staff
+                        {
+                            FirstName = firstName.Text,
+                            LastName = lastName.Text,
+                            Patronymic = patron.Text,
+                            RoleId = role.Id
+                        };
+                        controller.Add(us);
+                    }
+                    viewButton();
+                    StaffForm_Load(sender, e);
                 }
-                viewButton();
-                StaffForm_Load(sender, e);
             }
             catch (Exception ex)
             {
@@ -108,6 +125,7 @@ namespace Library.Forms
                 deleteButton.Enabled = false;
                 Box.Visible = true;
                 Box.Text = "Редактирование";
+                firstNameLable.Text = ""; lastNameLable.Text = ""; roleLable.Text = "";
 
                 user = (Staff)userTable.SelectedRows[0].DataBoundItem;
                 if (user != null)

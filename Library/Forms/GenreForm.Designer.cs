@@ -38,6 +38,7 @@
             genreTable = new DataGridView();
             label1 = new Label();
             Box = new GroupBox();
+            genre = new Label();
             cancelButton = new Button();
             okButton = new Button();
             label2 = new Label();
@@ -135,6 +136,7 @@
             // 
             // Box
             // 
+            Box.Controls.Add(genre);
             Box.Controls.Add(cancelButton);
             Box.Controls.Add(okButton);
             Box.Controls.Add(label2);
@@ -146,6 +148,16 @@
             Box.TabStop = false;
             Box.Text = "text";
             Box.Visible = false;
+            // 
+            // genre
+            // 
+            genre.AutoSize = true;
+            genre.ForeColor = Color.Red;
+            genre.Location = new Point(6, 73);
+            genre.Name = "genre";
+            genre.Size = new Size(38, 15);
+            genre.TabIndex = 5;
+            genre.Text = "label3";
             // 
             // cancelButton
             // 
@@ -197,12 +209,6 @@
             Name = "GenreForm";
             Text = "Жанры";
             Load += GenreForm_Load;
-            Controls.SetChildIndex(addButton, 0);
-            Controls.SetChildIndex(editButton, 0);
-            Controls.SetChildIndex(deleteButton, 0);
-            Controls.SetChildIndex(panel1, 0);
-            Controls.SetChildIndex(label1, 0);
-            Controls.SetChildIndex(Box, 0);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)genreTable).EndInit();
@@ -227,5 +233,6 @@
         private Label label2;
         private Button cancelButton;
         private Button okButton;
+        private Label genre;
     }
 }

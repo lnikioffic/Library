@@ -37,6 +37,9 @@
             label2 = new Label();
             firstName = new TextBox();
             Box = new GroupBox();
+            roleLable = new Label();
+            lastNameLable = new Label();
+            firstNameLable = new Label();
             label5 = new Label();
             roleComboBox = new ComboBox();
             deleteButton = new Button();
@@ -123,6 +126,9 @@
             // 
             // Box
             // 
+            Box.Controls.Add(roleLable);
+            Box.Controls.Add(lastNameLable);
+            Box.Controls.Add(firstNameLable);
             Box.Controls.Add(label5);
             Box.Controls.Add(roleComboBox);
             Box.Controls.Add(patron);
@@ -141,10 +147,40 @@
             Box.Text = "text";
             Box.Visible = false;
             // 
+            // roleLable
+            // 
+            roleLable.AutoSize = true;
+            roleLable.ForeColor = Color.Red;
+            roleLable.Location = new Point(6, 135);
+            roleLable.Name = "roleLable";
+            roleLable.Size = new Size(38, 15);
+            roleLable.TabIndex = 15;
+            roleLable.Text = "label8";
+            // 
+            // lastNameLable
+            // 
+            lastNameLable.AutoSize = true;
+            lastNameLable.ForeColor = Color.Red;
+            lastNameLable.Location = new Point(181, 71);
+            lastNameLable.Name = "lastNameLable";
+            lastNameLable.Size = new Size(38, 15);
+            lastNameLable.TabIndex = 14;
+            lastNameLable.Text = "label7";
+            // 
+            // firstNameLable
+            // 
+            firstNameLable.AutoSize = true;
+            firstNameLable.ForeColor = Color.Red;
+            firstNameLable.Location = new Point(6, 71);
+            firstNameLable.Name = "firstNameLable";
+            firstNameLable.Size = new Size(38, 15);
+            firstNameLable.TabIndex = 13;
+            firstNameLable.Text = "label6";
+            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(6, 86);
+            label5.Location = new Point(6, 91);
             label5.Name = "label5";
             label5.Size = new Size(72, 15);
             label5.TabIndex = 12;
@@ -153,7 +189,7 @@
             // roleComboBox
             // 
             roleComboBox.FormattingEnabled = true;
-            roleComboBox.Location = new Point(6, 104);
+            roleComboBox.Location = new Point(6, 109);
             roleComboBox.Name = "roleComboBox";
             roleComboBox.Size = new Size(169, 23);
             roleComboBox.TabIndex = 11;
@@ -287,5 +323,8 @@
         private Panel panel1;
         private ComboBox roleComboBox;
         private Label label5;
+        private Label roleLable;
+        private Label lastNameLable;
+        private Label firstNameLable;
     }
 }

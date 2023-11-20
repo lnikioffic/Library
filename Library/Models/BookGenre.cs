@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library.Models;
 
-public partial class BookGenre
+public partial class BookGenre : IModel
 {
     public int Id { get; set; }
 
@@ -14,9 +14,4 @@ public partial class BookGenre
     public virtual Book Book { get; set; } = null!;
 
     public virtual Genre Genre { get; set; } = null!;
-
-    public override string ToString()
-    {
-        return Genre.ToString();
-    }
 }

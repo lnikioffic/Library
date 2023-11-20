@@ -44,6 +44,8 @@
             okButton = new Button();
             label2 = new Label();
             namePub = new TextBox();
+            namePubLable = new Label();
+            adressPubLable = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)publishingTable).BeginInit();
             Box.SuspendLayout();
@@ -136,6 +138,8 @@
             // 
             // Box
             // 
+            Box.Controls.Add(adressPubLable);
+            Box.Controls.Add(namePubLable);
             Box.Controls.Add(label3);
             Box.Controls.Add(adressPub);
             Box.Controls.Add(cancelButton);
@@ -153,7 +157,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 84);
+            label3.Location = new Point(6, 93);
             label3.Name = "label3";
             label3.Size = new Size(49, 15);
             label3.TabIndex = 6;
@@ -161,7 +165,7 @@
             // 
             // adressPub
             // 
-            adressPub.Location = new Point(6, 102);
+            adressPub.Location = new Point(6, 111);
             adressPub.Name = "adressPub";
             adressPub.Size = new Size(260, 23);
             adressPub.TabIndex = 5;
@@ -202,6 +206,26 @@
             namePub.Size = new Size(169, 23);
             namePub.TabIndex = 0;
             // 
+            // namePubLable
+            // 
+            namePubLable.AutoSize = true;
+            namePubLable.ForeColor = Color.Red;
+            namePubLable.Location = new Point(6, 73);
+            namePubLable.Name = "namePubLable";
+            namePubLable.Size = new Size(38, 15);
+            namePubLable.TabIndex = 7;
+            namePubLable.Text = "label4";
+            // 
+            // adressPubLable
+            // 
+            adressPubLable.AutoSize = true;
+            adressPubLable.ForeColor = Color.Red;
+            adressPubLable.Location = new Point(6, 137);
+            adressPubLable.Name = "adressPubLable";
+            adressPubLable.Size = new Size(38, 15);
+            adressPubLable.TabIndex = 8;
+            adressPubLable.Text = "label5";
+            // 
             // PublishingForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -216,12 +240,6 @@
             Name = "PublishingForm";
             Text = "Издательства";
             Load += PublishingForm_Load;
-            Controls.SetChildIndex(label1, 0);
-            Controls.SetChildIndex(panel1, 0);
-            Controls.SetChildIndex(addButton, 0);
-            Controls.SetChildIndex(editButton, 0);
-            Controls.SetChildIndex(deleteButton, 0);
-            Controls.SetChildIndex(Box, 0);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)publishingTable).EndInit();
@@ -249,5 +267,7 @@
         private Button okButton;
         private Label label2;
         private TextBox namePub;
+        private Label adressPubLable;
+        private Label namePubLable;
     }
 }

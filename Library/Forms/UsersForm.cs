@@ -1,5 +1,6 @@
 ﻿using Library.Controllers;
 using Library.Models;
+using Library.tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,6 +54,8 @@ namespace Library.Forms
             readerID.Text = controller.GetHashCode().ToString();
             Box.Visible = true;
             Box.Text = "Добавление";
+            firstNameLable.Text = ""; lastNameLable.Text = "";
+            user = null;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -64,26 +67,36 @@ namespace Library.Forms
         {
             try
             {
-                if (user != null)
+                firstNameLable.Text = ""; lastNameLable.Text = "";
+                Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
-                    user.FirstName = firstName.Text;
-                    user.LastName = lastName.Text;
-                    user.Patronymic = patron.Text;
-                    controller.Update(user);
-                }
-                else
+                    {firstName, firstNameLable },
+                    {lastName, lastNameLable },
+                };
+                bool isValid = Validator.ValidateTextBox(errorLables);
+                if (isValid)
                 {
-                    var us = new User
+                    if (user != null)
                     {
-                        FirstName = firstName.Text,
-                        LastName = lastName.Text,
-                        Patronymic = patron.Text,
-                        Ticket = int.Parse(readerID.Text)
-                    };
-                    controller.Add(us);
+                        user.FirstName = firstName.Text;
+                        user.LastName = lastName.Text;
+                        user.Patronymic = patron.Text;
+                        controller.Update(user);
+                    }
+                    else
+                    {
+                        var us = new User
+                        {
+                            FirstName = firstName.Text,
+                            LastName = lastName.Text,
+                            Patronymic = patron.Text,
+                            Ticket = int.Parse(readerID.Text)
+                        };
+                        controller.Add(us);
+                    }
+                    viewButton();
+                    UsersForm_Load(sender, e);
                 }
-                viewButton();
-                UsersForm_Load(sender, e);
             }
             catch (Exception ex)
             {
@@ -101,6 +114,7 @@ namespace Library.Forms
                 deleteButton.Enabled = false;
                 Box.Visible = true;
                 Box.Text = "Редактирование";
+                firstNameLable.Text = ""; lastNameLable.Text = "";
 
                 user = (User)userTable.SelectedRows[0].DataBoundItem;
                 if (user != null)
