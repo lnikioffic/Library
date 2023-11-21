@@ -52,8 +52,6 @@ namespace Library.Forms
             deleteButton.Enabled = false;
             Box.Visible = true;
             Box.Text = "Добавление";
-            authorData.DataSource = null;
-            authorList.Clear();
             nameBookLable.Text = ""; datePubLable.Text = ""; publishingComboboxLable.Text = "";
             genreDataLable.Text = "";
             authorDataLable.Text = "";
@@ -109,10 +107,13 @@ namespace Library.Forms
             var genreForm = new GenreForm();
             genreForm.ShowDialog();
             genreDataLable.Text = "";
-            if (CheckUniqGenre(genreList, genreForm.GenSupp))
-                genreList.Add(genreForm.GenSupp);
-            else
-                genreDataLable.Text = $"Вы уже добалили этот жанр {genreForm.GenSupp.Genre1}";
+            if (genreForm.GenSupp != null)
+            {
+                if (CheckUniqGenre(genreList, genreForm.GenSupp))
+                    genreList.Add(genreForm.GenSupp);
+                else
+                    genreDataLable.Text = $"Вы уже добалили этот жанр {genreForm.GenSupp.Genre1}";
+            }
             showData();
         }
 
@@ -121,10 +122,13 @@ namespace Library.Forms
             var authorForm = new AuthorForm();
             authorForm.ShowDialog();
             authorDataLable.Text = "";
-            if (CheckUniqAuthor(authorList, authorForm.AuthorSupp))
-                authorList.Add(authorForm.AuthorSupp);
-            else
-                authorDataLable.Text = $"Вы уже добалили этотого автора {authorForm.AuthorSupp.LastName}";
+            if (authorForm.AuthorSupp != null)
+            {
+                if (CheckUniqAuthor(authorList, authorForm.AuthorSupp))
+                    authorList.Add(authorForm.AuthorSupp);
+                else
+                    authorDataLable.Text = $"Вы уже добалили этотого автора {authorForm.AuthorSupp.LastName}";
+            }
             showData();
         }
 
@@ -206,9 +210,15 @@ namespace Library.Forms
                 {
                     {publishingCombobox, publishingComboboxLable},
                 };
+                Dictionary<DataGridView, Label> errorList = new Dictionary<DataGridView, Label>
+                {
+                    {genreData, genreDataLable},
+                    {authorData, authorDataLable},
+                };
                 bool isValidTextBox = Validator.ValidateTextBox(errorLables);
                 bool isValidComboBox = Validator.ValidateComboBox(errorComboBox);
-                if (isValidTextBox && isValidComboBox)
+                bool isValidData = Validator.ValidateData(errorList);
+                if (isValidTextBox && isValidComboBox && isValidData)
                 {
                     var pub = publishingController.GetData(publishingCombobox.SelectedItem.ToString()).First();
                     if (book != null)

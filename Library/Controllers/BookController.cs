@@ -50,10 +50,20 @@ namespace Library.Controllers
             return GetData().Select(x => new PressBook(x));
         }
 
-        public List<Book> GetData()
+        public List<Book> GetData(string? title = null)
         {
             using (var db = new LibraryContext())
             {
+                if (title != null)
+                    return db.Books
+                        .Where(x => x.Title == title)
+                        .Include(x => x.BookGenres)
+                            .ThenInclude(x => x.Genre)
+                        .Include(x => x.AuthorBooks)
+                            .ThenInclude(x => x.Author)
+                        .Include(x => x.Publishing)
+                        .AsEnumerable()
+                        .AsQueryable().ToList();
                 var books = db.Books
                     .Include(x => x.BookGenres)
                         .ThenInclude(x => x.Genre)
@@ -63,6 +73,35 @@ namespace Library.Controllers
                     .AsEnumerable()
                     .AsQueryable().ToList();
                 return books;
+            }
+        }
+
+        public List<Book> GetActuall()
+        {
+            using (var db = new LibraryContext())
+            {
+                List<Book> b = new List<Book>();
+                var j = db.Journals
+                    .Where(x => x.ActualReturnDate == null)
+                    .Include(x => x.Book).AsQueryable().ToList();
+                var books = db.Books
+                    .Include(x => x.BookGenres)
+                        .ThenInclude(x => x.Genre)
+                    .Include(x => x.AuthorBooks)
+                        .ThenInclude(x => x.Author)
+                    .Include(x => x.Publishing)
+                    .AsEnumerable()
+                    .AsQueryable().ToList();
+                List<int> id = new List<int>();
+                foreach (var ji in j)
+                    id.Add(ji.Book.Id);
+
+                foreach (var book in books)
+                {
+                    if (!id.Contains(book.Id))
+                        b.Add(book);
+                }
+                return b;
             }
         }
     }

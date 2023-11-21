@@ -142,7 +142,7 @@ namespace Library
                 MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
         }
 
-        public Genre GenSupp { get; set; }
+        public Genre? GenSupp { get; set; }
 
         private void genreTable_DoubleClick(object sender, EventArgs e)
         {

@@ -23,4 +23,9 @@ public partial class User : IModel
 
     [Browsable(false)]
     public virtual ICollection<Journal> Journals { get; set; } = new List<Journal>();
+
+    public override string ToString()
+    {
+        return LastName + " " + FirstName;
+    }
 }

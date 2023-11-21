@@ -16,7 +16,7 @@ public partial class Journal: IModel
     public DateOnly EstimatedReturnDate { get; set; }
 
     [DisplayName(@"Дата возврата")]
-    public DateOnly ActualReturnDate { get; set; }
+    public DateOnly? ActualReturnDate { get; set; }
 
     [Browsable(false)]
     public int BookId { get; set; }

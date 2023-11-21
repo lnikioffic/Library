@@ -30,6 +30,10 @@ namespace Library.Models
 
         [DisplayName(@"Должность")]
         public virtual Role Role { get; set; } = null!;
-    }
 
+        public override string ToString()
+        {
+            return LastName + " " + FirstName;
+        }
+    }
 }

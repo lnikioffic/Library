@@ -152,7 +152,7 @@ namespace Library.Forms
             }
         }
 
-        public Author AuthorSupp { get; set; }
+        public Author? AuthorSupp { get; set; }
 
         private void authorTable_DoubleClick(object sender, EventArgs e)
         {

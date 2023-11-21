@@ -28,6 +28,21 @@ namespace Library.Controllers
             CRUDController.Delete(journal);
         }
 
+        public void Update(Journal journal)
+        {
+            using (var db = new LibraryContext())
+            {
+                var j = db.Journals.Single(x => x.Id == journal.Id);
+                j.DateOfIssued = journal.DateOfIssued;
+                j.EstimatedReturnDate = journal.EstimatedReturnDate;
+                j.ActualReturnDate = journal.ActualReturnDate;
+                j.Book = journal.Book;
+                j.Staff = journal.Staff;
+                j.User = journal.User;
+                db.SaveChanges();
+            }
+        }
+
         public List<Journal> GetData()
         {
             using (var db = new LibraryContext())

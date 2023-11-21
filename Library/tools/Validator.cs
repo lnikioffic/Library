@@ -54,5 +54,38 @@ namespace Library.tools
             }
             return true;
         }
+
+        public static bool ValidateData(Dictionary<DataGridView, Label> errorLables)
+        {
+            List<Label> missingFilds = new List<Label>();
+            foreach (var item in errorLables)
+            {
+                if (item.Key.DataSource == null || item.Key.Rows.Count == 0)
+                    missingFilds.Add(item.Value);
+            }
+            foreach (var item in missingFilds)
+            {
+                item.Text = "Заполните поле";
+            }
+            if (missingFilds.Count > 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool ValidateDate(Dictionary<DateTimePicker, Label> lab)
+        {
+            List<Label> missingFilds = new List<Label>();
+            foreach (var item in missingFilds)
+            {
+                item.Text = "Заполните поле";
+            }
+            if (missingFilds.Count > 0)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
