@@ -32,6 +32,8 @@ namespace Library.Forms
         {
             var dt = controller.GetData();
             userTable.DataSource = dt;
+            userTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            userTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             var roles = roleController.GetData();
             roleComboBox.SetDataToComboBox(roles);

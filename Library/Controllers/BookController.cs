@@ -104,5 +104,21 @@ namespace Library.Controllers
                 return b;
             }
         }
+
+        public Book GetBook(Book book)
+        {
+            using (var db = new LibraryContext())
+            {
+                var b = db.Books
+                    .Where(x => x.Id == book.Id)
+                    .Include(x => x.BookGenres)
+                        .ThenInclude(x => x.Genre)
+                    .Include(x => x.AuthorBooks)
+                        .ThenInclude(x => x.Author)
+                    .Include(x => x.Publishing)
+                    .FirstOrDefault();
+                return b;
+            }
+        }
     }
 }

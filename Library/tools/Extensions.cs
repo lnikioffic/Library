@@ -15,5 +15,11 @@ namespace Library.tools
             comboBox.DataSource = data;
             comboBox.SelectedItem = null;
         }
+
+        public static void SetDataToComoboBoxEdite<T>(this ComboBox comboBox, List<T> data, T selected)
+        {
+            comboBox.DataSource = data;
+            comboBox.SelectedItem = selected;
+        }
     }
 }

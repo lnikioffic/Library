@@ -39,6 +39,8 @@ namespace Library.Forms
         {
             var dt = controller.GetBooks().ToList();
             bookTable.DataSource = dt;
+            bookTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            bookTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             var publishingList = publishingController.GetData();
             publishingCombobox.SetDataToComboBox(publishingList);

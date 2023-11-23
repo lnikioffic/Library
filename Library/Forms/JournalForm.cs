@@ -42,13 +42,14 @@ namespace Library.Forms
             var dt = controller.GetData();
             journalTable.DataSource = dt;
             journalTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            journalTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            var book = bookController.GetActuall();
-            var staff = staffController.GetData();
-            var user = userController.GetData();
-            bookCombobox.SetDataToComboBox(book);
-            staffComboBox.SetDataToComboBox(staff);
-            userComboBox.SetDataToComboBox(user);
+            var books = bookController.GetActuall();
+            var staffs = staffController.GetData();
+            var users = userController.GetData();
+            bookCombobox.SetDataToComboBox(books);
+            staffComboBox.SetDataToComboBox(staffs);
+            userComboBox.SetDataToComboBox(users);
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -164,9 +165,15 @@ namespace Library.Forms
                         actualReturnDate.Value = DateTime.Today;
                     else
                         actualReturnDate.Value = DateTime.Parse(journal.ActualReturnDate.ToString());
-                    bookCombobox.SelectedItem = journal.Book;
-                    staffComboBox.SelectedItem = journal.Staff;
-                    userComboBox.SelectedItem = journal.User;
+                    //новый запрос с книгой и со сложением листов
+                    var books = bookController.GetActuall();
+                    var b = bookController.GetBook(journal.Book);
+                    books.Add(b);
+                    var staffs = staffController.GetData();
+                    var users = userController.GetData();
+                    bookCombobox.SetDataToComoboBoxEdite(books, journal.Book);
+                    staffComboBox.SetDataToComoboBoxEdite(staffs, journal.Staff);
+                    userComboBox.SetDataToComoboBoxEdite(users, journal.User);
                 }
             }
             else

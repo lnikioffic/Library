@@ -29,6 +29,8 @@ namespace Library
         {
             var dt = controller.GetData();
             publishingTable.DataSource = dt;
+            publishingTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            publishingTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         private void viewButton()

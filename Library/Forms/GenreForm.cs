@@ -31,6 +31,8 @@ namespace Library
         {
             var dt = controller.GetData();
             genreTable.DataSource = dt;
+            genreTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            genreTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         private void addButton_Click(object sender, EventArgs e)
