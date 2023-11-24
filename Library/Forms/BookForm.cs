@@ -76,6 +76,7 @@ namespace Library.Forms
             nameBookLable.Text = ""; datePubLable.Text = ""; publishingComboboxLable.Text = "";
             genreDataLable.Text = "";
             authorDataLable.Text = "";
+            publishingCombobox.SelectedItem = null;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -300,7 +301,8 @@ namespace Library.Forms
                 {
                     nameBook.Text = book.Title.ToString();
                     datePub.Text = book.PublicationDate.ToString();
-                    publishingCombobox.SelectedItem = book.Publishing.Name;
+                    var pub = publishingController.GetData();
+                    publishingCombobox.SetDataToComoboBoxEdite(pub, book.Publishing);
                     foreach (var author in book.AuthorBooks)
                         authorList.Add(author.Author);
                     foreach (var genre in book.BookGenres)

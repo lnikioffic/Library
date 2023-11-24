@@ -66,7 +66,7 @@ namespace Library.Forms
             actualReturnDateLable.Text = "";
         }
 
-        private void viewButton()
+        private void viewButton(object sender, EventArgs e)
         {
             panel1.Visible = true;
             addButton.Enabled = true;
@@ -77,11 +77,16 @@ namespace Library.Forms
             dateOfIssuedLable.Text = "";
             estimatedReturnDateLable.Text = "";
             actualReturnDateLable.Text = "";
+            dataLable.Visible = false;
+            actualReturnDate.Visible = false;
+            actualReturnDateLable.Visible = false;
+            bookCombobox.SetDataNull();
+            JournalForm_Load(sender, e);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            viewButton();
+            viewButton(sender, e);
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -128,8 +133,7 @@ namespace Library.Forms
                         };
                         controller.Add(journal);
                     }
-                    viewButton();
-                    JournalForm_Load(sender, e);
+                    viewButton(sender, e);
                 }
             }
             catch (Exception ex)
@@ -156,6 +160,7 @@ namespace Library.Forms
                 actualReturnDate.Visible = true;
                 actualReturnDateLable.Visible = true;
 
+
                 journal = (Journal)journalTable.SelectedRows[0].DataBoundItem;
                 if (journal != null)
                 {
@@ -167,8 +172,8 @@ namespace Library.Forms
                         actualReturnDate.Value = DateTime.Parse(journal.ActualReturnDate.ToString());
                     //новый запрос с книгой и со сложением листов
                     var books = bookController.GetActuall();
-                    var b = bookController.GetBook(journal.Book);
-                    books.Add(b);
+                    if (journal.ActualReturnDate == null)
+                        books.Add(journal.Book);
                     var staffs = staffController.GetData();
                     var users = userController.GetData();
                     bookCombobox.SetDataToComoboBoxEdite(books, journal.Book);

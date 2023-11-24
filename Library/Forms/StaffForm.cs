@@ -135,7 +135,8 @@ namespace Library.Forms
                     firstName.Text = user.FirstName.ToString();
                     lastName.Text = user.LastName.ToString();
                     patron.Text = user.Patronymic.ToString();
-                    roleComboBox.SelectedText = user.Role.NameRole;
+                    var roles = roleController.GetData();
+                    roleComboBox.SetDataToComoboBoxEdite(roles, user.Role);
                 }
             }
             else

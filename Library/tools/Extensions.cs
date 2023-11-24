@@ -21,5 +21,10 @@ namespace Library.tools
             comboBox.DataSource = data;
             comboBox.SelectedItem = selected;
         }
+
+        public static void SetDataNull(this ComboBox comboBox)
+        {
+            comboBox.DataSource = null;
+        }
     }
 }
