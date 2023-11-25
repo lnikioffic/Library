@@ -44,6 +44,13 @@ namespace Library
             adressPub.Text = "";
             publishing = null;
             namePub.Text = ""; adressPub.Text = "";
+            errorLable();
+        }
+
+        private void errorLable()
+        {
+            namePubLable.Text = "";
+            adressPubLable.Text = "";
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -55,6 +62,7 @@ namespace Library
             Box.Visible = true;
             Box.Text = "Добавление";
             publishing = null;
+            errorLable();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -66,7 +74,7 @@ namespace Library
         {
             try
             {
-                namePub.Text = ""; adressPub.Text = "";
+                errorLable();
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {namePub, namePubLable },
@@ -137,7 +145,7 @@ namespace Library
                 deleteButton.Enabled = false;
                 Box.Visible = true;
                 Box.Text = "Редактирование";
-                namePub.Text = ""; adressPub.Text = "";
+                errorLable();
 
                 publishing = (Publishing)publishingTable.SelectedRows[0].DataBoundItem;
                 if (publishing != null)

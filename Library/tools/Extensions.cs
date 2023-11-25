@@ -19,7 +19,15 @@ namespace Library.tools
         public static void SetDataToComoboBoxEdite<T>(this ComboBox comboBox, List<T> data, T selected)
         {
             comboBox.DataSource = data;
-            comboBox.SelectedItem = selected;
+            foreach (var item in data)
+            {
+                if (item.ToString() == selected.ToString())
+                {
+                    comboBox.SelectedItem = item;
+                    break;
+                }
+
+            }
         }
 
         public static void SetDataNull(this ComboBox comboBox)

@@ -43,6 +43,7 @@ namespace Library.Forms
             journalTable.DataSource = dt;
             journalTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             journalTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            journalTable.ReadOnly = true;
 
             var books = bookController.GetActuall();
             var staffs = staffController.GetData();
@@ -73,15 +74,20 @@ namespace Library.Forms
             editButton.Enabled = true;
             deleteButton.Enabled = true;
             Box.Visible = false;
-            staffLabel.Text = ""; bookLable.Text = ""; userLable.Text = "";
-            dateOfIssuedLable.Text = "";
-            estimatedReturnDateLable.Text = "";
-            actualReturnDateLable.Text = "";
             dataLable.Visible = false;
             actualReturnDate.Visible = false;
             actualReturnDateLable.Visible = false;
             bookCombobox.SetDataNull();
             JournalForm_Load(sender, e);
+            errorLable();
+        }
+
+        private void errorLable()
+        {
+            staffLabel.Text = ""; bookLable.Text = ""; userLable.Text = "";
+            dateOfIssuedLable.Text = "";
+            estimatedReturnDateLable.Text = "";
+            actualReturnDateLable.Text = "";
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -93,10 +99,7 @@ namespace Library.Forms
         {
             try
             {
-                staffLabel.Text = ""; bookLable.Text = ""; userLable.Text = "";
-                dateOfIssuedLable.Text = "";
-                estimatedReturnDateLable.Text = "";
-                actualReturnDateLable.Text = "";
+                errorLable();
                 Dictionary<ComboBox, Label> errorComboBox = new Dictionary<ComboBox, Label>
                 {
                     {staffComboBox, staffLabel},
@@ -111,29 +114,44 @@ namespace Library.Forms
                     var staff = staffController.GetData(s[1], s[0]).First();
                     string[] u = userComboBox.SelectedItem.ToString().Split(" ");
                     var user = userController.GetData(u[1], u[0]).First();
-                    if (journal != null)
+                    DateOnly d1 = DateOnly.Parse(dateOfIssued.Value.ToString("dd.MM.yyyy"));
+                    DateOnly d2 = DateOnly.Parse(estimatedReturnDate.Value.ToString("dd.MM.yyyy"));
+                    DateOnly d3 = DateOnly.Parse(actualReturnDate.Value.ToString("dd.MM.yyyy"));
+                    if (d1 <= d2)
                     {
-                        journal.DateOfIssued = DateOnly.Parse(dateOfIssued.Value.ToString("dd.MM.yyyy"));
-                        journal.EstimatedReturnDate = DateOnly.Parse(estimatedReturnDate.Value.ToString("dd.MM.yyyy"));
-                        journal.ActualReturnDate = DateOnly.Parse(actualReturnDate.Value.ToString("dd.MM.yyyy"));
-                        journal.Book = book;
-                        journal.User = user;
-                        journal.Staff = staff;
-                        controller.Update(journal);
+
+                        if (journal != null)
+                        {
+                            if (d1 <= d3)
+                            {
+                                journal.DateOfIssued = d1;
+                                journal.EstimatedReturnDate = d2;
+                                journal.ActualReturnDate = d3;
+                                journal.Book = book;
+                                journal.User = user;
+                                journal.Staff = staff;
+                                controller.Update(journal);
+                                viewButton(sender, e);
+                            }
+                            else
+                                actualReturnDateLable.Text = "Дата возврата должна быть \n больше даты выдачи";
+                        }
+                        else
+                        {
+                            var journal = new Journal
+                            {
+                                DateOfIssued = d1,
+                                EstimatedReturnDate = d2,
+                                BookId = book.Id,
+                                StaffId = staff.Id,
+                                UserId = user.Id,
+                            };
+                            controller.Add(journal);
+                            viewButton(sender, e);
+                        }  
                     }
                     else
-                    {
-                        var journal = new Journal
-                        {
-                            DateOfIssued = DateOnly.Parse(dateOfIssued.Value.ToString("dd.MM.yyyy")),
-                            EstimatedReturnDate = DateOnly.Parse(estimatedReturnDate.Value.ToString("dd.MM.yyyy")),
-                            BookId = book.Id,
-                            StaffId = staff.Id,
-                            UserId = user.Id,
-                        };
-                        controller.Add(journal);
-                    }
-                    viewButton(sender, e);
+                        estimatedReturnDateLable.Text = "Дата возврата должна быть \n больше даты выдачи";
                 }
             }
             catch (Exception ex)
@@ -152,14 +170,10 @@ namespace Library.Forms
                 deleteButton.Enabled = false;
                 Box.Visible = true;
                 Box.Text = "Редактирование";
-                staffLabel.Text = ""; bookLable.Text = ""; userLable.Text = "";
-                dateOfIssuedLable.Text = "";
-                estimatedReturnDateLable.Text = "";
-                actualReturnDateLable.Text = "";
                 dataLable.Visible = true;
                 actualReturnDate.Visible = true;
                 actualReturnDateLable.Visible = true;
-
+                errorLable();
 
                 journal = (Journal)journalTable.SelectedRows[0].DataBoundItem;
                 if (journal != null)

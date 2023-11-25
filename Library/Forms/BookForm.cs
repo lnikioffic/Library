@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -41,6 +42,7 @@ namespace Library.Forms
             bookTable.DataSource = dt;
             bookTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             bookTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            bookTable.ReadOnly = true;
 
             var publishingList = publishingController.GetData();
             publishingCombobox.SetDataToComboBox(publishingList);
@@ -73,10 +75,15 @@ namespace Library.Forms
             authorList.Clear();
             datePub.Text = "";
             book = null;
+            publishingCombobox.SelectedItem = null;
+            errorLable();
+        }
+
+        private void errorLable()
+        {
             nameBookLable.Text = ""; datePubLable.Text = ""; publishingComboboxLable.Text = "";
             genreDataLable.Text = "";
             authorDataLable.Text = "";
-            publishingCombobox.SelectedItem = null;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -203,7 +210,7 @@ namespace Library.Forms
         {
             try
             {
-                nameBookLable.Text = ""; datePubLable.Text = ""; publishingComboboxLable.Text = "";
+                errorLable();
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {nameBook, nameBookLable },
@@ -223,30 +230,35 @@ namespace Library.Forms
                 bool isValidData = Validator.ValidateData(errorList);
                 if (isValidTextBox && isValidComboBox && isValidData)
                 {
-                    var pub = publishingController.GetData(publishingCombobox.SelectedItem.ToString()).First();
-                    if (book != null)
+                    if (Regex.IsMatch(datePub.Text, @"^\d{4}$"))
                     {
-                        book.Title = nameBook.Text;
-                        book.Publishing = pub;
-                        book.PublicationDate = datePub.Text;
-                        book.AuthorBooks = CreateAB(book);
-                        book.BookGenres = CreateBG(book);
-                        controller.Update(book);
+                        var pub = publishingController.GetData(publishingCombobox.SelectedItem.ToString()).First();
+                        if (book != null)
+                        {
+                            book.Title = nameBook.Text;
+                            book.Publishing = pub;
+                            book.PublicationDate = datePub.Text;
+                            book.AuthorBooks = CreateAB(book);
+                            book.BookGenres = CreateBG(book);
+                            controller.Update(book);
+                        }
+                        else
+                        {
+                            var book = new Book
+                            {
+                                Title = nameBook.Text,
+                                PublishingId = pub.Id,
+                                PublicationDate = datePub.Text
+                            };
+                            book.AuthorBooks = CreateAB(book);
+                            book.BookGenres = CreateBG(book);
+                            controller.Add(book);
+                        }
+                        viewButton();
+                        BookForm_Load(sender, e);
                     }
                     else
-                    {
-                        var book = new Book
-                        {
-                            Title = nameBook.Text,
-                            PublishingId = pub.Id,
-                            PublicationDate = datePub.Text
-                        };
-                        book.AuthorBooks = CreateAB(book);
-                        book.BookGenres = CreateBG(book);
-                        controller.Add(book);
-                    }
-                    viewButton();
-                    BookForm_Load(sender, e);
+                        datePubLable.Text = "Введите корректный год";
                 }
             }
             catch (Exception ex)
@@ -292,9 +304,7 @@ namespace Library.Forms
                 deleteButton.Enabled = false;
                 Box.Visible = true;
                 Box.Text = "Редактирование";
-                nameBookLable.Text = ""; datePubLable.Text = ""; publishingComboboxLable.Text = "";
-                genreDataLable.Text = "";
-                authorDataLable.Text = "";
+                errorLable();
 
                 book = ((PressBook)bookTable.SelectedRows[0].DataBoundItem).book;
                 if (book != null)

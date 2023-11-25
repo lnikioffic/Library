@@ -45,6 +45,13 @@ namespace Library.Forms
             patron.Text = "";
             readerID.Text = "";
             user = null;
+            errorLable();
+        }
+
+        private void errorLable()
+        {
+            firstNameLable.Text = "";
+            lastNameLable.Text = "";
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -56,8 +63,8 @@ namespace Library.Forms
             readerID.Text = controller.GetHashCode().ToString();
             Box.Visible = true;
             Box.Text = "Добавление";
-            firstNameLable.Text = ""; lastNameLable.Text = "";
             user = null;
+            errorLable();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -69,7 +76,7 @@ namespace Library.Forms
         {
             try
             {
-                firstNameLable.Text = ""; lastNameLable.Text = "";
+                errorLable();
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {firstName, firstNameLable },
@@ -116,7 +123,7 @@ namespace Library.Forms
                 deleteButton.Enabled = false;
                 Box.Visible = true;
                 Box.Text = "Редактирование";
-                firstNameLable.Text = ""; lastNameLable.Text = "";
+                errorLable();
 
                 user = (User)userTable.SelectedRows[0].DataBoundItem;
                 if (user != null)

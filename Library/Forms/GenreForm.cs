@@ -33,6 +33,7 @@ namespace Library
             genreTable.DataSource = dt;
             genreTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             genreTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            genreTable.ReadOnly = true;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -45,12 +46,19 @@ namespace Library
             Box.Text = "Добавление";
             genre.Text = "";
             genreV = null;
+            errorLable();
+        }
+
+        private void errorLable()
+        {
+            genre.Text = "";
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
             try
             {
+                errorLable();
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {nameGenre, genre }
@@ -90,6 +98,7 @@ namespace Library
             Box.Visible = false;
             nameGenre.Text = "";
             genreV = null;
+            errorLable();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -134,7 +143,7 @@ namespace Library
                 deleteButton.Enabled = false;
                 Box.Visible = true;
                 Box.Text = "Редактирование";
-                genre.Text = "";
+                errorLable();
 
                 genreV = (Genre)genreTable.SelectedRows[0].DataBoundItem;
                 if (genreV != null)

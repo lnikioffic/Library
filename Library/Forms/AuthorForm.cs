@@ -31,6 +31,7 @@ namespace Library.Forms
             authorTable.DataSource = dt;
             authorTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             authorTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            authorTable.ReadOnly = true;
         }
 
         private void viewButton()
@@ -45,6 +46,13 @@ namespace Library.Forms
             patron.Text = "";
             author = null;
             firstNameLable.Text = ""; lastNameLable.Text = "";
+            errorLable();
+        }
+
+        private void errorLable()
+        {
+            firstNameLable.Text = "";
+            lastNameLable.Text = "";   
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -61,6 +69,7 @@ namespace Library.Forms
             Box.Visible = true;
             Box.Text = "Добавление";
             author = null;
+            errorLable();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -101,6 +110,7 @@ namespace Library.Forms
                 Box.Visible = true;
                 Box.Text = "Редактирование";
                 firstNameLable.Text = ""; lastNameLable.Text = "";
+                errorLable();
 
                 author = (Author)authorTable.SelectedRows[0].DataBoundItem;
                 if (author != null)

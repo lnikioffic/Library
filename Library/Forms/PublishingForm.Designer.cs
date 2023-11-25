@@ -38,14 +38,14 @@
             editButton = new Button();
             addButton = new Button();
             Box = new GroupBox();
+            adressPubLable = new Label();
+            namePubLable = new Label();
             label3 = new Label();
             adressPub = new TextBox();
             cancelButton = new Button();
             okButton = new Button();
             label2 = new Label();
             namePub = new TextBox();
-            namePubLable = new Label();
-            adressPubLable = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)publishingTable).BeginInit();
             Box.SuspendLayout();
@@ -154,14 +154,34 @@
             Box.Text = "text";
             Box.Visible = false;
             // 
+            // adressPubLable
+            // 
+            adressPubLable.AutoSize = true;
+            adressPubLable.ForeColor = Color.Red;
+            adressPubLable.Location = new Point(6, 137);
+            adressPubLable.Name = "adressPubLable";
+            adressPubLable.Size = new Size(38, 15);
+            adressPubLable.TabIndex = 8;
+            adressPubLable.Text = "label5";
+            // 
+            // namePubLable
+            // 
+            namePubLable.AutoSize = true;
+            namePubLable.ForeColor = Color.Red;
+            namePubLable.Location = new Point(6, 73);
+            namePubLable.Name = "namePubLable";
+            namePubLable.Size = new Size(38, 15);
+            namePubLable.TabIndex = 7;
+            namePubLable.Text = "label4";
+            // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Location = new Point(6, 93);
             label3.Name = "label3";
-            label3.Size = new Size(49, 15);
+            label3.Size = new Size(43, 15);
             label3.TabIndex = 6;
-            label3.Text = "Адресс:";
+            label3.Text = "Адрес:";
             // 
             // adressPub
             // 
@@ -205,26 +225,6 @@
             namePub.Name = "namePub";
             namePub.Size = new Size(169, 23);
             namePub.TabIndex = 0;
-            // 
-            // namePubLable
-            // 
-            namePubLable.AutoSize = true;
-            namePubLable.ForeColor = Color.Red;
-            namePubLable.Location = new Point(6, 73);
-            namePubLable.Name = "namePubLable";
-            namePubLable.Size = new Size(38, 15);
-            namePubLable.TabIndex = 7;
-            namePubLable.Text = "label4";
-            // 
-            // adressPubLable
-            // 
-            adressPubLable.AutoSize = true;
-            adressPubLable.ForeColor = Color.Red;
-            adressPubLable.Location = new Point(6, 137);
-            adressPubLable.Name = "adressPubLable";
-            adressPubLable.Size = new Size(38, 15);
-            adressPubLable.TabIndex = 8;
-            adressPubLable.Text = "label5";
             // 
             // PublishingForm
             // 

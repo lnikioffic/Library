@@ -13,7 +13,7 @@ namespace Library.Representation
         [DisplayName(@"Название")]
         public string Title { get; }
 
-        [DisplayName(@"Дата публикации")]
+        [DisplayName(@"Год издания")]
         public string PublicationDate { get; }
 
         [DisplayName(@"Авторы")]
