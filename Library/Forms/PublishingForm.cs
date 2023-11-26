@@ -27,10 +27,14 @@ namespace Library
 
         private void PublishingForm_Load(object sender, EventArgs e)
         {
-            var dt = controller.GetData();
-            publishingTable.DataSource = dt;
+            if (searchField.Text.Trim() == "")
+                publishingTable.DataSource = controller.GetData();
+            else
+                publishingTable.DataSource = controller.GetData();
+
             publishingTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             publishingTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            publishingTable.ReadOnly = true;
         }
 
         private void viewButton()
@@ -156,6 +160,17 @@ namespace Library
             }
             else
                 MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
+        }
+
+        private void search_Click(object sender, EventArgs e)
+        {
+            PublishingForm_Load(sender, e);
+        }
+
+        private void reset_Click(object sender, EventArgs e)
+        {
+            searchField.Text = "";
+            PublishingForm_Load(sender, e);
         }
     }
 }

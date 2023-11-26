@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            button5 = new Button();
-            button4 = new Button();
-            textBox1 = new TextBox();
+            reset = new Button();
+            search = new Button();
+            searchField = new TextBox();
             journalTable = new DataGridView();
             label1 = new Label();
             deleteButton = new Button();
@@ -65,39 +65,41 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(button5);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(reset);
+            panel1.Controls.Add(search);
+            panel1.Controls.Add(searchField);
             panel1.Controls.Add(journalTable);
             panel1.Location = new Point(3, 54);
             panel1.Name = "panel1";
             panel1.Size = new Size(587, 336);
             panel1.TabIndex = 8;
             // 
-            // button5
+            // reset
             // 
-            button5.Location = new Point(457, 3);
-            button5.Name = "button5";
-            button5.Size = new Size(100, 23);
-            button5.TabIndex = 3;
-            button5.Text = "Очистить";
-            button5.UseVisualStyleBackColor = true;
+            reset.Location = new Point(457, 3);
+            reset.Name = "reset";
+            reset.Size = new Size(100, 23);
+            reset.TabIndex = 3;
+            reset.Text = "Очистить";
+            reset.UseVisualStyleBackColor = true;
+            reset.Click += reset_Click;
             // 
-            // button4
+            // search
             // 
-            button4.Location = new Point(351, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(100, 23);
-            button4.TabIndex = 2;
-            button4.Text = "Поиск";
-            button4.UseVisualStyleBackColor = true;
+            search.Location = new Point(351, 3);
+            search.Name = "search";
+            search.Size = new Size(100, 23);
+            search.TabIndex = 2;
+            search.Text = "Поиск";
+            search.UseVisualStyleBackColor = true;
+            search.Click += search_Click;
             // 
-            // textBox1
+            // searchField
             // 
-            textBox1.Location = new Point(9, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(336, 23);
-            textBox1.TabIndex = 1;
+            searchField.Location = new Point(9, 3);
+            searchField.Name = "searchField";
+            searchField.Size = new Size(336, 23);
+            searchField.TabIndex = 1;
             // 
             // journalTable
             // 
@@ -388,9 +390,9 @@
         #endregion
 
         private Panel panel1;
-        private Button button5;
-        private Button button4;
-        private TextBox textBox1;
+        private Button reset;
+        private Button search;
+        private TextBox searchField;
         private DataGridView journalTable;
         private Label label1;
         private Button deleteButton;

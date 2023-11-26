@@ -27,10 +27,16 @@ namespace Library.Forms
 
         private void UsersForm_Load(object sender, EventArgs e)
         {
-            var dt = controller.GetData();
-            userTable.DataSource = dt;
+            if (searchField.Text.Trim() == "")
+                userTable.DataSource = controller.GetData();
+            else
+            {
+                userTable.DataSource = controller.GetData();
+            }
+
             userTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             userTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            userTable.ReadOnly = true;
         }
 
         private void viewButton()
@@ -163,6 +169,17 @@ namespace Library.Forms
             }
             else
                 MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
+        }
+
+        private void search_Click(object sender, EventArgs e)
+        {
+            UsersForm_Load(sender, e);
+        }
+
+        private void reset_Click(object sender, EventArgs e)
+        {
+            searchField.Text = "";
+            UsersForm_Load(sender, e);
         }
     }
 }

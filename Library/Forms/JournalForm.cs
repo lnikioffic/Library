@@ -39,8 +39,11 @@ namespace Library.Forms
 
         private void JournalForm_Load(object sender, EventArgs e)
         {
-            var dt = controller.GetData();
-            journalTable.DataSource = dt;
+            if (searchField.Text.Trim() == "")
+                journalTable.DataSource = controller.GetData();
+            else
+                journalTable.DataSource = controller.GetData();
+
             journalTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             journalTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             journalTable.ReadOnly = true;
@@ -119,7 +122,6 @@ namespace Library.Forms
                     DateOnly d3 = DateOnly.Parse(actualReturnDate.Value.ToString("dd.MM.yyyy"));
                     if (d1 <= d2)
                     {
-
                         if (journal != null)
                         {
                             if (d1 <= d3)
@@ -148,7 +150,7 @@ namespace Library.Forms
                             };
                             controller.Add(journal);
                             viewButton(sender, e);
-                        }  
+                        }
                     }
                     else
                         estimatedReturnDateLable.Text = "Дата возврата должна быть \n больше даты выдачи";
@@ -224,6 +226,17 @@ namespace Library.Forms
             }
             else
                 MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
+        }
+
+        private void search_Click(object sender, EventArgs e)
+        {
+            JournalForm_Load(sender, e);
+        }
+
+        private void reset_Click(object sender, EventArgs e)
+        {
+            searchField.Text = "";
+            JournalForm_Load(sender, e);
         }
     }
 }

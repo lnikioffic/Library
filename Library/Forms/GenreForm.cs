@@ -29,8 +29,13 @@ namespace Library
 
         private void GenreForm_Load(object sender, EventArgs e)
         {
-            var dt = controller.GetData();
-            genreTable.DataSource = dt;
+            if (searchField.Text.Trim() == "")
+                genreTable.DataSource = controller.GetData();
+            else
+            {
+                genreTable.DataSource = controller.GetData(searchField.Text);
+            }
+
             genreTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             genreTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             genreTable.ReadOnly = true;
@@ -81,7 +86,7 @@ namespace Library
                     }
                     viewButton();
                     GenreForm_Load(sender, e);
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -160,6 +165,17 @@ namespace Library
             var gen = (Genre)genreTable.SelectedRows[0].DataBoundItem;
             GenSupp = gen;
             this.Close();
+        }
+
+        private void search_Click(object sender, EventArgs e)
+        {
+            GenreForm_Load(sender, e);
+        }
+
+        private void reset_Click(object sender, EventArgs e)
+        {
+            searchField.Text = "";
+            GenreForm_Load(sender, e);
         }
     }
 }

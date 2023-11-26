@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Library.Models;
+using Library.Models.Interface;
 
 namespace Library.Models;
 
-public partial class Publishing : IModel
+public partial class Publishing : IModel, ISearchField
 {
     [Browsable(false)]
     public int Id { get; set; }
@@ -18,6 +18,15 @@ public partial class Publishing : IModel
 
     [Browsable(false)]
     public virtual ICollection<Book> Books { get; set; } = new List<Book>();
+
+    [Browsable(false)]
+    public string SearchField
+    {
+        get
+        {
+            return $"{Name}";
+        }
+    }
 
     public override string ToString()
     {

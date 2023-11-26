@@ -5,10 +5,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Models.Interface;
 
 namespace Library.Models
 {
-    public partial class Staff : IModel
+    public partial class Staff : IModel, ISearchField
     {
         [Browsable(false)]
         public int Id { get; set; }
@@ -30,6 +31,15 @@ namespace Library.Models
 
         [DisplayName(@"Должность")]
         public virtual Role Role { get; set; } = null!;
+
+        [Browsable(false)]
+        public string SearchField
+        {
+            get
+            {
+                return $"{LastName} {FirstName}";
+            }
+        }
 
         public override string ToString()
         {

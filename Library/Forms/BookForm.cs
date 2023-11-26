@@ -38,8 +38,11 @@ namespace Library.Forms
 
         private void BookForm_Load(object sender, EventArgs e)
         {
-            var dt = controller.GetBooks().ToList();
-            bookTable.DataSource = dt;
+            if (searchField.Text.Trim() == "")
+                bookTable.DataSource = controller.GetBooks().ToList();
+            else
+                bookTable.DataSource = controller.GetBooks().ToList();
+
             bookTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             bookTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             bookTable.ReadOnly = true;
@@ -56,9 +59,7 @@ namespace Library.Forms
             deleteButton.Enabled = false;
             Box.Visible = true;
             Box.Text = "Добавление";
-            nameBookLable.Text = ""; datePubLable.Text = ""; publishingComboboxLable.Text = "";
-            genreDataLable.Text = "";
-            authorDataLable.Text = "";
+            errorLable();
         }
 
         private void viewButton()
@@ -322,6 +323,17 @@ namespace Library.Forms
             }
             else
                 MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
+        }
+
+        private void search_Click(object sender, EventArgs e)
+        {
+            BookForm_Load(sender, e);
+        }
+
+        private void reset_Click(object sender, EventArgs e)
+        {
+            searchField.Text = "";
+            BookForm_Load(sender, e);
         }
     }
 }

@@ -27,8 +27,10 @@ namespace Library.Forms
 
         private void AuthorForm_Load(object sender, EventArgs e)
         {
-            var dt = controller.GetData();
-            authorTable.DataSource = dt;
+            if (searchField.Text.Trim() == "")
+                authorTable.DataSource = controller.GetData();
+            else
+                authorTable.DataSource = controller.GetData();
             authorTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             authorTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             authorTable.ReadOnly = true;
@@ -52,7 +54,7 @@ namespace Library.Forms
         private void errorLable()
         {
             firstNameLable.Text = "";
-            lastNameLable.Text = "";   
+            lastNameLable.Text = "";
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -171,6 +173,17 @@ namespace Library.Forms
             var author = (Author)authorTable.SelectedRows[0].DataBoundItem;
             AuthorSupp = author;
             this.Close();
+        }
+
+        private void search_Click(object sender, EventArgs e)
+        {
+            AuthorForm_Load(sender, e);
+        }
+
+        private void reset_Click(object sender, EventArgs e)
+        {
+            searchField.Text = "";
+            AuthorForm_Load(sender, e);
         }
     }
 }

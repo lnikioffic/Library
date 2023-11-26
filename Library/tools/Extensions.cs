@@ -26,7 +26,6 @@ namespace Library.tools
                     comboBox.SelectedItem = item;
                     break;
                 }
-
             }
         }
 

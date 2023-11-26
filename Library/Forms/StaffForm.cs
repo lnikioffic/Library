@@ -30,10 +30,14 @@ namespace Library.Forms
 
         private void StaffForm_Load(object sender, EventArgs e)
         {
-            var dt = controller.GetData();
-            userTable.DataSource = dt;
+            if (searchField.Text.Trim() == "")
+                userTable.DataSource = controller.GetData();
+            else 
+                userTable.DataSource = controller.GetData();
+
             userTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             userTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            userTable.ReadOnly = true;
 
             var roles = roleController.GetData();
             roleComboBox.SetDataToComboBox(roles);
@@ -176,6 +180,17 @@ namespace Library.Forms
             }
             else
                 MessageBox.Show("Выберете одну строчку!!!", "Ошибка", MessageBoxButtons.OK);
+        }
+
+        private void search_Click(object sender, EventArgs e)
+        {
+            StaffForm_Load(sender, e);
+        }
+
+        private void reset_Click(object sender, EventArgs e)
+        {
+            searchField.Text = "";
+            StaffForm_Load(sender, e);
         }
     }
 }

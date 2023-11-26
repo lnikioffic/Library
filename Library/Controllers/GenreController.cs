@@ -23,8 +23,6 @@ namespace Library.Controllers
             }
         }
 
-        //private IRepresentationFabric<Genre> RepresentationFabric { get; }
-
         public void Add(Genre genre)
         {
             CRUDController.Add(genre);
@@ -45,18 +43,22 @@ namespace Library.Controllers
             CRUDController.Delete(genre);
         }
 
-        //public IEnumerable<ITableRepresentation> GetGenres()
-        //{
-        //    return GetData().Select((x) => RepresentationFabric.CreateTableRepresentation(x));
-        //}
-
         public List<Genre> GetData() 
         {
             using (var db = new LibraryContext())
             {
-                var genre = db.Genres.AsQueryable();
+                return db.Genres.AsQueryable().ToList();
+            }
+        }
+
+        public List<Genre> GetData(string name)
+        {
+            using (var db = new LibraryContext())
+            {
+                var genre = db.Genres.Where(x => x.SearchField == name).AsQueryable();
                 return genre.ToList();
             }
         }
+
     }
 }

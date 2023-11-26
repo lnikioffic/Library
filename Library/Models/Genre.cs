@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Library.Models;
+using Library.Models.Interface;
 
 namespace Library.Models;
 
-public partial class Genre: IModel
+public partial class Genre: IModel, ISearchField
 {
     [Browsable(false)]
     public int Id { get; set; }
@@ -15,6 +15,15 @@ public partial class Genre: IModel
 
     [Browsable(false)]
     public virtual ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
+
+    [Browsable(false)]
+    public string SearchField
+    {
+        get
+        {
+            return Genre1;
+        }
+    }
 
     public override string ToString()
     {

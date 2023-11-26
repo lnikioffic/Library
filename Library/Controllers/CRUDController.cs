@@ -1,4 +1,4 @@
-﻿using Library.Models;
+﻿using Library.Models.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,17 +18,6 @@ namespace Library.Controllers
                 var d = db.Set<T>().Add(dataObject);
                 db.SaveChanges();
                 return d.Entity;
-            }
-        }
-
-        public void AddRabge(List<T> dataObject)
-        {
-            using (var db = new LibraryContext())
-            {
-                foreach (var item in dataObject)
-                    db.Set<T>().Add(item);
-                db.SaveChanges();
-                
             }
         }
 

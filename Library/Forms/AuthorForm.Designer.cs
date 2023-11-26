@@ -30,14 +30,16 @@
         {
             label1 = new Label();
             panel1 = new Panel();
-            button5 = new Button();
-            button4 = new Button();
-            textBox1 = new TextBox();
+            reset = new Button();
+            search = new Button();
+            searchField = new TextBox();
             authorTable = new DataGridView();
             deleteButton = new Button();
             editButton = new Button();
             addButton = new Button();
             Box = new GroupBox();
+            lastNameLable = new Label();
+            firstNameLable = new Label();
             patron = new TextBox();
             label4 = new Label();
             label3 = new Label();
@@ -46,8 +48,6 @@
             okButton = new Button();
             label2 = new Label();
             firstName = new TextBox();
-            firstNameLable = new Label();
-            lastNameLable = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)authorTable).BeginInit();
             Box.SuspendLayout();
@@ -64,39 +64,41 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(button5);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(reset);
+            panel1.Controls.Add(search);
+            panel1.Controls.Add(searchField);
             panel1.Controls.Add(authorTable);
             panel1.Location = new Point(3, 54);
             panel1.Name = "panel1";
             panel1.Size = new Size(587, 336);
             panel1.TabIndex = 5;
             // 
-            // button5
+            // reset
             // 
-            button5.Location = new Point(457, 3);
-            button5.Name = "button5";
-            button5.Size = new Size(100, 23);
-            button5.TabIndex = 3;
-            button5.Text = "Очистить";
-            button5.UseVisualStyleBackColor = true;
+            reset.Location = new Point(457, 3);
+            reset.Name = "reset";
+            reset.Size = new Size(100, 23);
+            reset.TabIndex = 3;
+            reset.Text = "Очистить";
+            reset.UseVisualStyleBackColor = true;
+            reset.Click += reset_Click;
             // 
-            // button4
+            // search
             // 
-            button4.Location = new Point(351, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(100, 23);
-            button4.TabIndex = 2;
-            button4.Text = "Поиск";
-            button4.UseVisualStyleBackColor = true;
+            search.Location = new Point(351, 3);
+            search.Name = "search";
+            search.Size = new Size(100, 23);
+            search.TabIndex = 2;
+            search.Text = "Поиск";
+            search.UseVisualStyleBackColor = true;
+            search.Click += search_Click;
             // 
-            // textBox1
+            // searchField
             // 
-            textBox1.Location = new Point(9, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(336, 23);
-            textBox1.TabIndex = 1;
+            searchField.Location = new Point(9, 3);
+            searchField.Name = "searchField";
+            searchField.Size = new Size(336, 23);
+            searchField.TabIndex = 1;
             // 
             // authorTable
             // 
@@ -158,6 +160,26 @@
             Box.TabStop = false;
             Box.Text = "text";
             Box.Visible = false;
+            // 
+            // lastNameLable
+            // 
+            lastNameLable.AutoSize = true;
+            lastNameLable.ForeColor = Color.Red;
+            lastNameLable.Location = new Point(181, 73);
+            lastNameLable.Name = "lastNameLable";
+            lastNameLable.Size = new Size(38, 15);
+            lastNameLable.TabIndex = 10;
+            lastNameLable.Text = "label6";
+            // 
+            // firstNameLable
+            // 
+            firstNameLable.AutoSize = true;
+            firstNameLable.ForeColor = Color.Red;
+            firstNameLable.Location = new Point(6, 73);
+            firstNameLable.Name = "firstNameLable";
+            firstNameLable.Size = new Size(38, 15);
+            firstNameLable.TabIndex = 9;
+            firstNameLable.Text = "label5";
             // 
             // patron
             // 
@@ -227,26 +249,6 @@
             firstName.Size = new Size(169, 23);
             firstName.TabIndex = 0;
             // 
-            // firstNameLable
-            // 
-            firstNameLable.AutoSize = true;
-            firstNameLable.ForeColor = Color.Red;
-            firstNameLable.Location = new Point(6, 73);
-            firstNameLable.Name = "firstNameLable";
-            firstNameLable.Size = new Size(38, 15);
-            firstNameLable.TabIndex = 9;
-            firstNameLable.Text = "label5";
-            // 
-            // lastNameLable
-            // 
-            lastNameLable.AutoSize = true;
-            lastNameLable.ForeColor = Color.Red;
-            lastNameLable.Location = new Point(181, 73);
-            lastNameLable.Name = "lastNameLable";
-            lastNameLable.Size = new Size(38, 15);
-            lastNameLable.TabIndex = 10;
-            lastNameLable.Text = "label6";
-            // 
             // AuthorForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -274,9 +276,9 @@
 
         private Label label1;
         private Panel panel1;
-        private Button button5;
-        private Button button4;
-        private TextBox textBox1;
+        private Button reset;
+        private Button search;
+        private TextBox searchField;
         private DataGridView authorTable;
         private Button deleteButton;
         private Button editButton;

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Library.Models.Interface;
 
 namespace Library.Models;
 
-public partial class Journal: IModel
+public partial class Journal: IModel, ISearchField
 {
     [Browsable(false)]
     public int Id { get; set; }
@@ -35,4 +36,13 @@ public partial class Journal: IModel
 
     [DisplayName(@"Получатель")]
     public virtual User User { get; set; } = null!;
+
+    [Browsable(false)]
+    public string SearchField
+    {
+        get
+        {
+            return $"{User.SearchField}";
+        }
+    }
 }
