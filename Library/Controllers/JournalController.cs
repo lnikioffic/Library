@@ -54,5 +54,27 @@ namespace Library.Controllers
                     .AsQueryable().ToList();
             }
         }
+
+        public string GetReport()
+        {
+            using (var db = new LibraryContext())
+            {
+                var k2 = db.Journals.Include(x => x.Book)
+                    .GroupBy(x => x.Book.Title)
+                    .Select(x => new
+                    {
+                        Title = x.Key,
+                        c = x.Count()
+                    }).ToList();
+
+                string s = "";
+                foreach (var i in k2)
+                {
+                    s += i.ToString() + "\n";
+                }
+                return s;
+            }
+        }
+
     }
 }

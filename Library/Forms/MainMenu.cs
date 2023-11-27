@@ -14,15 +14,18 @@ namespace Library
 {
     public partial class MainMenu : Form1
     {
+        JournalController JournalController { get; set; }
         public MainMenu()
         {
-            //Genre genre = new Genre
-            //{
-            //    Genre1 = "Рассказ"
-            //};
-            //var g = new GenreController();
-            //g.Add(genre);
+            JournalController = new JournalController();
             InitializeComponent();
+        }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+            var a = JournalController.GetReport();
+            
+            MessageBox.Show(a);
         }
     }
 }

@@ -96,6 +96,16 @@ namespace Library.Controllers
                 foreach (var ji in j)
                     id.Add(ji.Book.Id);
 
+                //var s = db.Books.Join(db.Journals,
+                //    u => u.Id,
+                //    x => x.BookId,
+                //    (u , x) => new
+                //    {
+                //        Title = u.Title,
+                //        Books = x.Book,
+                //        Ret = x.ActualReturnDate
+                //    });
+
                 foreach (var book in books)
                 {
                     if (!id.Contains(book.Id))
@@ -105,20 +115,5 @@ namespace Library.Controllers
             }
         }
 
-        public Book GetBook(Book book)
-        {
-            using (var db = new LibraryContext())
-            {
-                var b = db.Books
-                    .Where(x => x.Id == book.Id)
-                    .Include(x => x.BookGenres)
-                        .ThenInclude(x => x.Genre)
-                    .Include(x => x.AuthorBooks)
-                        .ThenInclude(x => x.Author)
-                    .Include(x => x.Publishing)
-                    .FirstOrDefault();
-                return b;
-            }
-        }
     }
 }

@@ -32,11 +32,13 @@
             // 
             // MainMenu
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 430);
+            ClientSize = new Size(834, 573);
+            Margin = new Padding(3, 5, 3, 5);
             Name = "MainMenu";
             Text = "Библиотека";
+            Load += MainMenu_Load;
             ResumeLayout(false);
             PerformLayout();
         }

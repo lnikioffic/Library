@@ -81,6 +81,7 @@ namespace Library.Forms
             actualReturnDate.Visible = false;
             actualReturnDateLable.Visible = false;
             bookCombobox.SetDataNull();
+            journal = null;
             JournalForm_Load(sender, e);
             errorLable();
         }

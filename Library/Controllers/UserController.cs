@@ -1,4 +1,5 @@
 ﻿using Library.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,18 @@ namespace Library.Controllers
                         .AsQueryable().ToList();
                 return db.Users.AsQueryable().ToList();
             }
+        }
+
+        public List<User> GetData(string name)
+        {
+            using (var db = new LibraryContext())
+            {
+                var genre = db.Users
+                    .Where(x => EF.Functions.Like((x.LastName! + " " + x.FirstName + " " + x.Ticket).ToLower(), $"%{name.ToLower()}%"))
+                    .AsQueryable();
+                return genre.ToList();
+            }
+            return CRUDController.Get(name);
         }
     }
 }

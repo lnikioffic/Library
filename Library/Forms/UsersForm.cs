@@ -31,7 +31,7 @@ namespace Library.Forms
                 userTable.DataSource = controller.GetData();
             else
             {
-                userTable.DataSource = controller.GetData();
+                userTable.DataSource = controller.GetData(searchField.Text);
             }
 
             userTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

@@ -1,5 +1,6 @@
 ﻿using Library.Models;
 using Library.Representation;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,6 @@ namespace Library.Controllers
 {
     internal class GenreController
     {
-        public GenreController()
-        {
-            //RepresentationFabric = new GenreRepresentationFabric();
-        }
-
         public CRUDController<Genre> CRUDController
         {
             get
@@ -55,9 +51,10 @@ namespace Library.Controllers
         {
             using (var db = new LibraryContext())
             {
-                var genre = db.Genres.Where(x => x.SearchField == name).AsQueryable();
+                var genre = db.Genres.Where(x => EF.Functions.Like((x.Genre1!), $"%{name}%")).AsQueryable();
                 return genre.ToList();
             }
+            return CRUDController.Get(name);
         }
 
     }

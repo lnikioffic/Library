@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Library.Models.Interface
 {
-    internal interface ISearchField
+    public interface ISearchField
     {
-        [Browsable(false)]
         public string SearchField { get; }
     }
 }
