@@ -28,8 +28,11 @@ namespace Library.Controllers
             using (var db = new LibraryContext())
             {
                 var d = db.Set<T>()
-                    .Where(x => EF.Functions.Like((x.SearchField!).ToLower(), $"%{field.ToLower()}%"))
-                    .AsQueryable().ToList();
+                    .AsEnumerable()
+                    //.Where(x => EF.Functions.Like((x.SearchField!).ToLower(), $"%{field.ToLower()}%"))
+                    .Where(x => x.SearchField.ToLower().Contains(field.ToLower()))
+                    .OrderBy(x => x.SearchField)
+                    .ToList();
                 return d;
             }
         }

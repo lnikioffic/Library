@@ -41,7 +41,7 @@ namespace Library.Forms
             if (searchField.Text.Trim() == "")
                 bookTable.DataSource = controller.GetBooks().ToList();
             else
-                bookTable.DataSource = controller.GetBooks().ToList();
+                bookTable.DataSource = controller.GetBooks(searchField.Text).ToList();
 
             bookTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             bookTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);

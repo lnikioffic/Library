@@ -30,7 +30,8 @@ namespace Library.Forms
             if (searchField.Text.Trim() == "")
                 authorTable.DataSource = controller.GetData();
             else
-                authorTable.DataSource = controller.GetData();
+                authorTable.DataSource = controller.GetData(searchField.Text);
+
             authorTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             authorTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             authorTable.ReadOnly = true;

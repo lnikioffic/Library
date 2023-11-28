@@ -29,6 +29,11 @@ namespace Library.Controllers
             }
         }
 
+        public List<Publishing> Get(string name)
+        {
+            return CRUDController.Get(name);
+        }
+
         public void Add(Publishing publishing)
         {
             CRUDController.Add(publishing);

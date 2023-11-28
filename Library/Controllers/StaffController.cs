@@ -55,5 +55,21 @@ namespace Library.Controllers
                     .AsQueryable().ToList();
             }
         }
+
+        public List<Staff> GetData(string name)
+        {
+            using (var db = new LibraryContext())
+            {
+                var d = db.Staff
+                    .Include(x => x.Role)
+                    .AsEnumerable()
+                    //.Where(x => EF.Functions.Like((x.SearchField!).ToLower(), $"%{field.ToLower()}%"))
+                    .Where(x => x.SearchField.ToLower().Contains(name.ToLower()))
+                    .OrderBy(x => x.SearchField)
+                    .ToList();
+                return d;
+            }
+        }
+
     }
 }

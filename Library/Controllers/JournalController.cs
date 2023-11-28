@@ -55,6 +55,23 @@ namespace Library.Controllers
             }
         }
 
+        public List<Journal> GetData(string name)
+        {
+            using (var db = new LibraryContext())
+            {
+                var d = db.Journals
+                    .Include(x => x.Book)
+                    .Include(x => x.User)
+                    .Include(x => x.Staff)
+                    .AsEnumerable()
+                    //.Where(x => EF.Functions.Like((x.SearchField!).ToLower(), $"%{field.ToLower()}%"))
+                    .Where(x => x.SearchField.ToLower().Contains(name.ToLower()))
+                    .OrderBy(x => x.SearchField)
+                    .ToList();
+                return d;
+            }
+        }
+
         public string GetReport()
         {
             using (var db = new LibraryContext())

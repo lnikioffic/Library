@@ -32,9 +32,7 @@ namespace Library
             if (searchField.Text.Trim() == "")
                 genreTable.DataSource = controller.GetData();
             else
-            {
                 genreTable.DataSource = controller.GetData(searchField.Text);
-            }
 
             genreTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             genreTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);

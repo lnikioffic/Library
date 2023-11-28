@@ -49,11 +49,6 @@ namespace Library.Controllers
 
         public List<Genre> GetData(string name)
         {
-            using (var db = new LibraryContext())
-            {
-                var genre = db.Genres.Where(x => EF.Functions.Like((x.Genre1!), $"%{name}%")).AsQueryable();
-                return genre.ToList();
-            }
             return CRUDController.Get(name);
         }
 

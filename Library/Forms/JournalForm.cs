@@ -42,7 +42,7 @@ namespace Library.Forms
             if (searchField.Text.Trim() == "")
                 journalTable.DataSource = controller.GetData();
             else
-                journalTable.DataSource = controller.GetData();
+                journalTable.DataSource = controller.GetData(searchField.Text);
 
             journalTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             journalTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

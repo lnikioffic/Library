@@ -30,7 +30,7 @@ namespace Library
             if (searchField.Text.Trim() == "")
                 publishingTable.DataSource = controller.GetData();
             else
-                publishingTable.DataSource = controller.GetData();
+                publishingTable.DataSource = controller.Get(searchField.Text);
 
             publishingTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             publishingTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);

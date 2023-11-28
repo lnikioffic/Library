@@ -33,7 +33,7 @@ namespace Library.Forms
             if (searchField.Text.Trim() == "")
                 userTable.DataSource = controller.GetData();
             else 
-                userTable.DataSource = controller.GetData();
+                userTable.DataSource = controller.GetData(searchField.Text);
 
             userTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             userTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);

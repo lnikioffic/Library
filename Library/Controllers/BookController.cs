@@ -50,6 +50,11 @@ namespace Library.Controllers
             return GetData().Select(x => new PressBook(x));
         }
 
+        public IEnumerable<PressBook> GetBooks(string field)
+        {
+            return Get(field).Select(x => new PressBook(x));
+        }
+
         public List<Book> GetData(string? title = null)
         {
             using (var db = new LibraryContext())
@@ -73,6 +78,24 @@ namespace Library.Controllers
                     .AsEnumerable()
                     .AsQueryable().ToList();
                 return books;
+            }
+        }
+
+        public List<Book> Get(string name)
+        {
+            using (var db = new LibraryContext())
+            {
+                var d = db.Books
+                    .Include(x => x.BookGenres)
+                        .ThenInclude(x => x.Genre)
+                    .Include(x => x.AuthorBooks)
+                        .ThenInclude(x => x.Author)
+                    .Include(x => x.Publishing)
+                    .AsEnumerable()
+                    .Where(x => x.SearchField.ToLower().Contains(name.ToLower()))
+                    .OrderBy(x => x.SearchField)
+                    .ToList();
+                return d;
             }
         }
 

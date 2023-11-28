@@ -21,9 +21,13 @@ namespace Library.Controllers
         {
             using (var db = new LibraryContext())
             {
-                var authors = db.Authors.AsQueryable();
-                return authors.ToList();
+                return db.Authors.AsQueryable().ToList();
             }
+        }
+
+        public List<Author> GetData(string name)
+        {
+            return CRUDController.Get(name);
         }
 
         public void Add(Author author)

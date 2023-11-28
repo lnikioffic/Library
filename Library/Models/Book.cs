@@ -28,7 +28,7 @@ public partial class Book: IModel, ISearchField
     {
         get
         {
-            return $"{Title}";
+            return $"{Title} {AuthorBooks} {Publishing.SearchField}";
         }
     }
 
