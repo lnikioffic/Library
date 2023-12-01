@@ -23,29 +23,65 @@ namespace Library.Forms
 
         private PublishingController publishingController;
 
+        private GenreController genreController;
+
+        private AuthorController authorController;
+
         private Book? book { get; set; }
 
         private List<Genre> genreList = new List<Genre>();
 
         private List<Author> authorList = new List<Author>();
 
-        public BookForm()
+        private Book? editbook { get; set; }
+
+        public BookForm(Book? editbook = null)
         {
+            authorController = new AuthorController();
             controller = new BookController();
             publishingController = new PublishingController();
+            genreController = new GenreController();
             InitializeComponent();
+            this.editbook = editbook;
+            if (editbook != null)
+                MessageBox.Show(editbook.ToString());
         }
 
         private void BookForm_Load(object sender, EventArgs e)
         {
-            if (searchField.Text.Trim() == "")
-                bookTable.DataSource = controller.GetBooks().ToList();
+            if (this.Modal == true)
+            {
+                if (editbook != null)
+                {
+                    if (searchField.Text.Trim() == "")
+                        bookTable.DataSource = controller.GetBooksU(editbook).ToList();
+                    else
+                        bookTable.DataSource = controller.GetBooksU(searchField.Text, editbook).ToList();
+                }
+                else
+                {
+                    if (searchField.Text.Trim() == "")
+                        bookTable.DataSource = controller.GetBooksU().ToList();
+                    else
+                        bookTable.DataSource = controller.GetBooksU(searchField.Text).ToList();
+                }
+            }
             else
-                bookTable.DataSource = controller.GetBooks(searchField.Text).ToList();
+            {
+                if (searchField.Text.Trim() == "")
+                    bookTable.DataSource = controller.GetBooks().ToList();
+                else
+                    bookTable.DataSource = controller.GetBooks(searchField.Text).ToList();
+            }
 
             bookTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             bookTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             bookTable.ReadOnly = true;
+
+            genreData.ReadOnly = true;
+            genreData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            authorData.ReadOnly = true;
+            authorData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             var publishingList = publishingController.GetData();
             publishingCombobox.SetDataToComboBox(publishingList);
@@ -113,6 +149,34 @@ namespace Library.Forms
             return true;
         }
 
+        private void GenreClear()
+        {
+            List<Genre> genreNew = new List<Genre>();
+            var genre = genreController.GetData();
+            foreach (var item in genreList)
+            {
+                // работает на оборот 
+                if (CheckUniqGenre(genre, item))
+                    genreNew.Add(item);
+            }
+            foreach (var item in genreNew)
+                genreList.Remove(item);
+        }
+
+        private void AuthorClear()
+        {
+            List<Author> authorNew = new List<Author>();
+            var autror = authorController.GetData();
+            foreach (var item in authorList)
+            {
+                // работает на оборот 
+                if (CheckUniqAuthor(autror, item))
+                    authorNew.Add(item);
+            }
+            foreach (var item in authorNew)
+                authorList.Remove(item);
+        }
+
         private void addGenre_Click(object sender, EventArgs e)
         {
             var genreForm = new GenreForm();
@@ -121,10 +185,13 @@ namespace Library.Forms
             if (genreForm.GenSupp != null)
             {
                 if (CheckUniqGenre(genreList, genreForm.GenSupp))
+                {
                     genreList.Add(genreForm.GenSupp);
+                }
                 else
                     genreDataLable.Text = $"Вы уже добалили этот жанр {genreForm.GenSupp.Genre1}";
             }
+            GenreClear();
             showData();
         }
 
@@ -140,6 +207,7 @@ namespace Library.Forms
                 else
                     authorDataLable.Text = $"Вы уже добалили этотого автора {authorForm.AuthorSupp.LastName}";
             }
+            AuthorClear();
             showData();
         }
 
@@ -334,6 +402,26 @@ namespace Library.Forms
         {
             searchField.Text = "";
             BookForm_Load(sender, e);
+        }
+
+        public Book? BookSupp;
+
+        private void bookTable_DoubleClick(object sender, EventArgs e)
+        {
+            var book = ((PressBook)bookTable.SelectedRows[0].DataBoundItem).book;
+            BookSupp = book;
+            this.Close();
+        }
+
+        private void addPub_Click(object sender, EventArgs e)
+        {
+            var publ = new PublishingForm();
+            publ.ShowDialog();
+            var publishings = publishingController.GetData();
+            if (publ.PublishingSupp != null)
+                publishingCombobox.SetDataToComoboBoxEdite(publishings, publ.PublishingSupp);
+            else
+                publishingCombobox.SetDataToComboBox(publishings);
         }
     }
 }

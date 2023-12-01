@@ -45,13 +45,13 @@ namespace Library.Controllers
             return Math.Abs(Guid.NewGuid().GetHashCode() % 100000000);
         }
 
-        public List<User> GetData(string? name = null, string? last_name = null)
+        public List<User> GetData(int? ticket = null)
         {
             using (var db = new LibraryContext())
             {
-                if (name != null)
+                if (ticket != null)
                     return db.Users
-                        .Where(x => x.FirstName == name && x.LastName == last_name)
+                        .Where(x => x.Ticket == ticket)
                         .AsQueryable().ToList();
                 return db.Users.AsQueryable().ToList();
             }

@@ -42,7 +42,7 @@ public partial class Journal: IModel, ISearchField
     {
         get
         {
-            return $"{User.SearchField}";
+            return $"{User.SearchField} {Book.SearchField}";
         }
     }
 }

@@ -172,5 +172,14 @@ namespace Library
             searchField.Text = "";
             PublishingForm_Load(sender, e);
         }
+
+        public Publishing? PublishingSupp;
+
+        private void publishingTable_DoubleClick(object sender, EventArgs e)
+        {
+            var pub = (Publishing)publishingTable.SelectedRows[0].DataBoundItem;
+            PublishingSupp = pub;
+            this.Close();
+        }
     }
 }

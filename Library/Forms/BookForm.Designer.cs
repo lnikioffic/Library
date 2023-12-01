@@ -59,6 +59,7 @@
             okButton = new Button();
             label2 = new Label();
             nameBook = new TextBox();
+            addPub = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bookTable).BeginInit();
             Box.SuspendLayout();
@@ -114,6 +115,7 @@
             bookTable.RowTemplate.Height = 25;
             bookTable.Size = new Size(563, 294);
             bookTable.TabIndex = 0;
+            bookTable.DoubleClick += bookTable_DoubleClick;
             // 
             // label1
             // 
@@ -156,6 +158,7 @@
             // 
             // Box
             // 
+            Box.Controls.Add(addPub);
             Box.Controls.Add(authorDataLable);
             Box.Controls.Add(genreDataLable);
             Box.Controls.Add(publishingComboboxLable);
@@ -219,7 +222,7 @@
             // 
             datePubLable.AutoSize = true;
             datePubLable.ForeColor = Color.Red;
-            datePubLable.Location = new Point(213, 133);
+            datePubLable.Location = new Point(278, 133);
             datePubLable.Name = "datePubLable";
             datePubLable.Size = new Size(38, 15);
             datePubLable.TabIndex = 19;
@@ -237,7 +240,7 @@
             // 
             // datePub
             // 
-            datePub.Location = new Point(213, 107);
+            datePub.Location = new Point(278, 107);
             datePub.Name = "datePub";
             datePub.Size = new Size(79, 23);
             datePub.TabIndex = 17;
@@ -245,7 +248,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(213, 89);
+            label6.Location = new Point(278, 89);
             label6.Name = "label6";
             label6.Size = new Size(76, 15);
             label6.TabIndex = 16;
@@ -381,8 +384,18 @@
             // 
             nameBook.Location = new Point(6, 47);
             nameBook.Name = "nameBook";
-            nameBook.Size = new Size(201, 23);
+            nameBook.Size = new Size(266, 23);
             nameBook.TabIndex = 0;
+            // 
+            // addPub
+            // 
+            addPub.Location = new Point(213, 107);
+            addPub.Name = "addPub";
+            addPub.Size = new Size(27, 23);
+            addPub.TabIndex = 38;
+            addPub.Text = "...";
+            addPub.UseVisualStyleBackColor = true;
+            addPub.Click += addPub_Click;
             // 
             // BookForm
             // 
@@ -443,5 +456,6 @@
         private Label nameBookLable;
         private Label genreDataLable;
         private Label authorDataLable;
+        private Button addPub;
     }
 }

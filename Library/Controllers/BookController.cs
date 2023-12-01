@@ -55,6 +55,28 @@ namespace Library.Controllers
             return Get(field).Select(x => new PressBook(x));
         }
 
+        public IEnumerable<PressBook> GetBooksU(Book? editbook = null)
+        {
+            if (editbook == null)
+                return GetActuall().Select(x => new PressBook(x));
+            else
+            {
+                var listBook = GetActuall(editbook);
+                return listBook.Select(x => new PressBook(x));
+            }
+        }
+
+        public IEnumerable<PressBook> GetBooksU(string field, Book? editbook = null)
+        {
+            if (editbook == null)
+                return GetActuall(field).Select(x => new PressBook(x));
+            else
+            {
+                var listBook = GetActuall(field, editbook);
+                return listBook.Select(x => new PressBook(x));
+            }
+        }
+
         public List<Book> GetData(string? title = null)
         {
             using (var db = new LibraryContext())
@@ -119,15 +141,36 @@ namespace Library.Controllers
                 foreach (var ji in j)
                     id.Add(ji.Book.Id);
 
-                //var s = db.Books.Join(db.Journals,
-                //    u => u.Id,
-                //    x => x.BookId,
-                //    (u , x) => new
-                //    {
-                //        Title = u.Title,
-                //        Books = x.Book,
-                //        Ret = x.ActualReturnDate
-                //    });
+                foreach (var book in books)
+                {
+                    if (!id.Contains(book.Id))
+                        b.Add(book);
+                }
+                return b;
+            }
+        }
+
+        public List<Book> GetActuall(string name)
+        {
+            using (var db = new LibraryContext())
+            {
+                List<Book> b = new List<Book>();
+                var j = db.Journals
+                    .Where(x => x.ActualReturnDate == null)
+                    .Include(x => x.Book).AsQueryable().ToList();
+                var books = db.Books
+                    .Include(x => x.BookGenres)
+                        .ThenInclude(x => x.Genre)
+                    .Include(x => x.AuthorBooks)
+                        .ThenInclude(x => x.Author)
+                    .Include(x => x.Publishing)
+                    .AsEnumerable()
+                    .Where(x => x.SearchField.ToLower().Contains(name.ToLower()))
+                    .OrderBy(x => x.SearchField)
+                    .AsQueryable().ToList();
+                List<int> id = new List<int>();
+                foreach (var ji in j)
+                    id.Add(ji.Book.Id);
 
                 foreach (var book in books)
                 {
@@ -138,5 +181,81 @@ namespace Library.Controllers
             }
         }
 
+        // ГОВНО
+        public List<Book> GetActuall(string name, Book editebook)
+        {
+            using (var db = new LibraryContext())
+            {
+                List<Book> b = new List<Book>();
+                var j = db.Journals
+                    .Where(x => x.ActualReturnDate == null)
+                    .Include(x => x.Book).AsQueryable().ToList();
+                var books = db.Books
+                    .Include(x => x.BookGenres)
+                        .ThenInclude(x => x.Genre)
+                    .Include(x => x.AuthorBooks)
+                        .ThenInclude(x => x.Author)
+                    .Include(x => x.Publishing)
+                    .AsEnumerable()
+                    .Where(x => x.SearchField.ToLower().Contains(name.ToLower()))
+                    .OrderBy(x => x.SearchField)
+                    .AsQueryable().ToList();
+                List<int> id = new List<int>();
+                foreach (var ji in j)
+                    id.Add(ji.Book.Id);
+
+                foreach (var book in books)
+                {
+                    if (!id.Contains(book.Id) || book.Id == editebook.Id)
+                        b.Add(book);
+                }
+                return b;
+            }
+        }
+
+        public List<Book> GetActuall(Book editebook)
+        {
+            using (var db = new LibraryContext())
+            {
+                List<Book> b = new List<Book>();
+                var j = db.Journals
+                    .Where(x => x.ActualReturnDate == null)
+                    .Include(x => x.Book).AsQueryable().ToList();
+                var books = db.Books
+                    .Include(x => x.BookGenres)
+                        .ThenInclude(x => x.Genre)
+                    .Include(x => x.AuthorBooks)
+                        .ThenInclude(x => x.Author)
+                    .Include(x => x.Publishing)
+                    .AsEnumerable()
+                    .AsQueryable().ToList();
+                List<int> id = new List<int>();
+                foreach (var ji in j)
+                    id.Add(ji.Book.Id);
+
+                foreach (var book in books)
+                {
+                    if (!id.Contains(book.Id) || book.Id == editebook.Id)
+                        b.Add(book);
+                }
+                return b;
+            }
+        }
+
+
     }
 }
+
+
+
+//var s = db.Books.Join(db.Journals.Where(x => x.ActualReturnDate != null),
+//    u => u.Id,
+//    x => x.BookId,
+//    (u, x) => new Book
+//    {
+//        Title = u.Title,
+//        AuthorBooks = u.AuthorBooks,
+//        BookGenres = u.BookGenres,
+//        PublicationDate = u.PublicationDate,
+//        Publishing = u.Publishing,
+//    });

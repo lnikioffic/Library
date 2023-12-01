@@ -32,7 +32,7 @@ namespace Library.Forms
         {
             if (searchField.Text.Trim() == "")
                 userTable.DataSource = controller.GetData();
-            else 
+            else
                 userTable.DataSource = controller.GetData(searchField.Text);
 
             userTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -191,6 +191,26 @@ namespace Library.Forms
         {
             searchField.Text = "";
             StaffForm_Load(sender, e);
+        }
+
+        public Staff? StaffSupp;
+
+        private void userTable_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var sta = (Staff)userTable.SelectedRows[0].DataBoundItem;
+            StaffSupp = sta;
+            this.Close();
+        }
+
+        private void addRole_Click(object sender, EventArgs e)
+        {
+            var role = new RoleForm();
+            role.ShowDialog();
+            var roles = roleController.GetData();
+            if (role.RoleSupp != null)
+                roleComboBox.SetDataToComoboBoxEdite(roles, role.RoleSupp);
+            else
+                roleComboBox.SetDataToComboBox(roles);
         }
     }
 }

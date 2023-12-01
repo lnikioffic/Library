@@ -20,7 +20,7 @@ public partial class User : IModel, ISearchField
     public string? Patronymic { get; set; }
 
     [DisplayName(@"Читательский")]
-    public int Ticket { get; set; }
+    public int? Ticket { get; set; }
 
     [Browsable(false)]
     public virtual ICollection<Journal> Journals { get; set; } = new List<Journal>();
@@ -30,12 +30,12 @@ public partial class User : IModel, ISearchField
     {
         get
         {
-            return $"{LastName} {FirstName}";
+            return $"{LastName} {FirstName} {Ticket}";
         }
     }
 
     public override string ToString()
     {
-        return LastName + " " + FirstName;
+        return $"{LastName} {FirstName} {Ticket}";
     }
 }

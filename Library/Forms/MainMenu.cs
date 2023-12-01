@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Word;
+using Library.tools;
 
 namespace Library
 {
@@ -17,7 +18,6 @@ namespace Library
     {
         JournalController JournalController { get; set; }
 
-        private string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"/test.docx";
         public MainMenu()
         {
             JournalController = new JournalController();
@@ -27,13 +27,9 @@ namespace Library
         private void MainMenu_Load(object sender, EventArgs e)
         {
             var a = JournalController.GetReport();
-            var word = new Microsoft.Office.Interop.Word.Application();
-            word.Visible = true;
-            var doc = word.Documents.Add();
-            doc.Range().Text = a;
-            doc.SaveAs2(path);
-            word.Quit();
-            //MessageBox.Show(a);
+
+            //ReportDesigner report = new ReportDesigner(a);
+            MessageBox.Show(JournalController.G());
         }
     }
 }

@@ -181,5 +181,14 @@ namespace Library.Forms
             searchField.Text = "";
             UsersForm_Load(sender, e);
         }
+
+        public User? UserSupp;
+
+        private void userTable_DoubleClick(object sender, EventArgs e)
+        {
+            var user = (User)userTable.SelectedRows[0].DataBoundItem;
+            UserSupp = user;
+            this.Close();
+        }
     }
 }

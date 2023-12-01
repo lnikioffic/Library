@@ -26,5 +26,30 @@ namespace Library.Controllers
                 return db.Roles.AsQueryable().ToList();
             }
         }
+
+        public List<Role> Get(string name)
+        {
+            return CRUDController.Get(name);
+        }
+
+        public void Add(Role role)
+        {
+            CRUDController.Add(role);
+        }
+
+        public void Update(Role role)
+        {
+            using (var db = new LibraryContext())
+            {
+                var rol = db.Roles.Single(x => x.Id == role.Id);
+                rol.NameRole = role.NameRole;
+                db.SaveChanges();
+            }
+        }
+
+        public void Delete(Role role)
+        {
+            CRUDController.Delete(role);
+        }
     }
 }

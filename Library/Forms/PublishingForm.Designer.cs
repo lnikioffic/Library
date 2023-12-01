@@ -107,6 +107,7 @@
             publishingTable.RowTemplate.Height = 25;
             publishingTable.Size = new Size(548, 294);
             publishingTable.TabIndex = 0;
+            publishingTable.DoubleClick += publishingTable_DoubleClick;
             // 
             // deleteButton
             // 

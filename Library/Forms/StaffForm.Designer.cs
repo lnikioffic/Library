@@ -51,6 +51,7 @@
             searchField = new TextBox();
             userTable = new DataGridView();
             panel1 = new Panel();
+            addRole = new Button();
             Box.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)userTable).BeginInit();
             panel1.SuspendLayout();
@@ -126,6 +127,7 @@
             // 
             // Box
             // 
+            Box.Controls.Add(addRole);
             Box.Controls.Add(roleLable);
             Box.Controls.Add(lastNameLable);
             Box.Controls.Add(firstNameLable);
@@ -269,6 +271,7 @@
             userTable.RowTemplate.Height = 25;
             userTable.Size = new Size(548, 294);
             userTable.TabIndex = 0;
+            userTable.MouseDoubleClick += userTable_MouseDoubleClick;
             // 
             // panel1
             // 
@@ -280,6 +283,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(587, 336);
             panel1.TabIndex = 13;
+            // 
+            // addRole
+            // 
+            addRole.Location = new Point(181, 109);
+            addRole.Name = "addRole";
+            addRole.Size = new Size(27, 23);
+            addRole.TabIndex = 39;
+            addRole.Text = "...";
+            addRole.UseVisualStyleBackColor = true;
+            addRole.Click += addRole_Click;
             // 
             // StaffForm
             // 
@@ -328,5 +341,6 @@
         private Label roleLable;
         private Label lastNameLable;
         private Label firstNameLable;
+        private Button addRole;
     }
 }

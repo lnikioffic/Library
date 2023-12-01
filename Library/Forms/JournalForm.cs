@@ -28,6 +28,10 @@ namespace Library.Forms
 
         private Journal? journal { get; set; }
 
+        private bool isdate;
+
+        private Book? editBook;
+
         public JournalForm()
         {
             controller = new JournalController();
@@ -84,6 +88,7 @@ namespace Library.Forms
             journal = null;
             JournalForm_Load(sender, e);
             errorLable();
+            editBook = null;
         }
 
         private void errorLable()
@@ -117,7 +122,7 @@ namespace Library.Forms
                     string[] s = staffComboBox.SelectedItem.ToString().Split(" ");
                     var staff = staffController.GetData(s[1], s[0]).First();
                     string[] u = userComboBox.SelectedItem.ToString().Split(" ");
-                    var user = userController.GetData(u[1], u[0]).First();
+                    var user = userController.GetData(int.Parse(u[2])).First();
                     DateOnly d1 = DateOnly.Parse(dateOfIssued.Value.ToString("dd.MM.yyyy"));
                     DateOnly d2 = DateOnly.Parse(estimatedReturnDate.Value.ToString("dd.MM.yyyy"));
                     DateOnly d3 = DateOnly.Parse(actualReturnDate.Value.ToString("dd.MM.yyyy"));
@@ -125,11 +130,12 @@ namespace Library.Forms
                     {
                         if (journal != null)
                         {
-                            if (d1 <= d3)
+                            if (d1 <= d3 || isdate)
                             {
                                 journal.DateOfIssued = d1;
                                 journal.EstimatedReturnDate = d2;
-                                journal.ActualReturnDate = d3;
+                                if (!isdate)
+                                    journal.ActualReturnDate = d3;
                                 journal.Book = book;
                                 journal.User = user;
                                 journal.Staff = staff;
@@ -184,13 +190,20 @@ namespace Library.Forms
                     dateOfIssued.Value = DateTime.Parse(journal.DateOfIssued.ToString());
                     estimatedReturnDate.Value = DateTime.Parse(journal.EstimatedReturnDate.ToString());
                     if (journal.ActualReturnDate == null)
-                        actualReturnDate.Value = DateTime.Today;
+                    {
+                        actualReturnDate.Format = DateTimePickerFormat.Custom;
+                        actualReturnDate.CustomFormat = " ";
+                        isdate = true;
+                    }
                     else
                         actualReturnDate.Value = DateTime.Parse(journal.ActualReturnDate.ToString());
                     //новый запрос с книгой и со сложением листов
                     var books = bookController.GetActuall();
                     if (journal.ActualReturnDate == null)
+                    {
                         books.Add(journal.Book);
+                        editBook = journal.Book;
+                    }
                     var staffs = staffController.GetData();
                     var users = userController.GetData();
                     bookCombobox.SetDataToComoboBoxEdite(books, journal.Book);
@@ -212,7 +225,7 @@ namespace Library.Forms
                     try
                     {
                         DialogResult result = MessageBox.Show(
-                            "Удалить читателя", "Сообщение", MessageBoxButtons.OKCancel);
+                            "Удалить запись", "Сообщение", MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
                             controller.Delete(j);
@@ -238,6 +251,60 @@ namespace Library.Forms
         {
             searchField.Text = "";
             JournalForm_Load(sender, e);
+        }
+
+        private void actualReturnDate_ValueChanged(object sender, EventArgs e)
+        {
+            isdate = false;
+            actualReturnDate.Format = DateTimePickerFormat.Long;
+        }
+
+        private void addStaff_Click(object sender, EventArgs e)
+        {
+            var staff = new StaffForm();
+            staff.ShowDialog();
+            var staffs = staffController.GetData();
+            if (staff.StaffSupp != null)
+                staffComboBox.SetDataToComoboBoxEdite(staffs, staff.StaffSupp);
+            else
+                staffComboBox.SetDataToComboBox(staffs);
+        }
+
+        private void addBook_Click(object sender, EventArgs e)
+        {
+            if (editBook != null)
+            {
+                var book = new BookForm(editBook);
+                book.ShowDialog();
+                var books = bookController.GetActuall();
+                books.Add(editBook);
+                if (book.BookSupp != null)
+                    bookCombobox.SetDataToComoboBoxEdite(books, book.BookSupp);
+                else
+                    bookCombobox.SetDataToComoboBoxEdite(books, editBook);
+            }
+            else
+            {
+                var book = new BookForm();
+                book.ShowDialog();
+                var books = bookController.GetActuall();
+                if (book.BookSupp != null)
+                    bookCombobox.SetDataToComoboBoxEdite(books, book.BookSupp);
+                else
+                    bookCombobox.SetDataToComboBox(books);
+            }
+            
+        }
+
+        private void addUser_Click(object sender, EventArgs e)
+        {
+            var user = new UsersForm();
+            user.ShowDialog();
+            var users = userController.GetData();
+            if (user.UserSupp != null)
+                userComboBox.SetDataToComoboBoxEdite(users, user.UserSupp);
+            else
+                userComboBox.SetDataToComboBox(users);
         }
     }
 }

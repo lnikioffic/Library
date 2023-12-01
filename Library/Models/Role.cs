@@ -10,10 +10,13 @@ namespace Library.Models
 {
     public partial class Role : IModel, ISearchField
     {
+        [Browsable(false)]
         public int Id { get; set; }
 
+        [DisplayName(@"Должность")]
         public string NameRole { get; set; } = null!;
 
+        [Browsable(false)]
         public virtual ICollection<Staff> Staff { get; set; } = new List<Staff>();
 
         [Browsable(false)]

@@ -42,6 +42,9 @@
             cancelButton = new Button();
             dateOfIssuedLable = new Label();
             Box = new GroupBox();
+            addBook = new Button();
+            addUser = new Button();
+            addStaff = new Button();
             userLable = new Label();
             label9 = new Label();
             userComboBox = new ComboBox();
@@ -192,6 +195,9 @@
             // 
             // Box
             // 
+            Box.Controls.Add(addBook);
+            Box.Controls.Add(addUser);
+            Box.Controls.Add(addStaff);
             Box.Controls.Add(userLable);
             Box.Controls.Add(label9);
             Box.Controls.Add(userComboBox);
@@ -219,6 +225,36 @@
             Box.TabStop = false;
             Box.Text = "text";
             Box.Visible = false;
+            // 
+            // addBook
+            // 
+            addBook.Location = new Point(239, 109);
+            addBook.Name = "addBook";
+            addBook.Size = new Size(27, 23);
+            addBook.TabIndex = 39;
+            addBook.Text = "...";
+            addBook.UseVisualStyleBackColor = true;
+            addBook.Click += addBook_Click;
+            // 
+            // addUser
+            // 
+            addUser.Location = new Point(213, 235);
+            addUser.Name = "addUser";
+            addUser.Size = new Size(27, 23);
+            addUser.TabIndex = 38;
+            addUser.Text = "...";
+            addUser.UseVisualStyleBackColor = true;
+            addUser.Click += addUser_Click;
+            // 
+            // addStaff
+            // 
+            addStaff.Location = new Point(213, 172);
+            addStaff.Name = "addStaff";
+            addStaff.Size = new Size(27, 23);
+            addStaff.TabIndex = 37;
+            addStaff.Text = "...";
+            addStaff.UseVisualStyleBackColor = true;
+            addStaff.Click += addStaff_Click;
             // 
             // userLable
             // 
@@ -334,11 +370,13 @@
             // 
             // actualReturnDate
             // 
+            actualReturnDate.CustomFormat = " ";
             actualReturnDate.Location = new Point(375, 47);
             actualReturnDate.Name = "actualReturnDate";
             actualReturnDate.Size = new Size(178, 23);
             actualReturnDate.TabIndex = 24;
             actualReturnDate.Visible = false;
+            actualReturnDate.ValueChanged += actualReturnDate_ValueChanged;
             // 
             // label3
             // 
@@ -419,5 +457,8 @@
         private Label bookLable;
         private Label label5;
         private ComboBox bookCombobox;
+        private Button addBook;
+        private Button addUser;
+        private Button addStaff;
     }
 }
