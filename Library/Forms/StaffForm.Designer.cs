@@ -37,6 +37,7 @@
             label2 = new Label();
             firstName = new TextBox();
             Box = new GroupBox();
+            addRole = new Button();
             roleLable = new Label();
             lastNameLable = new Label();
             firstNameLable = new Label();
@@ -51,7 +52,6 @@
             searchField = new TextBox();
             userTable = new DataGridView();
             panel1 = new Panel();
-            addRole = new Button();
             Box.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)userTable).BeginInit();
             panel1.SuspendLayout();
@@ -149,6 +149,16 @@
             Box.Text = "text";
             Box.Visible = false;
             // 
+            // addRole
+            // 
+            addRole.Location = new Point(181, 109);
+            addRole.Name = "addRole";
+            addRole.Size = new Size(27, 23);
+            addRole.TabIndex = 39;
+            addRole.Text = "...";
+            addRole.UseVisualStyleBackColor = true;
+            addRole.Click += addRole_Click;
+            // 
             // roleLable
             // 
             roleLable.AutoSize = true;
@@ -229,7 +239,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 30);
+            label1.Location = new Point(12, 20);
             label1.Name = "label1";
             label1.Size = new Size(73, 15);
             label1.TabIndex = 14;
@@ -283,16 +293,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(587, 336);
             panel1.TabIndex = 13;
-            // 
-            // addRole
-            // 
-            addRole.Location = new Point(181, 109);
-            addRole.Name = "addRole";
-            addRole.Size = new Size(27, 23);
-            addRole.TabIndex = 39;
-            addRole.Text = "...";
-            addRole.UseVisualStyleBackColor = true;
-            addRole.Click += addRole_Click;
             // 
             // StaffForm
             // 

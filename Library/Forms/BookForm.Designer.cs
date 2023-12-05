@@ -38,6 +38,7 @@
             editButton = new Button();
             addButton = new Button();
             Box = new GroupBox();
+            addPub = new Button();
             authorDataLable = new Label();
             genreDataLable = new Label();
             publishingComboboxLable = new Label();
@@ -59,7 +60,6 @@
             okButton = new Button();
             label2 = new Label();
             nameBook = new TextBox();
-            addPub = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bookTable).BeginInit();
             Box.SuspendLayout();
@@ -120,7 +120,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 30);
+            label1.Location = new Point(12, 21);
             label1.Name = "label1";
             label1.Size = new Size(40, 15);
             label1.TabIndex = 8;
@@ -187,6 +187,16 @@
             Box.TabStop = false;
             Box.Text = "text";
             Box.Visible = false;
+            // 
+            // addPub
+            // 
+            addPub.Location = new Point(224, 107);
+            addPub.Name = "addPub";
+            addPub.Size = new Size(27, 23);
+            addPub.TabIndex = 38;
+            addPub.Text = "...";
+            addPub.UseVisualStyleBackColor = true;
+            addPub.Click += addPub_Click;
             // 
             // authorDataLable
             // 
@@ -268,12 +278,12 @@
             publishingCombobox.FormattingEnabled = true;
             publishingCombobox.Location = new Point(7, 107);
             publishingCombobox.Name = "publishingCombobox";
-            publishingCombobox.Size = new Size(200, 23);
+            publishingCombobox.Size = new Size(211, 23);
             publishingCombobox.TabIndex = 13;
             // 
             // deleteAuthor
             // 
-            deleteAuthor.Location = new Point(278, 204);
+            deleteAuthor.Location = new Point(293, 204);
             deleteAuthor.Name = "deleteAuthor";
             deleteAuthor.Size = new Size(23, 23);
             deleteAuthor.TabIndex = 12;
@@ -283,7 +293,7 @@
             // 
             // addAuthor
             // 
-            addAuthor.Location = new Point(278, 175);
+            addAuthor.Location = new Point(293, 175);
             addAuthor.Name = "addAuthor";
             addAuthor.Size = new Size(23, 23);
             addAuthor.TabIndex = 11;
@@ -337,7 +347,7 @@
             authorData.Name = "authorData";
             authorData.RowHeadersWidth = 51;
             authorData.RowTemplate.Height = 29;
-            authorData.Size = new Size(266, 108);
+            authorData.Size = new Size(281, 108);
             authorData.TabIndex = 6;
             // 
             // genreData
@@ -384,18 +394,8 @@
             // 
             nameBook.Location = new Point(6, 47);
             nameBook.Name = "nameBook";
-            nameBook.Size = new Size(266, 23);
+            nameBook.Size = new Size(295, 23);
             nameBook.TabIndex = 0;
-            // 
-            // addPub
-            // 
-            addPub.Location = new Point(213, 107);
-            addPub.Name = "addPub";
-            addPub.Size = new Size(27, 23);
-            addPub.TabIndex = 38;
-            addPub.Text = "...";
-            addPub.UseVisualStyleBackColor = true;
-            addPub.Click += addPub_Click;
             // 
             // BookForm
             // 

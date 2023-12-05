@@ -42,6 +42,7 @@ namespace Library.Controllers
                 b.AuthorBooks = book.AuthorBooks;
                 b.BookGenres = book.BookGenres;
                 db.SaveChanges();
+                var s = b.Id;
             }
         }
 

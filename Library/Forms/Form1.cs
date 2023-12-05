@@ -50,5 +50,11 @@ namespace Library
             var userForm = new UsersForm();
             userForm.Show();
         }
+
+        private void toolStripReport_Click(object sender, EventArgs e)
+        {
+            var reportForm = new ReportForm();
+            reportForm.Show();
+        }
     }
 }

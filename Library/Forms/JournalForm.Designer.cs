@@ -220,7 +220,7 @@
             Box.Controls.Add(label2);
             Box.Location = new Point(9, 80);
             Box.Name = "Box";
-            Box.Size = new Size(559, 338);
+            Box.Size = new Size(578, 338);
             Box.TabIndex = 18;
             Box.TabStop = false;
             Box.Text = "text";
@@ -341,7 +341,7 @@
             // 
             actualReturnDateLable.AutoSize = true;
             actualReturnDateLable.ForeColor = Color.Red;
-            actualReturnDateLable.Location = new Point(375, 74);
+            actualReturnDateLable.Location = new Point(394, 74);
             actualReturnDateLable.Name = "actualReturnDateLable";
             actualReturnDateLable.Size = new Size(38, 15);
             actualReturnDateLable.TabIndex = 27;
@@ -352,7 +352,7 @@
             // 
             estimatedReturnDateLable.AutoSize = true;
             estimatedReturnDateLable.ForeColor = Color.Red;
-            estimatedReturnDateLable.Location = new Point(191, 74);
+            estimatedReturnDateLable.Location = new Point(200, 73);
             estimatedReturnDateLable.Name = "estimatedReturnDateLable";
             estimatedReturnDateLable.Size = new Size(38, 15);
             estimatedReturnDateLable.TabIndex = 26;
@@ -361,7 +361,7 @@
             // dataLable
             // 
             dataLable.AutoSize = true;
-            dataLable.Location = new Point(375, 30);
+            dataLable.Location = new Point(394, 30);
             dataLable.Name = "dataLable";
             dataLable.Size = new Size(86, 15);
             dataLable.TabIndex = 25;
@@ -371,7 +371,7 @@
             // actualReturnDate
             // 
             actualReturnDate.CustomFormat = " ";
-            actualReturnDate.Location = new Point(375, 47);
+            actualReturnDate.Location = new Point(394, 47);
             actualReturnDate.Name = "actualReturnDate";
             actualReturnDate.Size = new Size(178, 23);
             actualReturnDate.TabIndex = 24;
@@ -381,7 +381,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(189, 30);
+            label3.Location = new Point(198, 29);
             label3.Name = "label3";
             label3.Size = new Size(180, 15);
             label3.TabIndex = 23;
@@ -389,7 +389,7 @@
             // 
             // estimatedReturnDate
             // 
-            estimatedReturnDate.Location = new Point(191, 48);
+            estimatedReturnDate.Location = new Point(200, 47);
             estimatedReturnDate.Name = "estimatedReturnDate";
             estimatedReturnDate.Size = new Size(178, 23);
             estimatedReturnDate.TabIndex = 22;
