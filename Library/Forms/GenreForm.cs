@@ -37,6 +37,7 @@ namespace Library
             genreTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             genreTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             genreTable.ReadOnly = true;
+            genreTable.RowHeadersVisible = false;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -62,6 +63,7 @@ namespace Library
             try
             {
                 errorLable();
+                Genre selGenre = null;
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {nameGenre, genre }
@@ -72,7 +74,7 @@ namespace Library
                     if (genreV != null)
                     {
                         genreV.Genre1 = nameGenre.Text;
-                        controller.Update(genreV);
+                        selGenre = controller.Update(genreV);
                     }
                     else
                     {
@@ -80,10 +82,17 @@ namespace Library
                         {
                             Genre1 = nameGenre.Text
                         };
-                        controller.Add(genre);
+                        selGenre = controller.Add(genre);
                     }
                     viewButton();
                     GenreForm_Load(sender, e);
+                    genreTable.ClearSelection();
+                    foreach(DataGridViewRow row in genreTable.Rows)
+                    {
+                        if (row.Cells["Genre1"].Value != null 
+                            && row.Cells["Genre1"].Value.ToString() == selGenre.Genre1)
+                            row.Selected = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -119,7 +128,7 @@ namespace Library
                     try
                     {
                         DialogResult result = MessageBox.Show(
-                            "Удалить жанр", "Сообщение", MessageBoxButtons.OKCancel);
+                            "Удалить жанр?", "Сообщение", MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
                             controller.Delete(genre);

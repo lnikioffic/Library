@@ -18,9 +18,9 @@ namespace Library.Controllers
             }
         }
 
-        public void Add(Staff user)
+        public Staff Add(Staff user)
         {
-            CRUDController.Add(user);
+            return CRUDController.Add(user);
         }
 
         public void Delete(Staff user)
@@ -28,7 +28,7 @@ namespace Library.Controllers
             CRUDController.Delete(user);
         }
 
-        public void Update(Staff user)
+        public Staff Update(Staff user)
         {
             using (var db = new LibraryContext())
             {
@@ -38,6 +38,7 @@ namespace Library.Controllers
                 u.Patronymic = user.Patronymic;
                 u.Role = user.Role;
                 db.SaveChanges();
+                return u;
             }
         }
 

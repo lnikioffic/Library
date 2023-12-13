@@ -35,6 +35,7 @@ namespace Library
             publishingTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             publishingTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             publishingTable.ReadOnly = true;
+            publishingTable.RowHeadersVisible = false;
         }
 
         private void viewButton()
@@ -79,6 +80,7 @@ namespace Library
             try
             {
                 errorLable();
+                Publishing selPublishing = null;
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {namePub, namePubLable },
@@ -91,7 +93,7 @@ namespace Library
                     {
                         publishing.Name = namePub.Text;
                         publishing.Address = adressPub.Text;
-                        controller.Update(publishing);
+                        selPublishing = controller.Update(publishing);
                     }
                     else
                     {
@@ -100,10 +102,17 @@ namespace Library
                             Name = namePub.Text,
                             Address = adressPub.Text,
                         };
-                        controller.Add(pub);
+                        selPublishing = controller.Add(pub);
                     }
                     viewButton();
                     PublishingForm_Load(sender, e);
+                    publishingTable.ClearSelection();
+                    foreach (DataGridViewRow row in publishingTable.Rows)
+                    {
+                        if (row.Cells["Name"].Value != null
+                            && row.Cells["Name"].Value.ToString() == selPublishing.Name)
+                            row.Selected = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -122,7 +131,7 @@ namespace Library
                     try
                     {
                         DialogResult result = MessageBox.Show(
-                            "Удалить жанр", "Сообщение", MessageBoxButtons.OKCancel);
+                            "Удалить издательство?", "Сообщение", MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
                             controller.Delete(pub);

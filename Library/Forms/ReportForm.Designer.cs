@@ -49,18 +49,19 @@
             // 
             // addStaff
             // 
-            addStaff.Location = new Point(218, 88);
+            addStaff.Location = new Point(291, 117);
             addStaff.Name = "addStaff";
             addStaff.Size = new Size(27, 23);
             addStaff.TabIndex = 41;
             addStaff.Text = "...";
             addStaff.UseVisualStyleBackColor = true;
+            addStaff.Click += addStaff_Click;
             // 
             // staffLabel
             // 
             staffLabel.AutoSize = true;
             staffLabel.ForeColor = Color.Red;
-            staffLabel.Location = new Point(12, 114);
+            staffLabel.Location = new Point(85, 143);
             staffLabel.Name = "staffLabel";
             staffLabel.Size = new Size(38, 15);
             staffLabel.TabIndex = 40;
@@ -69,7 +70,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(11, 70);
+            label7.Location = new Point(84, 99);
             label7.Name = "label7";
             label7.Size = new Size(163, 15);
             label7.TabIndex = 39;
@@ -78,7 +79,7 @@
             // staffComboBox
             // 
             staffComboBox.FormattingEnabled = true;
-            staffComboBox.Location = new Point(12, 88);
+            staffComboBox.Location = new Point(85, 117);
             staffComboBox.Name = "staffComboBox";
             staffComboBox.Size = new Size(200, 23);
             staffComboBox.TabIndex = 38;
@@ -96,7 +97,7 @@
             // 
             estimatedReturnDateLable.AutoSize = true;
             estimatedReturnDateLable.ForeColor = Color.Red;
-            estimatedReturnDateLable.Location = new Point(305, 227);
+            estimatedReturnDateLable.Location = new Point(270, 231);
             estimatedReturnDateLable.Name = "estimatedReturnDateLable";
             estimatedReturnDateLable.Size = new Size(38, 15);
             estimatedReturnDateLable.TabIndex = 50;
@@ -105,7 +106,7 @@
             // dataLable
             // 
             dataLable.AutoSize = true;
-            dataLable.Location = new Point(262, 71);
+            dataLable.Location = new Point(335, 100);
             dataLable.Name = "dataLable";
             dataLable.Size = new Size(130, 15);
             dataLable.TabIndex = 49;
@@ -114,7 +115,7 @@
             // dateCreate
             // 
             dateCreate.CustomFormat = " ";
-            dateCreate.Location = new Point(262, 88);
+            dateCreate.Location = new Point(335, 117);
             dateCreate.Name = "dateCreate";
             dateCreate.Size = new Size(178, 23);
             dateCreate.TabIndex = 48;
@@ -122,7 +123,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(324, 183);
+            label3.Location = new Point(289, 187);
             label3.Name = "label3";
             label3.Size = new Size(86, 15);
             label3.TabIndex = 47;
@@ -130,7 +131,7 @@
             // 
             // endDate
             // 
-            endDate.Location = new Point(326, 201);
+            endDate.Location = new Point(291, 205);
             endDate.Name = "endDate";
             endDate.Size = new Size(178, 23);
             endDate.TabIndex = 46;
@@ -138,7 +139,7 @@
             // startDate
             // 
             startDate.ImeMode = ImeMode.NoControl;
-            startDate.Location = new Point(142, 200);
+            startDate.Location = new Point(107, 204);
             startDate.Name = "startDate";
             startDate.Size = new Size(178, 23);
             startDate.TabIndex = 45;
@@ -147,7 +148,7 @@
             // 
             dateOfIssuedLable.AutoSize = true;
             dateOfIssuedLable.ForeColor = Color.Red;
-            dateOfIssuedLable.Location = new Point(141, 226);
+            dateOfIssuedLable.Location = new Point(106, 230);
             dateOfIssuedLable.Name = "dateOfIssuedLable";
             dateOfIssuedLable.Size = new Size(38, 15);
             dateOfIssuedLable.TabIndex = 44;
@@ -156,7 +157,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(141, 183);
+            label2.Location = new Point(106, 187);
             label2.Name = "label2";
             label2.Size = new Size(93, 15);
             label2.TabIndex = 43;
@@ -174,7 +175,7 @@
             // 
             // buttonReportStaff
             // 
-            buttonReportStaff.Location = new Point(244, 297);
+            buttonReportStaff.Location = new Point(212, 297);
             buttonReportStaff.Name = "buttonReportStaff";
             buttonReportStaff.Size = new Size(159, 23);
             buttonReportStaff.TabIndex = 52;
@@ -184,7 +185,7 @@
             // 
             // buttonReportAuthor
             // 
-            buttonReportAuthor.Location = new Point(464, 297);
+            buttonReportAuthor.Location = new Point(395, 297);
             buttonReportAuthor.Name = "buttonReportAuthor";
             buttonReportAuthor.Size = new Size(159, 23);
             buttonReportAuthor.TabIndex = 53;
@@ -196,7 +197,7 @@
             // 
             createLable.AutoSize = true;
             createLable.ForeColor = Color.Red;
-            createLable.Location = new Point(262, 114);
+            createLable.Location = new Point(335, 143);
             createLable.Name = "createLable";
             createLable.Size = new Size(38, 15);
             createLable.TabIndex = 54;
@@ -206,7 +207,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(649, 360);
+            ClientSize = new Size(576, 360);
             Controls.Add(createLable);
             Controls.Add(buttonReportAuthor);
             Controls.Add(buttonReportStaff);

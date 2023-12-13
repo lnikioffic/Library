@@ -70,7 +70,7 @@
             panel1.Controls.Add(authorTable);
             panel1.Location = new Point(3, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(587, 336);
+            panel1.Size = new Size(565, 336);
             panel1.TabIndex = 5;
             // 
             // reset
@@ -113,7 +113,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(596, 166);
+            deleteButton.Location = new Point(574, 162);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(100, 23);
             deleteButton.TabIndex = 8;
@@ -123,7 +123,7 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(596, 113);
+            editButton.Location = new Point(574, 109);
             editButton.Name = "editButton";
             editButton.Size = new Size(100, 23);
             editButton.TabIndex = 7;
@@ -133,7 +133,7 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(596, 84);
+            addButton.Location = new Point(574, 80);
             addButton.Name = "addButton";
             addButton.Size = new Size(100, 23);
             addButton.TabIndex = 6;
@@ -253,7 +253,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 430);
+            ClientSize = new Size(683, 406);
             Controls.Add(Box);
             Controls.Add(deleteButton);
             Controls.Add(editButton);

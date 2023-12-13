@@ -19,18 +19,20 @@ namespace Library.Controllers
             }
         }
 
-        public void Add(Genre genre)
+        public Genre Add(Genre genre)
         {
-            CRUDController.Add(genre);
+            var newGenre = CRUDController.Add(genre);
+            return newGenre;
         }
 
-        public void Update(Genre genre)
+        public Genre Update(Genre genre)
         {
             using (var db = new LibraryContext())
             {
                 var gen = db.Genres.Single(x => x.Id == genre.Id);
                 gen.Genre1 = genre.Genre1;
                 db.SaveChanges();
+                return gen;
             }
         }
 

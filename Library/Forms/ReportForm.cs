@@ -70,14 +70,16 @@ namespace Library.Forms
         {
             DateOnly start = DateOnly.Parse(startDate.Value.ToString("dd.MM.yyyy"));
             DateOnly end = DateOnly.Parse(endDate.Value.ToString("dd.MM.yyyy"));
-            DateOnly create = DateOnly.Parse(dateCreate.Value.ToString("dd.MM.yyyy"));
+            string cr = dateCreate.Value.ToString("dd.MM.yyyy-HH.mm");
+            DateTime create = DateTime.ParseExact(cr, "dd.MM.yyyy-HH.mm", null);
             errorLable();
             bool b = CheckComboBox();
             bool se = StartEndDate(start, end);
-            bool sc = StartCreateDate(start, create);
-            if (b && se && sc)
+            //bool sc = StartCreateDate(start, create);
+            if (b && se)
             {
-                var staff = staffComboBox.SelectedItem.ToString();
+                string[] s = staffComboBox.SelectedItem.ToString().Split(" ");
+                var staff = staffController.GetData(s[1], s[0]).First();
 
                 var reportGenres = reportController.ReportGenres(start, end);
 
@@ -89,12 +91,12 @@ namespace Library.Forms
                     reportGenresList.Add(new List<string> { item.Name, item.CountBook.ToString(),
                     Math.Round(item.Popularity, 2).ToString() });
 
-                ReportDesigner report2 = new ReportDesigner("Статистика по жанрам");
+                ReportDesigner report2 = new ReportDesigner("Популярность литературных жанров", create);
                 report2.AddHeader();
                 report2.AddDate(start.ToString(), end.ToString());
                 report2.CreateTableWithContent(reportGenresList);
+                report2.AddSignatureDate(create);
                 report2.AddSignature(staff);
-                report2.AddSignatureDate(create.ToString());
                 report2.Save();
             }
         }
@@ -103,14 +105,16 @@ namespace Library.Forms
         {
             DateOnly start = DateOnly.Parse(startDate.Value.ToString("dd.MM.yyyy"));
             DateOnly end = DateOnly.Parse(endDate.Value.ToString("dd.MM.yyyy"));
-            DateOnly create = DateOnly.Parse(dateCreate.Value.ToString("dd.MM.yyyy"));
+            string cr = dateCreate.Value.ToString("dd.MM.yyyy-HH.mm");
+            DateTime create = DateTime.ParseExact(cr, "dd.MM.yyyy-HH.mm", null);
             errorLable();
             bool b = CheckComboBox();
             bool se = StartEndDate(start, end);
-            bool sc = StartCreateDate(start, create);
-            if (b && se && sc)
+            //bool sc = StartCreateDate(start, create);
+            if (b && se)
             {
-                var staff = staffComboBox.SelectedItem.ToString();
+                string[] s = staffComboBox.SelectedItem.ToString().Split(" ");
+                var staff = staffController.GetData(s[1], s[0]).First();
 
                 var reportStaff = reportController.ReportStaff(start, end);
 
@@ -121,12 +125,12 @@ namespace Library.Forms
                 foreach (var item in reportStaff)
                     reportStaffsList.Add(new List<string> { item.Name, item.Count.ToString() });
 
-                ReportDesigner report = new ReportDesigner("Статистика по сотрудникам");
+                ReportDesigner report = new ReportDesigner("Статистика выданных книг сотрудниками", create);
                 report.AddHeader();
                 report.AddDate(start.ToString(), end.ToString());
                 report.CreateTableWithContent(reportStaffsList);
+                report.AddSignatureDate(create);
                 report.AddSignature(staff);
-                report.AddSignatureDate(create.ToString());
                 report.Save();
             }
         }
@@ -135,14 +139,16 @@ namespace Library.Forms
         {
             DateOnly start = DateOnly.Parse(startDate.Value.ToString("dd.MM.yyyy"));
             DateOnly end = DateOnly.Parse(endDate.Value.ToString("dd.MM.yyyy"));
-            DateOnly create = DateOnly.Parse(dateCreate.Value.ToString("dd.MM.yyyy"));
+            string cr = dateCreate.Value.ToString("dd.MM.yyyy-HH.mm");
+            DateTime create = DateTime.ParseExact(cr, "dd.MM.yyyy-HH.mm", null);
             errorLable();
             bool b = CheckComboBox();
             bool se = StartEndDate(start, end);
-            bool sc = StartCreateDate(start, create);
-            if (b && se && sc)
+            //bool sc = StartCreateDate(start, create);
+            if (b && se)
             {
-                var staff = staffComboBox.SelectedItem.ToString();
+                string[] s = staffComboBox.SelectedItem.ToString().Split(" ");
+                var staff = staffController.GetData(s[1], s[0]).First();
 
                 var reportAuthors = reportController.ReportAuthors(start, end);
 
@@ -154,14 +160,25 @@ namespace Library.Forms
                     reportAuthorsList.Add(new List<string> { item.Name, item.CountBook.ToString(),
                     Math.Round(item.Popularity, 2).ToString()});
 
-                ReportDesigner report3 = new ReportDesigner("Статистика по авторам");
+                ReportDesigner report3 = new ReportDesigner("Статистика популярности авторов", create);
                 report3.AddHeader();
                 report3.AddDate(start.ToString(), end.ToString());
                 report3.CreateTableWithContent(reportAuthorsList);
+                report3.AddSignatureDate(create);
                 report3.AddSignature(staff);
-                report3.AddSignatureDate(create.ToString());
                 report3.Save();
             }
+        }
+
+        private void addStaff_Click(object sender, EventArgs e)
+        {
+            var staff = new StaffForm();
+            staff.ShowDialog();
+            var staffs = staffController.GetData();
+            if (staff.StaffSupp != null)
+                staffComboBox.SetDataToComoboBoxEdite(staffs, staff.StaffSupp);
+            else
+                staffComboBox.SetDataToComboBox(staffs);
         }
     }
 }

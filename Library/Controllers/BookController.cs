@@ -19,9 +19,9 @@ namespace Library.Controllers
             }
         }
 
-        public void Add(Book book)
+        public Book Add(Book book)
         {
-            CRUDController.Add(book);
+            return CRUDController.Add(book);
         }
 
         public void Delete(Book book)
@@ -29,7 +29,7 @@ namespace Library.Controllers
             CRUDController.Delete(book);
         }
 
-        public void Update(Book book)
+        public Book Update(Book book)
         {
             using (var db = new LibraryContext())
             {
@@ -42,7 +42,7 @@ namespace Library.Controllers
                 b.AuthorBooks = book.AuthorBooks;
                 b.BookGenres = book.BookGenres;
                 db.SaveChanges();
-                var s = b.Id;
+                return b;
             }
         }
 

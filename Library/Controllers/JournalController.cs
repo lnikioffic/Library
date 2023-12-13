@@ -18,9 +18,9 @@ namespace Library.Controllers
             }
         }
 
-        public void Add(Journal journal)
+        public Journal Add(Journal journal)
         {
-            CRUDController.Add(journal);
+            return CRUDController.Add(journal);
         }
 
         public void Delete(Journal journal)
@@ -28,7 +28,7 @@ namespace Library.Controllers
             CRUDController.Delete(journal);
         }
 
-        public void Update(Journal journal)
+        public Journal Update(Journal journal)
         {
             using (var db = new LibraryContext())
             {
@@ -41,6 +41,7 @@ namespace Library.Controllers
                 j.Staff = journal.Staff;
                 j.User = journal.User;
                 db.SaveChanges();
+                return j;
             }
         }
 

@@ -37,6 +37,7 @@ namespace Library.Forms
             userTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             userTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             userTable.ReadOnly = true;
+            userTable.RowHeadersVisible = false;
         }
 
         private void viewButton()
@@ -83,6 +84,7 @@ namespace Library.Forms
             try
             {
                 errorLable();
+                User selUser = null;
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {firstName, firstNameLable },
@@ -96,7 +98,7 @@ namespace Library.Forms
                         user.FirstName = firstName.Text;
                         user.LastName = lastName.Text;
                         user.Patronymic = patron.Text;
-                        controller.Update(user);
+                        selUser = controller.Update(user);
                     }
                     else
                     {
@@ -107,10 +109,17 @@ namespace Library.Forms
                             Patronymic = patron.Text,
                             Ticket = int.Parse(readerID.Text)
                         };
-                        controller.Add(us);
+                        selUser = controller.Add(us);
                     }
                     viewButton();
                     UsersForm_Load(sender, e);
+                    userTable.ClearSelection();
+                    foreach (DataGridViewRow row in userTable.Rows)
+                    {
+                        if (row.Cells["Ticket"].Value != null
+                            && row.Cells["Ticket"].Value.ToString() == selUser.Ticket.ToString())
+                            row.Selected = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -154,7 +163,7 @@ namespace Library.Forms
                     try
                     {
                         DialogResult result = MessageBox.Show(
-                            "Удалить читателя", "Сообщение", MessageBoxButtons.OKCancel);
+                            "Удалить читателя?", "Сообщение", MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
                             controller.Delete(auth);

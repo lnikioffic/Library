@@ -74,12 +74,12 @@
             panel1.Controls.Add(journalTable);
             panel1.Location = new Point(3, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(587, 336);
+            panel1.Size = new Size(653, 336);
             panel1.TabIndex = 8;
             // 
             // reset
             // 
-            reset.Location = new Point(457, 3);
+            reset.Location = new Point(484, 3);
             reset.Name = "reset";
             reset.Size = new Size(100, 23);
             reset.TabIndex = 3;
@@ -89,7 +89,7 @@
             // 
             // search
             // 
-            search.Location = new Point(351, 3);
+            search.Location = new Point(378, 3);
             search.Name = "search";
             search.Size = new Size(100, 23);
             search.TabIndex = 2;
@@ -101,7 +101,7 @@
             // 
             searchField.Location = new Point(9, 3);
             searchField.Name = "searchField";
-            searchField.Size = new Size(336, 23);
+            searchField.Size = new Size(363, 23);
             searchField.TabIndex = 1;
             // 
             // journalTable
@@ -112,7 +112,7 @@
             journalTable.Name = "journalTable";
             journalTable.RowHeadersWidth = 51;
             journalTable.RowTemplate.Height = 25;
-            journalTable.Size = new Size(566, 294);
+            journalTable.Size = new Size(631, 294);
             journalTable.TabIndex = 0;
             // 
             // label1
@@ -126,7 +126,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(596, 166);
+            deleteButton.Location = new Point(673, 167);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(100, 23);
             deleteButton.TabIndex = 17;
@@ -136,7 +136,7 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(596, 114);
+            editButton.Location = new Point(673, 115);
             editButton.Name = "editButton";
             editButton.Size = new Size(100, 23);
             editButton.TabIndex = 16;
@@ -146,7 +146,7 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(596, 85);
+            addButton.Location = new Point(673, 86);
             addButton.Name = "addButton";
             addButton.Size = new Size(100, 23);
             addButton.TabIndex = 15;
@@ -165,7 +165,7 @@
             // 
             // okButton
             // 
-            okButton.Location = new Point(387, 299);
+            okButton.Location = new Point(437, 287);
             okButton.Name = "okButton";
             okButton.Size = new Size(76, 23);
             okButton.TabIndex = 3;
@@ -175,7 +175,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(469, 299);
+            cancelButton.Location = new Point(519, 287);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(76, 23);
             cancelButton.TabIndex = 4;
@@ -220,7 +220,7 @@
             Box.Controls.Add(label2);
             Box.Location = new Point(9, 80);
             Box.Name = "Box";
-            Box.Size = new Size(578, 338);
+            Box.Size = new Size(601, 321);
             Box.TabIndex = 18;
             Box.TabStop = false;
             Box.Text = "text";
@@ -341,7 +341,7 @@
             // 
             actualReturnDateLable.AutoSize = true;
             actualReturnDateLable.ForeColor = Color.Red;
-            actualReturnDateLable.Location = new Point(394, 74);
+            actualReturnDateLable.Location = new Point(417, 74);
             actualReturnDateLable.Name = "actualReturnDateLable";
             actualReturnDateLable.Size = new Size(38, 15);
             actualReturnDateLable.TabIndex = 27;
@@ -352,7 +352,7 @@
             // 
             estimatedReturnDateLable.AutoSize = true;
             estimatedReturnDateLable.ForeColor = Color.Red;
-            estimatedReturnDateLable.Location = new Point(200, 73);
+            estimatedReturnDateLable.Location = new Point(213, 73);
             estimatedReturnDateLable.Name = "estimatedReturnDateLable";
             estimatedReturnDateLable.Size = new Size(38, 15);
             estimatedReturnDateLable.TabIndex = 26;
@@ -361,7 +361,7 @@
             // dataLable
             // 
             dataLable.AutoSize = true;
-            dataLable.Location = new Point(394, 30);
+            dataLable.Location = new Point(417, 30);
             dataLable.Name = "dataLable";
             dataLable.Size = new Size(86, 15);
             dataLable.TabIndex = 25;
@@ -371,7 +371,7 @@
             // actualReturnDate
             // 
             actualReturnDate.CustomFormat = " ";
-            actualReturnDate.Location = new Point(394, 47);
+            actualReturnDate.Location = new Point(417, 47);
             actualReturnDate.Name = "actualReturnDate";
             actualReturnDate.Size = new Size(178, 23);
             actualReturnDate.TabIndex = 24;
@@ -381,7 +381,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(198, 29);
+            label3.Location = new Point(211, 29);
             label3.Name = "label3";
             label3.Size = new Size(180, 15);
             label3.TabIndex = 23;
@@ -389,7 +389,7 @@
             // 
             // estimatedReturnDate
             // 
-            estimatedReturnDate.Location = new Point(200, 47);
+            estimatedReturnDate.Location = new Point(213, 47);
             estimatedReturnDate.Name = "estimatedReturnDate";
             estimatedReturnDate.Size = new Size(178, 23);
             estimatedReturnDate.TabIndex = 22;
@@ -406,7 +406,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 430);
+            ClientSize = new Size(781, 430);
             Controls.Add(Box);
             Controls.Add(deleteButton);
             Controls.Add(editButton);

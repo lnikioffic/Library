@@ -34,9 +34,9 @@ namespace Library.Controllers
             return CRUDController.Get(name);
         }
 
-        public void Add(Publishing publishing)
+        public Publishing Add(Publishing publishing)
         {
-            CRUDController.Add(publishing);
+            return CRUDController.Add(publishing);
         }
 
         public void Delete(Publishing publishing)
@@ -44,7 +44,7 @@ namespace Library.Controllers
             CRUDController.Delete(publishing);
         }
 
-        internal void Update(Publishing publishing)
+        internal Publishing Update(Publishing publishing)
         {
             using (var db = new LibraryContext())
             {
@@ -52,6 +52,7 @@ namespace Library.Controllers
                 pub.Name = publishing.Name;
                 pub.Address = publishing.Address;
                 db.SaveChanges();
+                return pub;
             }
         }
     }

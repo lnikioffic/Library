@@ -56,12 +56,12 @@
             panel1.Controls.Add(roleTable);
             panel1.Location = new Point(3, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(587, 336);
+            panel1.Size = new Size(525, 336);
             panel1.TabIndex = 5;
             // 
             // reset
             // 
-            reset.Location = new Point(457, 3);
+            reset.Location = new Point(406, 3);
             reset.Name = "reset";
             reset.Size = new Size(100, 23);
             reset.TabIndex = 3;
@@ -71,7 +71,7 @@
             // 
             // search
             // 
-            search.Location = new Point(351, 3);
+            search.Location = new Point(300, 3);
             search.Name = "search";
             search.Size = new Size(100, 23);
             search.TabIndex = 2;
@@ -83,7 +83,7 @@
             // 
             searchField.Location = new Point(9, 3);
             searchField.Name = "searchField";
-            searchField.Size = new Size(336, 23);
+            searchField.Size = new Size(285, 23);
             searchField.TabIndex = 1;
             // 
             // roleTable
@@ -93,7 +93,7 @@
             roleTable.Location = new Point(9, 32);
             roleTable.Name = "roleTable";
             roleTable.RowTemplate.Height = 25;
-            roleTable.Size = new Size(548, 294);
+            roleTable.Size = new Size(508, 294);
             roleTable.TabIndex = 0;
             roleTable.DoubleClick += roleTable_DoubleClick;
             // 
@@ -108,7 +108,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(596, 166);
+            deleteButton.Location = new Point(534, 162);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(100, 23);
             deleteButton.TabIndex = 9;
@@ -118,7 +118,7 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(596, 113);
+            editButton.Location = new Point(534, 109);
             editButton.Name = "editButton";
             editButton.Size = new Size(100, 23);
             editButton.TabIndex = 8;
@@ -128,7 +128,7 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(596, 84);
+            addButton.Location = new Point(534, 80);
             addButton.Name = "addButton";
             addButton.Size = new Size(100, 23);
             addButton.TabIndex = 7;
@@ -145,7 +145,7 @@
             Box.Controls.Add(nameRole);
             Box.Location = new Point(9, 80);
             Box.Name = "Box";
-            Box.Size = new Size(548, 183);
+            Box.Size = new Size(497, 183);
             Box.TabIndex = 10;
             Box.TabStop = false;
             Box.Text = "text";
@@ -163,7 +163,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(466, 154);
+            cancelButton.Location = new Point(412, 154);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(76, 23);
             cancelButton.TabIndex = 4;
@@ -173,7 +173,7 @@
             // 
             // okButton
             // 
-            okButton.Location = new Point(384, 154);
+            okButton.Location = new Point(330, 154);
             okButton.Name = "okButton";
             okButton.Size = new Size(76, 23);
             okButton.TabIndex = 3;
@@ -194,14 +194,14 @@
             // 
             nameRole.Location = new Point(6, 47);
             nameRole.Name = "nameRole";
-            nameRole.Size = new Size(169, 23);
+            nameRole.Size = new Size(238, 23);
             nameRole.TabIndex = 0;
             // 
             // RoleForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 430);
+            ClientSize = new Size(639, 430);
             Controls.Add(Box);
             Controls.Add(deleteButton);
             Controls.Add(editButton);

@@ -68,7 +68,7 @@
             panel1.Controls.Add(publishingTable);
             panel1.Location = new Point(3, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(587, 336);
+            panel1.Size = new Size(568, 336);
             panel1.TabIndex = 5;
             // 
             // reset
@@ -111,7 +111,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(596, 167);
+            deleteButton.Location = new Point(577, 162);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(100, 23);
             deleteButton.TabIndex = 8;
@@ -121,7 +121,7 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(596, 114);
+            editButton.Location = new Point(577, 109);
             editButton.Name = "editButton";
             editButton.Size = new Size(100, 23);
             editButton.TabIndex = 7;
@@ -131,7 +131,7 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(596, 85);
+            addButton.Location = new Point(577, 80);
             addButton.Name = "addButton";
             addButton.Size = new Size(100, 23);
             addButton.TabIndex = 6;
@@ -190,7 +190,7 @@
             // 
             adressPub.Location = new Point(6, 111);
             adressPub.Name = "adressPub";
-            adressPub.Size = new Size(260, 23);
+            adressPub.Size = new Size(296, 23);
             adressPub.TabIndex = 5;
             // 
             // cancelButton
@@ -226,14 +226,14 @@
             // 
             namePub.Location = new Point(6, 47);
             namePub.Name = "namePub";
-            namePub.Size = new Size(169, 23);
+            namePub.Size = new Size(197, 23);
             namePub.TabIndex = 0;
             // 
             // PublishingForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 430);
+            ClientSize = new Size(685, 430);
             Controls.Add(Box);
             Controls.Add(deleteButton);
             Controls.Add(editButton);

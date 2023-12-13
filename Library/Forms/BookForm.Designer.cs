@@ -394,14 +394,14 @@
             // 
             nameBook.Location = new Point(6, 47);
             nameBook.Name = "nameBook";
-            nameBook.Size = new Size(295, 23);
+            nameBook.Size = new Size(351, 23);
             nameBook.TabIndex = 0;
             // 
             // BookForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 430);
+            ClientSize = new Size(709, 430);
             Controls.Add(Box);
             Controls.Add(deleteButton);
             Controls.Add(editButton);

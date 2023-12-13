@@ -30,9 +30,9 @@ namespace Library.Controllers
             return CRUDController.Get(name);
         }
 
-        public void Add(Author author)
+        public Author Add(Author author)
         {
-            CRUDController.Add(author);
+            return CRUDController.Add(author);
         }
 
         public void Delete(Author author)
@@ -40,7 +40,7 @@ namespace Library.Controllers
             CRUDController.Delete(author);
         }
 
-        internal void Update(Author author)
+        internal Author Update(Author author)
         {
             using (var db = new LibraryContext())
             {
@@ -49,6 +49,7 @@ namespace Library.Controllers
                 aut.LastName = author.LastName;
                 aut.Patronymic = author.Patronymic;
                 db.SaveChanges();
+                return aut;
             }
         }
     }

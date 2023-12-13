@@ -35,6 +35,7 @@ namespace Library.Forms
             roleTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             roleTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             roleTable.ReadOnly = true;
+            roleTable.RowHeadersVisible = false;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -72,6 +73,7 @@ namespace Library.Forms
             try
             {
                 errorLable();
+                Role selRole = null;
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {nameRole, roleLable }
@@ -82,7 +84,7 @@ namespace Library.Forms
                     if (role != null)
                     {
                         role.NameRole = nameRole.Text;
-                        controller.Update(role);
+                        selRole = controller.Update(role);
                     }
                     else
                     {
@@ -90,10 +92,17 @@ namespace Library.Forms
                         {
                             NameRole = nameRole.Text
                         };
-                        controller.Add(role);
+                        selRole = controller.Add(role);
                     }
                     viewButton();
                     RoleForm_Load(sender, e);
+                    roleTable.ClearSelection();
+                    foreach (DataGridViewRow row in roleTable.Rows)
+                    {
+                        if (row.Cells["NameRole"].Value != null
+                            && row.Cells["NameRole"].Value.ToString() == selRole.NameRole)
+                            row.Selected = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -137,7 +146,7 @@ namespace Library.Forms
                     try
                     {
                         DialogResult result = MessageBox.Show(
-                            "Удалить роль", "Сообщение", MessageBoxButtons.OKCancel);
+                            "Удалить роль?", "Сообщение", MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
                             controller.Delete(rol);

@@ -50,7 +50,7 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(596, 86);
+            addButton.Location = new Point(513, 80);
             addButton.Name = "addButton";
             addButton.Size = new Size(100, 23);
             addButton.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(596, 115);
+            editButton.Location = new Point(513, 109);
             editButton.Name = "editButton";
             editButton.Size = new Size(100, 23);
             editButton.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(596, 168);
+            deleteButton.Location = new Point(513, 162);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(100, 23);
             deleteButton.TabIndex = 3;
@@ -86,12 +86,12 @@
             panel1.Controls.Add(genreTable);
             panel1.Location = new Point(3, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(587, 336);
+            panel1.Size = new Size(504, 336);
             panel1.TabIndex = 4;
             // 
             // reset
             // 
-            reset.Location = new Point(457, 3);
+            reset.Location = new Point(389, 3);
             reset.Name = "reset";
             reset.Size = new Size(100, 23);
             reset.TabIndex = 3;
@@ -101,7 +101,7 @@
             // 
             // search
             // 
-            search.Location = new Point(351, 3);
+            search.Location = new Point(283, 3);
             search.Name = "search";
             search.Size = new Size(100, 23);
             search.TabIndex = 2;
@@ -113,7 +113,7 @@
             // 
             searchField.Location = new Point(9, 3);
             searchField.Name = "searchField";
-            searchField.Size = new Size(336, 23);
+            searchField.Size = new Size(268, 23);
             searchField.TabIndex = 1;
             // 
             // genreTable
@@ -123,7 +123,7 @@
             genreTable.Location = new Point(9, 32);
             genreTable.Name = "genreTable";
             genreTable.RowTemplate.Height = 25;
-            genreTable.Size = new Size(548, 294);
+            genreTable.Size = new Size(484, 294);
             genreTable.TabIndex = 0;
             genreTable.DoubleClick += genreTable_DoubleClick;
             // 
@@ -145,7 +145,7 @@
             Box.Controls.Add(nameGenre);
             Box.Location = new Point(9, 80);
             Box.Name = "Box";
-            Box.Size = new Size(548, 183);
+            Box.Size = new Size(487, 183);
             Box.TabIndex = 6;
             Box.TabStop = false;
             Box.Text = "text";
@@ -163,7 +163,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(466, 154);
+            cancelButton.Location = new Point(399, 154);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(76, 23);
             cancelButton.TabIndex = 4;
@@ -173,7 +173,7 @@
             // 
             // okButton
             // 
-            okButton.Location = new Point(384, 154);
+            okButton.Location = new Point(317, 154);
             okButton.Name = "okButton";
             okButton.Size = new Size(76, 23);
             okButton.TabIndex = 3;
@@ -194,14 +194,14 @@
             // 
             nameGenre.Location = new Point(6, 47);
             nameGenre.Name = "nameGenre";
-            nameGenre.Size = new Size(169, 23);
+            nameGenre.Size = new Size(194, 23);
             nameGenre.TabIndex = 0;
             // 
             // GenreForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 430);
+            ClientSize = new Size(621, 407);
             Controls.Add(Box);
             Controls.Add(label1);
             Controls.Add(panel1);

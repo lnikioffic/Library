@@ -43,8 +43,6 @@ namespace Library.Forms
             genreController = new GenreController();
             InitializeComponent();
             this.editbook = editbook;
-            if (editbook != null)
-                MessageBox.Show(editbook.ToString());
         }
 
         private void BookForm_Load(object sender, EventArgs e)
@@ -77,11 +75,16 @@ namespace Library.Forms
             bookTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             bookTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             bookTable.ReadOnly = true;
+            bookTable.RowHeadersVisible = false;
 
             genreData.ReadOnly = true;
             genreData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            genreData.RowHeadersVisible = false;
+
             authorData.ReadOnly = true;
             authorData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            authorData.RowHeadersVisible = false;
+
 
             var publishingList = publishingController.GetData();
             publishingCombobox.SetDataToComboBox(publishingList);
@@ -126,6 +129,7 @@ namespace Library.Forms
         private void cancelButton_Click(object sender, EventArgs e)
         {
             viewButton();
+            BookForm_Load(sender, e);
         }
 
         //таблицы многих ко многим
@@ -205,7 +209,7 @@ namespace Library.Forms
                 if (CheckUniqAuthor(authorList, authorForm.AuthorSupp))
                     authorList.Add(authorForm.AuthorSupp);
                 else
-                    authorDataLable.Text = $"Вы уже добалили этотого автора {authorForm.AuthorSupp.LastName}";
+                    authorDataLable.Text = $"Вы уже добалили этого автора {authorForm.AuthorSupp.LastName}";
             }
             AuthorClear();
             showData();
@@ -217,6 +221,8 @@ namespace Library.Forms
             authorData.DataSource = null;
             genreData.DataSource = genreList;
             authorData.DataSource = authorList;
+            authorData.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            genreData.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         private void deleteGenre_Click(object sender, EventArgs e)
@@ -280,6 +286,7 @@ namespace Library.Forms
             try
             {
                 errorLable();
+                Book selBook = null;
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {nameBook, nameBookLable },
@@ -309,7 +316,7 @@ namespace Library.Forms
                             book.PublicationDate = datePub.Text;
                             book.AuthorBooks = CreateAB(book);
                             book.BookGenres = CreateBG(book);
-                            controller.Update(book);
+                            selBook = controller.Update(book);
                         }
                         else
                         {
@@ -321,10 +328,17 @@ namespace Library.Forms
                             };
                             book.AuthorBooks = CreateAB(book);
                             book.BookGenres = CreateBG(book);
-                            controller.Add(book);
+                            selBook = controller.Add(book);
                         }
                         viewButton();
                         BookForm_Load(sender, e);
+                        bookTable.ClearSelection();
+                        foreach (DataGridViewRow row in bookTable.Rows)
+                        {
+                            if (row.Cells["Title"].Value != null
+                                && row.Cells["Title"].Value.ToString() == selBook.Title)
+                                row.Selected = true;
+                        }
                     }
                     else
                         datePubLable.Text = "Введите корректный год";
@@ -346,7 +360,7 @@ namespace Library.Forms
                     try
                     {
                         DialogResult result = MessageBox.Show(
-                            "Удалить читателя", "Сообщение", MessageBoxButtons.OKCancel);
+                            "Удалить книгу?", "Сообщение", MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
                             controller.Delete(bo.book);

@@ -38,6 +38,7 @@ namespace Library.Forms
             userTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             userTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             userTable.ReadOnly = true;
+            userTable.RowHeadersVisible = false;
 
             var roles = roleController.GetData();
             roleComboBox.SetDataToComboBox(roles);
@@ -86,6 +87,7 @@ namespace Library.Forms
             try
             {
                 errorLable();
+                Staff selStaff = null;
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {firstName, firstNameLable },
@@ -106,7 +108,7 @@ namespace Library.Forms
                         user.LastName = lastName.Text;
                         user.Patronymic = patron.Text;
                         user.Role = role;
-                        controller.Update(user);
+                        selStaff = controller.Update(user);
                     }
                     else
                     {
@@ -117,10 +119,19 @@ namespace Library.Forms
                             Patronymic = patron.Text,
                             RoleId = role.Id
                         };
-                        controller.Add(us);
+                        selStaff = controller.Add(us);
                     }
                     viewButton();
                     StaffForm_Load(sender, e);
+                    userTable.ClearSelection();
+                    foreach (DataGridViewRow row in userTable.Rows)
+                    {
+                        string f = row.Cells["FirstName"].Value.ToString();
+                        string l = row.Cells["LastName"].Value.ToString();
+                        if (row.Cells["LastName"].Value != null
+                            && l == selStaff.LastName && f == selStaff.FirstName)
+                            row.Selected = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -165,7 +176,7 @@ namespace Library.Forms
                     try
                     {
                         DialogResult result = MessageBox.Show(
-                            "Удалить читателя", "Сообщение", MessageBoxButtons.OKCancel);
+                            "Удалить сотрудника?", "Сообщение", MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
                             controller.Delete(auth);

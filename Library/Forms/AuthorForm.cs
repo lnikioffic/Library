@@ -35,6 +35,7 @@ namespace Library.Forms
             authorTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             authorTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             authorTable.ReadOnly = true;
+            authorTable.RowHeadersVisible = false;
         }
 
         private void viewButton()
@@ -85,7 +86,7 @@ namespace Library.Forms
                     try
                     {
                         DialogResult result = MessageBox.Show(
-                            "Удалить жанр", "Сообщение", MessageBoxButtons.OKCancel);
+                            "Удалить автора?", "Сообщение", MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
                             controller.Delete(auth);
@@ -132,6 +133,7 @@ namespace Library.Forms
             try
             {
                 firstNameLable.Text = ""; lastNameLable.Text = "";
+                Author selAuthor = null;
                 Dictionary<TextBox, Label> errorLables = new Dictionary<TextBox, Label>
                 {
                     {firstName, firstNameLable },
@@ -145,7 +147,7 @@ namespace Library.Forms
                         author.FirstName = firstName.Text;
                         author.LastName = lastName.Text;
                         author.Patronymic = patron.Text;
-                        controller.Update(author);
+                        selAuthor = controller.Update(author);
                     }
                     else
                     {
@@ -155,10 +157,19 @@ namespace Library.Forms
                             LastName = lastName.Text,
                             Patronymic = patron.Text,
                         };
-                        controller.Add(pub);
+                        selAuthor = controller.Add(pub);
                     }
                     viewButton();
                     AuthorForm_Load(sender, e);
+                    authorTable.ClearSelection();
+                    foreach (DataGridViewRow row in authorTable.Rows)
+                    {
+                        string f = row.Cells["FirstName"].Value.ToString();
+                        string l = row.Cells["LastName"].Value.ToString();
+                        if (row.Cells["LastName"].Value != null
+                            && l == selAuthor.LastName && f == selAuthor.FirstName)
+                            row.Selected = true;
+                    }
                 }
             }
             catch (Exception ex)

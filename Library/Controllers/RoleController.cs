@@ -32,18 +32,19 @@ namespace Library.Controllers
             return CRUDController.Get(name);
         }
 
-        public void Add(Role role)
+        public Role Add(Role role)
         {
-            CRUDController.Add(role);
+            return CRUDController.Add(role);
         }
 
-        public void Update(Role role)
+        public Role Update(Role role)
         {
             using (var db = new LibraryContext())
             {
                 var rol = db.Roles.Single(x => x.Id == role.Id);
                 rol.NameRole = role.NameRole;
                 db.SaveChanges();
+                return rol;
             }
         }
 

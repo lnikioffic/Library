@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Word;
+﻿using Library.Models;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,12 @@ namespace Library.tools
 
         private Word.Application WordApp;
 
-        public ReportDesigner(string title)
+        public ReportDesigner(string title, DateTime dateCreate)
         {
             Title = title;
             var date = DateTime.Now.ToString("dd.MM.yyyy-HH.mm");
             path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) 
-                + $@"/{title} {date}.docx";
+                + $@"/Отчёт {title}_{dateCreate.ToString("dd.MM.yyyy-HH.mm")}.docx";
 
 
             WordApp = new Word.Application();
@@ -42,8 +43,8 @@ namespace Library.tools
         {
             // Добавляем заголовок
             Paragraph header = doc.Paragraphs.Add();
-            header.Range.Text = Title;
-            Setting(header.Range.Font);
+            header.Range.Text = $"Отчёт \"{Title}\"" ;
+            Setting(header.Range);
             header.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter; // Выравнивание по центру
             header.Range.InsertParagraphAfter();
             
@@ -52,24 +53,29 @@ namespace Library.tools
         public void AddDate(string dateStar, string dateEnd)
         {
             Paragraph date = doc.Paragraphs.Add();
-            date.Range.Text = $"За данный период {dateStar} - {dateEnd}";
+            date.Range.Text = $"Период {dateStar} - {dateEnd}";
             date.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
             date.Range.InsertParagraphAfter();
         }
         
-        public void AddSignature(string info)
+        public void AddSignature(Staff info)
         {
+            string staffName = "";
+            if (info.Patronymic != "")
+                staffName = $"{info.LastName} {info.FirstName.Substring(0, 1)}. {info.Patronymic?.Substring(0, 1)}";
+            else
+                staffName = $"{info.LastName} {info.FirstName.Substring(0, 1)}.";
             Paragraph listItem = doc.Paragraphs.Add();
-            listItem.Range.Text = $"Создатель отчёта: {info}";
+            listItem.Range.Text = $"{info.Role} _________ / {staffName}";
             listItem.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphRight; 
             listItem.Range.InsertParagraphAfter();
         }
 
-        public void AddSignatureDate(string info)
+        public void AddSignatureDate(DateTime info)
         {
             Paragraph listItem = doc.Paragraphs.Add();
-            listItem.Range.Text = $"Дата создания отчёта: {info}";
-            listItem.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphRight;
+            listItem.Range.Text = $"{info.ToString("dd.MM.yyyy")}";
+            listItem.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
             listItem.Range.InsertParagraphAfter();
         }
 
@@ -109,10 +115,12 @@ namespace Library.tools
             FormatTable(table);
         }
 
-        public void Setting(Word.Font font)
+        public void Setting(Word.Range range)
         {
-            font.Size = 14;
-            font.Name = "Times New Roman";
+            range.Font.Size = 14;
+            range.Font.Name = "Times New Roman";
+            range.ParagraphFormat.LineSpacingRule = WdLineSpacing.wdLineSpaceExactly;
+            range.ParagraphFormat.LineSpacing = 18;
         }
 
         private void FormatTable(Table table)

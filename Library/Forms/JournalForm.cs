@@ -51,6 +51,7 @@ namespace Library.Forms
             journalTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             journalTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             journalTable.ReadOnly = true;
+            journalTable.RowHeadersVisible = false;
 
             var books = bookController.GetActuall();
             var staffs = staffController.GetData();
@@ -109,6 +110,7 @@ namespace Library.Forms
             try
             {
                 errorLable();
+                Journal? selJournal = null;
                 Dictionary<ComboBox, Label> errorComboBox = new Dictionary<ComboBox, Label>
                 {
                     {staffComboBox, staffLabel},
@@ -139,8 +141,9 @@ namespace Library.Forms
                                 journal.Book = book;
                                 journal.User = user;
                                 journal.Staff = staff;
-                                controller.Update(journal);
+                                selJournal = controller.Update(journal);
                                 viewButton(sender, e);
+                                SelRows(selJournal);
                             }
                             else
                                 actualReturnDateLable.Text = "Дата возврата должна быть \n больше даты выдачи";
@@ -155,8 +158,9 @@ namespace Library.Forms
                                 StaffId = staff.Id,
                                 UserId = user.Id,
                             };
-                            controller.Add(journal);
+                            selJournal = controller.Add(journal);
                             viewButton(sender, e);
+                            //SelRows(selJournal);
                         }
                     }
                     else
@@ -166,6 +170,19 @@ namespace Library.Forms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка");
+            }
+        }
+
+        private void SelRows(Journal journal)
+        {
+            journalTable.ClearSelection();
+            foreach (DataGridViewRow row in journalTable.Rows)
+            {
+                string us = row.Cells["User"].Value.ToString();
+                string book = row.Cells["Book"].Value.ToString();
+                if (row.Cells["Book"].Value != null
+                    && us == journal.User.ToString() && book == journal.Book.ToString())
+                    row.Selected = true;
             }
         }
 
@@ -225,7 +242,7 @@ namespace Library.Forms
                     try
                     {
                         DialogResult result = MessageBox.Show(
-                            "Удалить запись", "Сообщение", MessageBoxButtons.OKCancel);
+                            "Удалить запись?", "Сообщение", MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
                             controller.Delete(j);
