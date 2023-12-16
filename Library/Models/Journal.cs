@@ -10,6 +10,12 @@ public partial class Journal: IModel, ISearchField
     [Browsable(false)]
     public int Id { get; set; }
 
+    [DisplayName(@"Книга")]
+    public virtual Book Book { get; set; } = null!;
+
+    [DisplayName(@"Получатель")]
+    public virtual User User { get; set; } = null!;
+
     [DisplayName(@"Дата выдачи")]
     public DateOnly DateOfIssued { get; set; }
 
@@ -28,14 +34,8 @@ public partial class Journal: IModel, ISearchField
     [Browsable(false)]
     public int StaffId { get; set; }
 
-    [DisplayName(@"Книга")]
-    public virtual Book Book { get; set; } = null!;
-
     [DisplayName(@"Выдающий")]
     public virtual Staff Staff { get; set; } = null!;
-
-    [DisplayName(@"Получатель")]
-    public virtual User User { get; set; } = null!;
 
     [Browsable(false)]
     public string SearchField

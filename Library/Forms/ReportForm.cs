@@ -91,11 +91,11 @@ namespace Library.Forms
                     reportGenresList.Add(new List<string> { item.Name, item.CountBook.ToString(),
                     Math.Round(item.Popularity, 2).ToString() });
 
-                ReportDesigner report2 = new ReportDesigner("Популярность литературных жанров", create);
+                ReportDesigner report2 = new ReportDesigner("Популярность литературных жанров");
                 report2.AddHeader();
                 report2.AddDate(start.ToString(), end.ToString());
                 report2.CreateTableWithContent(reportGenresList);
-                report2.AddSignatureDate(create);
+                report2.AddSignatureDate();
                 report2.AddSignature(staff);
                 report2.Save();
             }
@@ -125,11 +125,11 @@ namespace Library.Forms
                 foreach (var item in reportStaff)
                     reportStaffsList.Add(new List<string> { item.Name, item.Count.ToString() });
 
-                ReportDesigner report = new ReportDesigner("Статистика выданных книг сотрудниками", create);
+                ReportDesigner report = new ReportDesigner("Статистика выданных книг сотрудниками");
                 report.AddHeader();
                 report.AddDate(start.ToString(), end.ToString());
                 report.CreateTableWithContent(reportStaffsList);
-                report.AddSignatureDate(create);
+                report.AddSignatureDate();
                 report.AddSignature(staff);
                 report.Save();
             }
@@ -160,11 +160,11 @@ namespace Library.Forms
                     reportAuthorsList.Add(new List<string> { item.Name, item.CountBook.ToString(),
                     Math.Round(item.Popularity, 2).ToString()});
 
-                ReportDesigner report3 = new ReportDesigner("Статистика популярности авторов", create);
+                ReportDesigner report3 = new ReportDesigner("Статистика популярности авторов");
                 report3.AddHeader();
                 report3.AddDate(start.ToString(), end.ToString());
                 report3.CreateTableWithContent(reportAuthorsList);
-                report3.AddSignatureDate(create);
+                report3.AddSignatureDate();
                 report3.AddSignature(staff);
                 report3.Save();
             }

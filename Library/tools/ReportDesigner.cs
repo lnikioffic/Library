@@ -19,14 +19,16 @@ namespace Library.tools
 
         private Word.Application WordApp;
 
-        public ReportDesigner(string title, DateTime dateCreate)
+        private string dateNow;
+
+        public ReportDesigner(string title)
         {
             Title = title;
-            var date = DateTime.Now.ToString("dd.MM.yyyy-HH.mm");
+            dateNow = DateTime.Now.ToString("dd.MM.yyyy-HH.mm");
             path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) 
-                + $@"/Отчёт {title}_{dateCreate.ToString("dd.MM.yyyy-HH.mm")}.docx";
+                + $@"/Отчёт {title}_{dateNow}.docx";
 
-
+            
             WordApp = new Word.Application();
             WordApp.Visible = true;
             doc = WordApp.Documents.Add();
@@ -71,10 +73,10 @@ namespace Library.tools
             listItem.Range.InsertParagraphAfter();
         }
 
-        public void AddSignatureDate(DateTime info)
+        public void AddSignatureDate()
         {
             Paragraph listItem = doc.Paragraphs.Add();
-            listItem.Range.Text = $"{info.ToString("dd.MM.yyyy")}";
+            listItem.Range.Text = $"{dateNow.Split("-")[0]}";
             listItem.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
             listItem.Range.InsertParagraphAfter();
         }
@@ -127,7 +129,7 @@ namespace Library.tools
         {
             // Пример форматирования таблицы
             table.Borders.Enable = 1; // Включаем границы
-            table.AutoFitBehavior(WdAutoFitBehavior.wdAutoFitContent); // Автоматическая подгонка размера
+            //table.AutoFitBehavior(WdAutoFitBehavior.wdAutoFitContent); // Автоматическая подгонка размера
             table.Rows.Alignment = WdRowAlignment.wdAlignRowCenter; // Выравнивание по центру
         }
 

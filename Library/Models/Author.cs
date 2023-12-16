@@ -35,4 +35,9 @@ public partial class Author : IModel, ISearchField
     {
         return LastName;
     }
+
+    public string ToStringNew()
+    {
+        return $"{LastName} {FirstName} {Patronymic}";
+    }
 }

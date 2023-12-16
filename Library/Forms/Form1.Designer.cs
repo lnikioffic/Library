@@ -41,6 +41,9 @@
             AuthorMenuItem = new ToolStripMenuItem();
             PublishMenuItem = new ToolStripMenuItem();
             ReportMenuItem = new ToolStripMenuItem();
+            GenereReportStripMenuItem = new ToolStripMenuItem();
+            AuthorReportStripMenuItem = new ToolStripMenuItem();
+            StaffReportStripMenuItem5 = new ToolStripMenuItem();
             Menu.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,68 +73,89 @@
             // JournalMenuItem
             // 
             JournalMenuItem.Name = "JournalMenuItem";
-            JournalMenuItem.Size = new Size(180, 22);
+            JournalMenuItem.Size = new Size(147, 22);
             JournalMenuItem.Text = "Выдача";
             JournalMenuItem.Click += JournalMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(144, 6);
             // 
             // UserMenuItem
             // 
             UserMenuItem.Name = "UserMenuItem";
-            UserMenuItem.Size = new Size(180, 22);
+            UserMenuItem.Size = new Size(147, 22);
             UserMenuItem.Text = "Читатели ";
             UserMenuItem.Click += UserMenuItem_Click;
             // 
             // StaffMenuItem
             // 
             StaffMenuItem.Name = "StaffMenuItem";
-            StaffMenuItem.Size = new Size(180, 22);
+            StaffMenuItem.Size = new Size(147, 22);
             StaffMenuItem.Text = "Сотрудники";
             StaffMenuItem.Click += StaffMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(177, 6);
+            toolStripSeparator2.Size = new Size(144, 6);
             // 
             // BookMenuItem
             // 
             BookMenuItem.Name = "BookMenuItem";
-            BookMenuItem.Size = new Size(180, 22);
+            BookMenuItem.Size = new Size(147, 22);
             BookMenuItem.Text = "Книги";
             BookMenuItem.Click += BookMenuItem_Click;
             // 
             // GenreMenuItem
             // 
             GenreMenuItem.Name = "GenreMenuItem";
-            GenreMenuItem.Size = new Size(180, 22);
+            GenreMenuItem.Size = new Size(147, 22);
             GenreMenuItem.Text = "Жанры";
             GenreMenuItem.Click += GenreMenuItem_Click;
             // 
             // AuthorMenuItem
             // 
             AuthorMenuItem.Name = "AuthorMenuItem";
-            AuthorMenuItem.Size = new Size(180, 22);
+            AuthorMenuItem.Size = new Size(147, 22);
             AuthorMenuItem.Text = "Авторы";
             AuthorMenuItem.Click += AuthorMenuItem_Click;
             // 
             // PublishMenuItem
             // 
             PublishMenuItem.Name = "PublishMenuItem";
-            PublishMenuItem.Size = new Size(180, 22);
+            PublishMenuItem.Size = new Size(147, 22);
             PublishMenuItem.Text = "Издательства";
             PublishMenuItem.Click += PublishMenuItem_Click;
             // 
             // ReportMenuItem
             // 
+            ReportMenuItem.DropDownItems.AddRange(new ToolStripItem[] { GenereReportStripMenuItem, AuthorReportStripMenuItem, StaffReportStripMenuItem5 });
             ReportMenuItem.Name = "ReportMenuItem";
             ReportMenuItem.Size = new Size(60, 20);
             ReportMenuItem.Text = "Отчёты";
-            ReportMenuItem.Click += toolStripReport_Click;
+            // 
+            // GenereReportStripMenuItem
+            // 
+            GenereReportStripMenuItem.Name = "GenereReportStripMenuItem";
+            GenereReportStripMenuItem.Size = new Size(304, 22);
+            GenereReportStripMenuItem.Text = "Популярность жарнов";
+            GenereReportStripMenuItem.Click += GenereReportStripMenuItem_Click;
+            // 
+            // AuthorReportStripMenuItem
+            // 
+            AuthorReportStripMenuItem.Name = "AuthorReportStripMenuItem";
+            AuthorReportStripMenuItem.Size = new Size(304, 22);
+            AuthorReportStripMenuItem.Text = "Популярность авторов";
+            AuthorReportStripMenuItem.Click += AuthorReportStripMenuItem_Click;
+            // 
+            // StaffReportStripMenuItem5
+            // 
+            StaffReportStripMenuItem5.Name = "StaffReportStripMenuItem5";
+            StaffReportStripMenuItem5.Size = new Size(304, 22);
+            StaffReportStripMenuItem5.Text = "Статистика выданных книг сотрудниками";
+            StaffReportStripMenuItem5.Click += StaffReportStripMenuItem5_Click;
             // 
             // Form1
             // 
@@ -163,5 +187,8 @@
         private ToolStripMenuItem AuthorMenuItem;
         private ToolStripMenuItem PublishMenuItem;
         private ToolStripMenuItem ReportMenuItem;
+        private ToolStripMenuItem GenereReportStripMenuItem;
+        private ToolStripMenuItem AuthorReportStripMenuItem;
+        private ToolStripMenuItem StaffReportStripMenuItem5;
     }
 }

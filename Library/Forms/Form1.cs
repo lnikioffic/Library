@@ -51,10 +51,22 @@ namespace Library
             userForm.Show();
         }
 
-        private void toolStripReport_Click(object sender, EventArgs e)
+        private void GenereReportStripMenuItem_Click(object sender, EventArgs e)
         {
-            var reportForm = new ReportForm();
-            reportForm.Show();
+            var genreReport = new GenreReportForm();
+            genreReport.Show();
+        }
+
+        private void AuthorReportStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var authorReport = new AuthorRepotForm();
+            authorReport.Show();
+        }
+
+        private void StaffReportStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            var staffReport = new SataffReportForm();
+            staffReport.Show();
         }
     }
 }

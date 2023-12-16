@@ -11,5 +11,6 @@ namespace Library.Models.ReportModels
         public string Name { get; set; } = null!;
         public int CountBook { get; set; }
         public double Popularity { get; set; }
+        public int Book {  get; set; }
     }
 }

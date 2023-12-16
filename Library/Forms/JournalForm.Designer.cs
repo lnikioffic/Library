@@ -74,7 +74,7 @@
             panel1.Controls.Add(journalTable);
             panel1.Location = new Point(3, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(653, 336);
+            panel1.Size = new Size(697, 373);
             panel1.TabIndex = 8;
             // 
             // reset
@@ -112,7 +112,7 @@
             journalTable.Name = "journalTable";
             journalTable.RowHeadersWidth = 51;
             journalTable.RowTemplate.Height = 25;
-            journalTable.Size = new Size(631, 294);
+            journalTable.Size = new Size(674, 330);
             journalTable.TabIndex = 0;
             // 
             // label1
@@ -126,7 +126,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(673, 167);
+            deleteButton.Location = new Point(706, 162);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(100, 23);
             deleteButton.TabIndex = 17;
@@ -136,7 +136,7 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(673, 115);
+            editButton.Location = new Point(706, 110);
             editButton.Name = "editButton";
             editButton.Size = new Size(100, 23);
             editButton.TabIndex = 16;
@@ -146,7 +146,7 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(673, 86);
+            addButton.Location = new Point(706, 81);
             addButton.Name = "addButton";
             addButton.Size = new Size(100, 23);
             addButton.TabIndex = 15;
@@ -406,7 +406,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(781, 430);
+            ClientSize = new Size(816, 462);
             Controls.Add(Box);
             Controls.Add(deleteButton);
             Controls.Add(editButton);

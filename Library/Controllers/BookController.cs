@@ -130,6 +130,7 @@ namespace Library.Controllers
                 var j = db.Journals
                     .Where(x => x.ActualReturnDate == null)
                     .Include(x => x.Book).AsQueryable().ToList();
+
                 var books = db.Books
                     .Include(x => x.BookGenres)
                         .ThenInclude(x => x.Genre)
@@ -138,6 +139,7 @@ namespace Library.Controllers
                     .Include(x => x.Publishing)
                     .AsEnumerable()
                     .AsQueryable().ToList();
+
                 List<int> id = new List<int>();
                 foreach (var ji in j)
                     id.Add(ji.Book.Id);
