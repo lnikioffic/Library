@@ -29,12 +29,9 @@ namespace Library.Forms
         {
             DateOnly start = DateOnly.Parse(startDate.Value.ToString("dd.MM.yyyy"));
             DateOnly end = DateOnly.Parse(endDate.Value.ToString("dd.MM.yyyy"));
-            string cr = dateCreate.Value.ToString("dd.MM.yyyy-HH.mm");
-            DateTime create = DateTime.ParseExact(cr, "dd.MM.yyyy-HH.mm", null);
             errorLable();
             bool b = CheckComboBox();
             bool se = StartEndDate(start, end);
-            //bool sc = StartCreateDate(start, create);
             if (b && se)
             {
                 string[] s = staffComboBox.SelectedItem.ToString().Split(" ");
@@ -73,7 +70,6 @@ namespace Library.Forms
             staffLabel.Text = "";
             dateOfIssuedLable.Text = "";
             estimatedReturnDateLable.Text = "";
-            createLable.Text = "";
         }
 
         private bool CheckComboBox()
@@ -90,14 +86,6 @@ namespace Library.Forms
             if (!(startDate < endDate))
                 estimatedReturnDateLable.Text = "Неправильный период";
             return startDate < endDate;
-        }
-
-        private bool StartCreateDate(DateOnly startDate, DateOnly createDate)
-        {
-            if (!(startDate > createDate))
-                createLable.Text = "Дата создания отчёта должна быть " +
-                    "\n больше начало периода";
-            return startDate > createDate;
         }
 
         private void addStaff_Click(object sender, EventArgs e)

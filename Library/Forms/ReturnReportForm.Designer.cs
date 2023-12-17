@@ -1,6 +1,6 @@
 ﻿namespace Library.Forms
 {
-    partial class SataffReportForm
+    partial class ReturnReportForm
     {
         /// <summary>
         /// Required designer variable.
@@ -143,7 +143,7 @@
             // 
             // buttonReportStaff
             // 
-            buttonReportStaff.Location = new Point(68, 268);
+            buttonReportStaff.Location = new Point(62, 261);
             buttonReportStaff.Name = "buttonReportStaff";
             buttonReportStaff.Size = new Size(101, 23);
             buttonReportStaff.TabIndex = 86;
@@ -151,11 +151,11 @@
             buttonReportStaff.UseVisualStyleBackColor = true;
             buttonReportStaff.Click += buttonReportStaff_Click;
             // 
-            // SataffReportForm
+            // ReturnReportForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(239, 303);
+            ClientSize = new Size(239, 296);
             Controls.Add(buttonReportStaff);
             Controls.Add(estimatedReturnDateLable);
             Controls.Add(label3);
@@ -168,8 +168,8 @@
             Controls.Add(staffLabel);
             Controls.Add(label7);
             Controls.Add(staffComboBox);
-            Name = "SataffReportForm";
-            Text = "Статистика выданных книг сотрудниками";
+            Name = "ReturnReportForm";
+            Text = "Выданные книг которые не вернули";
             Load += SataffReportForm_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -55,19 +55,23 @@ namespace Library.Controllers
         {
             using (var db = new LibraryContext())
             {
+                DateTime nowDate = DateTime.Today;
+                DateOnly n = DateOnly.Parse(nowDate.ToString("dd.MM.yyyy"));
                 var result = db.Journals
                     .Include(j => j.Book)
                     .Include(j => j.User)
                     .Where(j =>  startDate < j.DateOfIssued && j.DateOfIssued < endDate
                             && j.ActualReturnDate == null)
-                    //.GroupBy(j => j.User)
                     .ToList()
                     .Select(x => new ReportReturned
                     {
-                        User = x.User,
-                        Book = x.Book
+                        User = $"{x.User.LastName} {x.User.FirstName} {x.User.Ticket}",
+                        BookTitel = x.Book.Title,
+                        EstimatedReturnDate = x.EstimatedReturnDate.ToString(),
+                        MissedDays = (x.EstimatedReturnDate.Day - n.Day > 0) ? 0 :
+                            Math.Abs(x.EstimatedReturnDate.Day - n.Day),
                     })
-                    .OrderByDescending(x => x.User.FirstName) .ToList();
+                    .OrderByDescending(x => x.MissedDays) .ToList();
                 return result;
             }
         }

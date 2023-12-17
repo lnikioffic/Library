@@ -139,22 +139,22 @@
             // GenereReportStripMenuItem
             // 
             GenereReportStripMenuItem.Name = "GenereReportStripMenuItem";
-            GenereReportStripMenuItem.Size = new Size(304, 22);
+            GenereReportStripMenuItem.Size = new Size(274, 22);
             GenereReportStripMenuItem.Text = "Популярность жарнов";
             GenereReportStripMenuItem.Click += GenereReportStripMenuItem_Click;
             // 
             // AuthorReportStripMenuItem
             // 
             AuthorReportStripMenuItem.Name = "AuthorReportStripMenuItem";
-            AuthorReportStripMenuItem.Size = new Size(304, 22);
+            AuthorReportStripMenuItem.Size = new Size(274, 22);
             AuthorReportStripMenuItem.Text = "Популярность авторов";
             AuthorReportStripMenuItem.Click += AuthorReportStripMenuItem_Click;
             // 
             // StaffReportStripMenuItem5
             // 
             StaffReportStripMenuItem5.Name = "StaffReportStripMenuItem5";
-            StaffReportStripMenuItem5.Size = new Size(304, 22);
-            StaffReportStripMenuItem5.Text = "Статистика выданных книг сотрудниками";
+            StaffReportStripMenuItem5.Size = new Size(274, 22);
+            StaffReportStripMenuItem5.Text = "Выданные книг которые не вернули";
             StaffReportStripMenuItem5.Click += StaffReportStripMenuItem5_Click;
             // 
             // Form1

@@ -65,7 +65,7 @@ namespace Library
 
         private void StaffReportStripMenuItem5_Click(object sender, EventArgs e)
         {
-            var staffReport = new SataffReportForm();
+            var staffReport = new ReturnReportForm();
             staffReport.Show();
         }
     }

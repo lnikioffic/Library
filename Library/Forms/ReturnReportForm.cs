@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace Library.Forms
 {
-    public partial class SataffReportForm : Form
+    public partial class ReturnReportForm : Form
     {
         ReportController reportController { get; set; }
 
         StaffController staffController { get; set; }
 
-        public SataffReportForm()
+        public ReturnReportForm()
         {
             reportController = new ReportController();
             staffController = new StaffController();
@@ -47,30 +47,28 @@ namespace Library.Forms
         {
             DateOnly start = DateOnly.Parse(startDate.Value.ToString("dd.MM.yyyy"));
             DateOnly end = DateOnly.Parse(endDate.Value.ToString("dd.MM.yyyy"));
-            string cr = dateCreate.Value.ToString("dd.MM.yyyy-HH.mm");
-            DateTime create = DateTime.ParseExact(cr, "dd.MM.yyyy-HH.mm", null);
             errorLable();
             bool b = CheckComboBox();
             bool se = StartEndDate(start, end);
-            //bool sc = StartCreateDate(start, create);
             if (b && se)
             {
                 string[] s = staffComboBox.SelectedItem.ToString().Split(" ");
                 var staff = staffController.GetData(s[1], s[0]).First();
 
-                var reportStaff = reportController.ReportStaff(start, end);
+                var reportReturneds = reportController.ReportReturneds(start, end);
 
-                List<List<string>> reportStaffsList = new List<List<string>>
+                List<List<string>> reportReturnedsList = new List<List<string>>
                 {
-                    new List<string> {"Сотрудник", "Кол-во выданных книг"}
+                    new List<string> {"Книга", "Предполагаема дата возврата", "Пропущено дней", "Читатель"}
                 };
-                foreach (var item in reportStaff)
-                    reportStaffsList.Add(new List<string> { item.Name, item.Count.ToString() });
+                foreach (var item in reportReturneds)
+                    reportReturnedsList.Add(new List<string> { item.BookTitel, item.EstimatedReturnDate,
+                            item.MissedDays.ToString(), item.User});
 
-                ReportDesigner report = new ReportDesigner("Статистика выданных книг сотрудниками");
+                ReportDesigner report = new ReportDesigner("Выданные книг которые не вернули");
                 report.AddHeader();
                 report.AddDate(start.ToString(), end.ToString());
-                report.CreateTableWithContent(reportStaffsList);
+                report.CreateTableWithContent(reportReturnedsList);
                 report.AddSignatureDate();
                 report.AddSignature(staff);
                 report.Save();
@@ -93,20 +91,11 @@ namespace Library.Forms
             return startDate < endDate;
         }
 
-        private bool StartCreateDate(DateOnly startDate, DateOnly createDate)
-        {
-            if (!(startDate > createDate))
-                createLable.Text = "Дата создания отчёта должна быть " +
-                    "\n больше начало периода";
-            return startDate > createDate;
-        }
-
         private void errorLable()
         {
             staffLabel.Text = "";
             dateOfIssuedLable.Text = "";
             estimatedReturnDateLable.Text = "";
-            createLable.Text = "";
         }
     }
 }

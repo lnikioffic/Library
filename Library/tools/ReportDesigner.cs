@@ -55,7 +55,7 @@ namespace Library.tools
         public void AddDate(string dateStar, string dateEnd)
         {
             Paragraph date = doc.Paragraphs.Add();
-            date.Range.Text = $"Период {dateStar} - {dateEnd}";
+            date.Range.Text = $"\nПериод {dateStar} - {dateEnd}";
             date.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
             date.Range.InsertParagraphAfter();
         }
@@ -130,7 +130,7 @@ namespace Library.tools
             // Пример форматирования таблицы
             table.Borders.Enable = 1; // Включаем границы
             //table.AutoFitBehavior(WdAutoFitBehavior.wdAutoFitContent); // Автоматическая подгонка размера
-            table.Rows.Alignment = WdRowAlignment.wdAlignRowCenter; // Выравнивание по центру
+            table.Rows.Alignment = WdRowAlignment.wdAlignRowLeft; // Выравнивание по центру
         }
 
         private Word.Range GetTableRange(Document doc)
