@@ -22,7 +22,9 @@ namespace Library.Forms
         {
             reportController = new ReportController();
             staffController = new StaffController();
+            var now = DateTime.Now;
             InitializeComponent();
+            startDate.Value = new DateTime(now.Year, now.Month, 1);
         }
 
         private void buttonReportAuthor_Click(object sender, EventArgs e)

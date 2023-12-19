@@ -33,7 +33,9 @@ public partial class Author : IModel, ISearchField
 
     public override string ToString()
     {
-        return LastName;
+        if (Patronymic == "")
+            return $"{LastName} {FirstName[0]}";
+        return $"{LastName} {FirstName[0]}. {Patronymic?[0]}.";
     }
 
     public string ToStringNew()

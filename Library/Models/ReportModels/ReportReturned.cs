@@ -10,6 +10,7 @@ namespace Library.Models.ReportModels
     {
         //public Book Book { get; set; } = null!;
         //public User User { get; set; } = null!;
+        //public Journal Journal { get; set; } = null!;
 
         public string BookTitel { get; set; } = null!;
 
@@ -18,5 +19,7 @@ namespace Library.Models.ReportModels
         public int MissedDays { get; set; }
 
         public string User { get; set; } = null!;
+
+        public string Authors { get; set; } = null!;
     }
 }

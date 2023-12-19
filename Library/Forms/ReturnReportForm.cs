@@ -49,7 +49,8 @@ namespace Library.Forms
             DateOnly end = DateOnly.Parse(endDate.Value.ToString("dd.MM.yyyy"));
             errorLable();
             bool b = CheckComboBox();
-            bool se = StartEndDate(start, end);
+            //bool se = StartEndDate(start, end);
+            bool se = true;
             if (b && se)
             {
                 string[] s = staffComboBox.SelectedItem.ToString().Split(" ");
@@ -59,15 +60,16 @@ namespace Library.Forms
 
                 List<List<string>> reportReturnedsList = new List<List<string>>
                 {
-                    new List<string> {"Книга", "Предполагаема дата возврата", "Пропущено дней", "Читатель"}
+                    new List<string> {"Книга", "Авторы", "Предполагаема дата возврата",
+                        "Пропущено дней", "Читатель"}
                 };
                 foreach (var item in reportReturneds)
-                    reportReturnedsList.Add(new List<string> { item.BookTitel, item.EstimatedReturnDate,
-                            item.MissedDays.ToString(), item.User});
+                    reportReturnedsList.Add(new List<string> { item.BookTitel, item.Authors,
+                        item.EstimatedReturnDate, item.MissedDays.ToString(), item.User});
 
-                ReportDesigner report = new ReportDesigner("Выданные книг которые не вернули");
+                ReportDesigner report = new ReportDesigner("Не возвращённые книги");
                 report.AddHeader();
-                report.AddDate(start.ToString(), end.ToString());
+                report.AddDate();
                 report.CreateTableWithContent(reportReturnedsList);
                 report.AddSignatureDate();
                 report.AddSignature(staff);

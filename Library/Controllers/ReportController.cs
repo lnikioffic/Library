@@ -55,13 +55,16 @@ namespace Library.Controllers
         {
             using (var db = new LibraryContext())
             {
+                //startDate < j.DateOfIssued && j.DateOfIssued < endDate
+                //            &&
                 DateTime nowDate = DateTime.Today;
                 DateOnly n = DateOnly.Parse(nowDate.ToString("dd.MM.yyyy"));
                 var result = db.Journals
                     .Include(j => j.Book)
+                        .ThenInclude(b => b.AuthorBooks)
+                            .ThenInclude(a => a.Author)
                     .Include(j => j.User)
-                    .Where(j =>  startDate < j.DateOfIssued && j.DateOfIssued < endDate
-                            && j.ActualReturnDate == null)
+                    .Where(j => j.ActualReturnDate == null && j.EstimatedReturnDate.Day - n.Day < 0)
                     .ToList()
                     .Select(x => new ReportReturned
                     {
@@ -70,6 +73,7 @@ namespace Library.Controllers
                         EstimatedReturnDate = x.EstimatedReturnDate.ToString(),
                         MissedDays = (x.EstimatedReturnDate.Day - n.Day > 0) ? 0 :
                             Math.Abs(x.EstimatedReturnDate.Day - n.Day),
+                        Authors = string.Join(", ", x.Book.AuthorBooks.Select(x => x.Author))
                     })
                     .OrderByDescending(x => x.MissedDays) .ToList();
                 return result;

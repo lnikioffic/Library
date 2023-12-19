@@ -57,12 +57,13 @@
             label3.AutoSize = true;
             label3.Location = new Point(10, 109);
             label3.Name = "label3";
-            label3.Size = new Size(86, 15);
+            label3.Size = new Size(80, 15);
             label3.TabIndex = 81;
-            label3.Text = "Конечная дата";
+            label3.Text = "Текущая дата";
             // 
             // endDate
             // 
+            endDate.Enabled = false;
             endDate.Location = new Point(12, 127);
             endDate.Name = "endDate";
             endDate.Size = new Size(208, 23);
@@ -75,6 +76,7 @@
             startDate.Name = "startDate";
             startDate.Size = new Size(208, 23);
             startDate.TabIndex = 79;
+            startDate.Visible = false;
             // 
             // dateOfIssuedLable
             // 
@@ -85,6 +87,7 @@
             dateOfIssuedLable.Size = new Size(38, 15);
             dateOfIssuedLable.TabIndex = 78;
             dateOfIssuedLable.Text = "label7";
+            dateOfIssuedLable.Visible = false;
             // 
             // label2
             // 
@@ -94,6 +97,7 @@
             label2.Size = new Size(93, 15);
             label2.TabIndex = 77;
             label2.Text = "Начальная дата";
+            label2.Visible = false;
             // 
             // label1
             // 

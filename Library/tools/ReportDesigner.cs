@@ -55,18 +55,26 @@ namespace Library.tools
         public void AddDate(string dateStar, string dateEnd)
         {
             Paragraph date = doc.Paragraphs.Add();
-            date.Range.Text = $"\nПериод {dateStar} - {dateEnd}";
+            date.Range.Text = $"Период {dateStar} - {dateEnd}";
             date.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
             date.Range.InsertParagraphAfter();
         }
-        
+
+        public void AddDate()
+        {
+            Paragraph date = doc.Paragraphs.Add();
+            date.Range.Text = $"На дату {dateNow.Split("-")[0]}";
+            date.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+            date.Range.InsertParagraphAfter();
+        }
+
         public void AddSignature(Staff info)
         {
             string staffName = "";
             if (info.Patronymic != "")
-                staffName = $"{info.LastName} {info.FirstName.Substring(0, 1)}. {info.Patronymic?.Substring(0, 1)}";
+                staffName = $"{info.LastName} {info.FirstName[0]}. {info.Patronymic?[0]}";
             else
-                staffName = $"{info.LastName} {info.FirstName.Substring(0, 1)}.";
+                staffName = $"{info.LastName} {info.FirstName[0]}.";
             Paragraph listItem = doc.Paragraphs.Add();
             listItem.Range.Text = $"{info.Role} _________ / {staffName}";
             listItem.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphRight; 
@@ -144,7 +152,12 @@ namespace Library.tools
             for (int row = 1; row < table.Rows.Count + 1; row++)
             {
                 for (int col = 1; col < table.Columns.Count + 1; col++)
+                {
                     table.Cell(row, col).Range.Text = content[row - 1][col - 1].ToString();
+                    table.Cell(row, col).Range.Font.Size = 12;
+                    table.Cell(row, col).Range.ParagraphFormat.LineSpacing = 18;
+                    table.Cell(row, col).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                }
             }
         }
 
