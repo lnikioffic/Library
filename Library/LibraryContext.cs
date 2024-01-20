@@ -40,7 +40,7 @@ public partial class LibraryContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.EnableSensitiveDataLogging();
-        optionsBuilder.UseNpgsql("Host=localhost;Port=5433;Database=library;Username=postgres;Password=Nikita2002");
+        optionsBuilder.UseNpgsql("Host=localhost;Port=5433;Database=library;Username=postgres;Password=****");
     }
 #warning To protect potentially sensitive information in 
 // your connection string, you should move it out of source 
